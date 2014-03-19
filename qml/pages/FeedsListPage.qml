@@ -10,23 +10,10 @@ Page {
         visible: !feedly.busy
 
         header: PageHeader {
-            title: qsTr("Feeds list")
+            title: qsTr("Your feeds")
         }
 
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("Reset authorization")
-                onClicked: pageStack.push(Qt.resolvedUrl("SignInPage.qml"))
-            }
-        }
-
-        ViewPlaceholder {
-            enabled: (feedsListView.count == 0)
-            text: qsTr("Feeds list not available")
-        }
-
-        model: feedsListModel
-
+        model: feedly.feedsListModel
         delegate: ListItem {
             id: feedItem
 
@@ -41,7 +28,7 @@ Page {
                 anchors.verticalCenter: parent.verticalCenter
                 truncationMode: TruncationMode.Fade
                 text: title
-                color: highlighted ? Theme.highlightColor : (parent.enabled ? Theme.primaryColor : Theme.secondaryColor)
+                color: highlighted ? Theme.highlightColor : ((unreadCount > 0) ? Theme.primaryColor : Theme.secondaryColor)
             }
 
             Label {
@@ -50,7 +37,7 @@ Page {
                 anchors.rightMargin: Theme.paddingLarge
                 anchors.verticalCenter: parent.verticalCenter
                 text: unreadCount
-                visible: parent.enabled
+                visible: (unreadCount > 0)
                 color: Theme.highlightColor
             }
 
@@ -60,6 +47,31 @@ Page {
 
         section.property: "category"
         section.delegate: SectionHeader { text: section }
+
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("About")
+                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
+            }
+
+            MenuItem {
+                text: qsTr("Reset authorization")
+                onClicked: {
+                    feedly.resetAuthorization();
+                    pageStack.push(Qt.resolvedUrl("SignInPage.qml"));
+                }
+            }
+
+            MenuItem {
+                text: qsTr("Refresh feeds")
+                onClicked: feedly.getSubscriptions()
+            }
+        }
+
+        ViewPlaceholder {
+            enabled: (feedsListView.count == 0)
+            text: qsTr("Feeds list not available")
+        }
 
         VerticalScrollDecorator {
             flickable: feedsListView
@@ -75,6 +87,10 @@ Page {
                 feedly.getSubscriptions();
             }
         }
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Activating) feedly.acquireStatusIndicator(page);
     }
 
     Component.onCompleted: {

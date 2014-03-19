@@ -13,18 +13,19 @@ Page {
         }
         url: feedly.getSignInUrl();
 
+        ViewPlaceholder {
+            id: errorPlaceholder
+
+            enabled: false
+            text: qsTr("Authentication error")
+        }
 
         onUrlChanged: {
             var authInfo = feedly.getAuthCodeFromUrl(url.toString());
-            if (authInfo.authCode != "") {
-                feedly.getAccesToken(authInfo.authCode);
-            } else if (authInfo.error) {
-                // DEBUG
-                console.log("Feedly auth error!");
-            }
-        }
 
-        ScrollDecorator { flickable: signInView }
+            if (authInfo.authCode !== "") feedly.getAccessToken(authInfo.authCode);
+            else if (authInfo.error) errorPlaceholder.enabled = true;
+        }
     }
 
     Connections {
@@ -33,6 +34,12 @@ Page {
         onSignedInChanged: {
             if (feedly.signedIn) pageContainer.pop();
         }
+
+        onError: errorPlaceholder.enabled = true;
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Activating) feedly.acquireStatusIndicator(page);
     }
 }
 

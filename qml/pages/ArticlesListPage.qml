@@ -9,33 +9,25 @@ Page {
 
     SilicaListView {
         id: articlesListView
+
+        property Item contextMenu
+
         anchors.fill: parent
         visible: !feedly.busy
+        spacing: Theme.paddingSmall
 
         header: PageHeader {
             title: page.title
         }
 
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("Refresh feed")
-                onClicked: feedly.getStreamContent(streamId)
-            }
-        }
-
-        ViewPlaceholder {
-            enabled: (articlesListView.count == 0)
-            text: qsTr("No unread articles in this feed")
-        }
-
-        spacing: Theme.paddingSmall
-
-        model: articlesListModel
+        model: feedly.articlesListModel
         delegate: ListItem {
             id: articleItem
 
+            property bool menuOpen: ((articlesListView.contextMenu != null) && (articlesListView.contextMenu.parent === articleItem))
+
             width: articlesListView.width
-            contentHeight: Theme.itemSizeExtraLarge
+            contentHeight: menuOpen ? articlesListView.contextMenu.height + Theme.itemSizeExtraLarge : Theme.itemSizeExtraLarge
 
             GlassItem {
                 id: unreadIndicator
@@ -74,7 +66,6 @@ Page {
                 elide: Text.ElideRight
                 maximumLineCount: 3
                 wrapMode: Text.WordWrap
-
                 text: summary
                 color: highlighted ? (unread ? Theme.highlightColor : Theme.secondaryHighlightColor) : (unread ? Theme.primaryColor : Theme.secondaryColor)
             }
@@ -109,20 +100,92 @@ Page {
 //            }
 
             onClicked: {
-                feedly.markEntryAsRead(id);
+                if (unread) feedly.markEntryAsRead(id);
                 feedly.getEntry(id);
                 pageStack.push(Qt.resolvedUrl("ArticlePage.qml"));
+            }
+
+            onPressAndHold: {
+                if (unread || contentUrl) {
+                    if (!articlesListView.contextMenu) articlesListView.contextMenu = contextMenuComponent.createObject(articlesListView)
+                    articlesListView.contextMenu.articleId = id;
+                    articlesListView.contextMenu.articleUnread = unread;
+                    articlesListView.contextMenu.articleUrl = contentUrl;
+                    articlesListView.contextMenu.show(articleItem)
+                }
             }
         }
 
         section.property: "updatedDate"
         section.delegate: SectionHeader { text: Format.formatDate(section, Formatter.TimepointSectionRelative) }
 
-        VerticalScrollDecorator { flickable: articlesListView }
+        Component {
+            id: contextMenuComponent
 
+            ContextMenu {
+                property string articleId
+                property bool articleUnread
+                property string articleUrl
+
+                MenuItem {
+                    visible: parent.articleUnread
+                    text: qsTr("Mark as read")
+                    onClicked: feedly.markEntryAsRead(parent.articleId)
+                }
+
+                MenuItem {
+                    visible: (parent.articleUrl != "")
+                    text: qsTr("Open original link")
+                    onClicked: Qt.openUrlExternally(parent.articleUrl)
+                }
+            }
+        }
+
+        PullDownMenu {
+            MenuItem {
+                visible: (articlesListView.count > 0)
+                text: qsTr("Mark all as read")
+                onClicked: remorsePopup.execute(qsTr("Marking all articles as read"))
+            }
+
+            MenuItem {
+                text: qsTr("Refresh feed")
+                onClicked: feedly.getStreamContent(streamId)
+            }
+        }
+
+        PushUpMenu {
+            visible: (feedly.continuation !== "")
+
+            MenuItem {
+                text: qsTr("More articles")
+                onClicked: feedly.getStreamContent(streamId, true)
+            }
+        }
+
+        ViewPlaceholder {
+            enabled: (articlesListView.count == 0)
+            text: qsTr("No unread articles in this feed")
+        }
+
+        VerticalScrollDecorator { flickable: articlesListView }
+    }
+
+    RemorsePopup {
+        id: remorsePopup
+
+        onTriggered: feedly.markFeedAsRead(streamId, articlesListView.model.get(0).id)
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Activating) feedly.acquireStatusIndicator(page);
     }
 
     Component.onCompleted: {
         feedly.getStreamContent(streamId)
+    }
+
+    Component.onDestruction: {
+        feedly.articlesListModel.clear();
     }
 }

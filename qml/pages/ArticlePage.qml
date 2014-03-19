@@ -4,16 +4,19 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
-    property string title: (feedly.currentEntry !== null) ? feedly.currentEntry.title : ""
-    property string author: (feedly.currentEntry !== null) ? feedly.currentEntry.author : ""
-    property date updated: (feedly.currentEntry !== null) ? new Date(feedly.currentEntry.updated) : ""
-    property string content: (feedly.currentEntry !== null) ? feedly.currentEntry.content : ""
+    property string title: ""
+    property string author: ""
+    property var updated: null
+    property string imgUrl: ""
+    property string content: ""
+    property string contentUrl: ""
 
     SilicaFlickable {
         id: articleView
 
         anchors.fill: parent
         contentHeight: articleContainer.height
+        visible: (feedly.currentEntry !== null)
 
         Column {
             id: articleContainer
@@ -37,11 +40,24 @@ Page {
             }
 
             Label {
-                id: articleAuthor
+                id: articleAuthorDate
 
                 width: parent.width
                 font.pixelSize: Theme.fontSizeTiny
                 text: qsTr("by %1, published on: %2").arg(page.author).arg(Qt.formatDateTime(page.updated))
+            }
+
+            Image {
+                id: articleVisual
+
+                width: parent.width
+                height: (Theme.itemSizeExtraLarge * 2)
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+                clip: true
+                source: page.imgUrl
+                visible: (source != "")
+                onPaintedHeightChanged: { if (paintedHeight < height) height = paintedHeight; }
             }
 
             Label {
@@ -52,11 +68,51 @@ Page {
                 font.pixelSize: Theme.fontSizeExtraSmall
                 wrapMode: Text.WordWrap
                 textFormat: Text.RichText
-                text: page.content
+                text: "<style>a:link { color: " + Theme.highlightColor + "; }</style>" + page.content;
+            }
+        }
+
+        PullDownMenu {
+            property bool showMenu: (page.contentUrl !== "")
+
+            visible: showMenu
+
+            MenuItem {
+                text: qsTr("Open original link")
+                onClicked: Qt.openUrlExternally(page.contentUrl);
             }
         }
 
         VerticalScrollDecorator { flickable: articleView }
     }
 
+    Connections {
+        target: feedly
+
+        onCurrentEntryChanged: {
+            if (feedly.currentEntry !== null) {
+                title = feedly.currentEntry.title;
+                author = feedly.currentEntry.author;
+                updated = new Date(feedly.currentEntry.updated);
+                imgUrl = feedly.currentEntry.imgUrl;
+                content = feedly.currentEntry.content;
+                contentUrl = feedly.currentEntry.contentUrl;
+            }
+        }
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Activating) feedly.acquireStatusIndicator(page);
+    }
+
+    Component.onCompleted: {
+        if (feedly.currentEntry !== null) {
+            title = feedly.currentEntry.title;
+            author = feedly.currentEntry.author;
+            updated = new Date(feedly.currentEntry.updated);
+            imgUrl = feedly.currentEntry.imgUrl;
+            content = feedly.currentEntry.content;
+            contentUrl = feedly.currentEntry.contentUrl;
+        }
+    }
 }

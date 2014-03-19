@@ -21,5 +21,9 @@ OTHER_FILES += qml/harbour-feedhaven.qml \
     qml/pages/SignInPage.qml \
     qml/pages/FeedsListPage.qml \
     qml/pages/ArticlesListPage.qml \
-    qml/pages/ArticlePage.qml
+    qml/pages/ArticlePage.qml \
+    qml/lib/dbmanager.js \
+    qml/components/Feedly.qml \
+    qml/components/StatusIndicator.qml \
+    qml/pages/AboutPage.qml
 

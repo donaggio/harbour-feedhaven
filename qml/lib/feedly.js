@@ -1,7 +1,7 @@
 .pragma library
 
 var _clientID = "sandbox";
-var _clientSecret = "W60IW73DYSUIISZX4OUP"; // "CM786L1D4P3M9VYUPOB8";
+var _clientSecret = "W60IW73DYSUIISZX4OUP";
 var _apiCallBaseUrl = "http://sandbox.feedly.com/v3/";
 var _redirectUri = "urn:ietf:wg:oauth:2.0:oob";
 var _apiCalls = {
@@ -34,12 +34,21 @@ function call(method, param, callback, accessToken) {
         } else url += ("/" + encodeURIComponent(param));
     }
 
-    xhr.timeout = 20000;
+    xhr.timeout = 10000;
     xhr.open(_apiCalls[method].method, url, true);
-    if (accessToken != "") xhr.setRequestHeader("Authorization", "OAuth " + accessToken);
+    if (accessToken !== "") xhr.setRequestHeader("Authorization", "OAuth " + accessToken);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-            var retObj = { "status": xhr.status, "response": (xhr.responseText ? JSON.parse(xhr.responseText) : ""), "callMethod": method ,"callParams": param };
+            var tmpResp;
+            if (xhr.responseText) {
+                try {
+                    tmpResp = JSON.parse(xhr.responseText);
+                } catch (exception) {
+                    // Not a valid JSON response
+                    tmpResp = null;
+                }
+            }
+            var retObj = { "status": xhr.status, "response": tmpResp, "callMethod": method, "callParams": param };
             // DEBUG
             // console.log(JSON.stringify(retObj));
             callback(retObj);
