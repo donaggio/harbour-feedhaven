@@ -4,11 +4,21 @@ import Sailfish.Silica 1.0
 CoverBackground {
     id: cover
 
+    Label {
+        id: labelAppName
+
+        anchors { top: parent.top; left: parent.left; right: parent.right; topMargin: Theme.paddingSmall; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
+        horizontalAlignment: Text.AlignHCenter
+        wrapMode: Text.NoWrap
+        truncationMode: TruncationMode.Fade
+        text: qsTr("Feed Haven")
+    }
+
     Column {
-        anchors.top: cover.top
-        anchors.topMargin: Theme.paddingLarge
-        width: cover.width - (2 * Theme.paddingLarge)
-        x: Theme.paddingLarge
+        anchors.top: labelAppName.bottom
+        anchors.topMargin: Theme.paddingMedium
+        width: cover.width - (2 * Theme.paddingMedium)
+        x: Theme.paddingMedium
         spacing: Theme.paddingSmall
         visible: !labelLoading.visible
 
@@ -84,12 +94,29 @@ CoverBackground {
     Label {
         id: labelLoading
 
-        anchors.fill: parent
-        verticalAlignment: Text.AlignVCenter
+        anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.NoWrap
         truncationMode: TruncationMode.Fade
-        text: qsTr("Loading ...")
+        text: qsTr("Updating ...")
         visible: feedly.busy
+
+        SequentialAnimation on opacity {
+            paused: !visible
+            loops: Animation.Infinite
+
+            NumberAnimation { to: 0; duration: 1000 }
+            NumberAnimation { to: 1; duration: 1000 }
+        }
     }
+
+    CoverActionList {
+        id: coverAction
+
+        CoverAction {
+            iconSource: "image://theme/icon-cover-refresh"
+            onTriggered: feedly.getSubscriptions();
+        }
+    }
+
 }

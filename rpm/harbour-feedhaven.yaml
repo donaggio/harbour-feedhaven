@@ -4,11 +4,13 @@ Version: 0.1
 Release: 1
 Group: Qt/Qt
 URL: http://example.org/
-License: LICENSE
+License: MIT
 Sources:
 - '%{name}-%{version}.tar.bz2'
-Description: |
-  Short description of my SailfishOS Application
+Description: |-
+  Feed Haven is a native client for Feedly news reader service.
+  You can access to your subscribed feeds content and to each article's original web page as well.
+  Subscribing to new feeds is currently not supported, you need to log in to Feedly itself using a web browser in order to manage your feeds.
 Configure: none
 Builder: qtc5
 PkgConfigBR:
@@ -27,3 +29,4 @@ Files:
 - '%{_datadir}/applications/%{name}.desktop'
 - '%{_datadir}/%{name}/qml'
 - '%{_bindir}'
+PkgBR: []

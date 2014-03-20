@@ -76,7 +76,7 @@ Item {
 
             onTriggered: SequentialAnimation {
                 PropertyAnimation { target: errorIndicator; property: "opacity"; to: 0; duration: 300; }
-                ScriptAction { script: errorIndicator.visible = false; }
+                PropertyAction { target: errorIndicator; property: "visible"; value: false; }
             }
         }
     }

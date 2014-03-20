@@ -27,3 +27,12 @@ OTHER_FILES += qml/harbour-feedhaven.qml \
     qml/components/StatusIndicator.qml \
     qml/pages/AboutPage.qml
 
+lupdate_only {
+    SOURCES += qml/*.qml \
+        qml/pages/*.qml \
+        qml/components/*.qml \
+        qml/cover/*.qml \
+        qml/lib/*.js
+}
+
+TRANSLATIONS += harbour-feedhaven_it.ts

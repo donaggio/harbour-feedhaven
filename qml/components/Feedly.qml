@@ -179,16 +179,19 @@ QtObject {
     function markersCountsDoneCB(retObj) {
         if (checkResponse(retObj, markersCountsDoneCB)) {
             if (Array.isArray(retObj.response.unreadcounts)) {
+                totalUnread = 0;
                 for (var i = 0; i < retObj.response.unreadcounts.length; i++) {
                     var tmpObj = retObj.response.unreadcounts[i];
+                    var tmpTotUnreadUpd = false;
                     for (var j = 0; j < feedsListModel.count; j++) {
-                        if (feedsListModel.get(j).id === tmpObj.id) feedsListModel.setProperty(j, "unreadCount", tmpObj.count);
+                        if (feedsListModel.get(j).id === tmpObj.id) {
+                            feedsListModel.setProperty(j, "unreadCount", tmpObj.count);
+                            if (!tmpTotUnreadUpd) {
+                                totalUnread += tmpObj.count;
+                                tmpTotUnreadUpd = true;
+                            }
+                        }
                     }
-                }
-                totalUnread = 0;
-                for (i = 0; i < feedsListModel.count; i++) {
-                    totalUnread = (totalUnread + feedsListModel.get(i).unreadCount);
-                    // TODO: Do not count same feed multiple times (can happen when a feed belongs to multiple categories)
                 }
             }
             busy = false;
