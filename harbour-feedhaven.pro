@@ -25,7 +25,8 @@ OTHER_FILES += qml/harbour-feedhaven.qml \
     qml/lib/dbmanager.js \
     qml/components/Feedly.qml \
     qml/components/StatusIndicator.qml \
-    qml/pages/AboutPage.qml
+    qml/pages/AboutPage.qml \
+    feedly-api-config.pri
 
 lupdate_only {
     SOURCES += qml/*.qml \
@@ -35,4 +36,10 @@ lupdate_only {
         qml/lib/*.js
 }
 
-TRANSLATIONS += harbour-feedhaven_it.ts
+TRANSLATIONS += harbour-feedhaven-it.ts
+
+VERSION = 0.0
+
+DEFINES += APP_VERSION=\"\\\"$$VERSION\\\"\"
+
+include("feedly-api-config.pri")

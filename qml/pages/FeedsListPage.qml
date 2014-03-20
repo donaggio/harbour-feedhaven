@@ -55,7 +55,7 @@ Page {
             }
 
             MenuItem {
-                text: qsTr("Reset authorization")
+                text: (feedly.signedIn ? qsTr("Reset authorization") : qsTr("Sign in"))
                 onClicked: {
                     feedly.resetAuthorization();
                     pageStack.push(Qt.resolvedUrl("SignInPage.qml"));
@@ -64,13 +64,14 @@ Page {
 
             MenuItem {
                 text: qsTr("Refresh feeds")
+                visible: feedly.signedIn
                 onClicked: feedly.getSubscriptions()
             }
         }
 
         ViewPlaceholder {
             enabled: (feedsListView.count == 0)
-            text: qsTr("Feeds list not available")
+            text: (feedly.signedIn ? qsTr("Feeds list not available") : qsTr("Please sign in"))
         }
 
         VerticalScrollDecorator {

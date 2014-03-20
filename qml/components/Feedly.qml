@@ -66,7 +66,7 @@ QtObject {
             break;
         default:
             busy = false;
-            error();
+            error("");
             break;
         }
 
@@ -124,7 +124,7 @@ QtObject {
             error(qsTr("Feedly authentication error"));
         }
         // DEBUG
-        // console.log(JSON.stringify(retObj));
+        console.log(JSON.stringify(retObj));
      }
 
     /*
@@ -378,10 +378,11 @@ QtObject {
     onError: {
         if (_createStatusIndicator()) _statusIndicator.showErrorIndicator(message);
         // DEBUG
-        console.log("Feedly API error!");
+        console.log("Feedly API error (" + message + ")");
     }
 
     Component.onCompleted: {
+        FeedlyAPI.init(feedlyClientId, feedlyClientSecret, true);
         feedsListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         articlesListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         DB.getAuthTokens(feedly);

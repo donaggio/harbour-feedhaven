@@ -2,14 +2,20 @@
 #include <QtQuick>
 #endif
 
-#ifndef VERSION
-#define VERSION "0.0"
+#ifndef FEEDLY_CLIENT_ID
+#define FEEDLY_CLIENT_ID ""
+#endif
+
+#ifndef FEEDLY_CLIENT_SECRET
+#define FEEDLY_CLIENT_SECRET ""
+#endif
+
+#ifndef APP_VERSION
+#define APP_VERSION "0.0"
 #endif
 
 #include <QScopedPointer>
 #include <QVariant>
-#include <QLocale>
-#include <QTranslator>
 #include <QGuiApplication>
 #include <QQuickView>
 //#include <QQmlContext>
@@ -31,17 +37,14 @@ int main(int argc, char *argv[])
 
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view(SailfishApp::createView());
-    QTranslator translator;
 
-    translator.load(QLocale::system().name(), SailfishApp::pathTo(QString("l10n")).toLocalFile());
-    app->installTranslator(&translator);
-
-//    app->setOrganizationName("");
-//    app->setOrganizationDomain("");
+//    app->setOrganizationName("Cthulhu Scrolls");
+//    app->setOrganizationDomain("cthulhuscrolls.com");
 //    app->setApplicationName("harbour-feedhaven");
-    app->setApplicationVersion(QString(VERSION));
+    app->setApplicationVersion(QString(APP_VERSION));
 
-    view->rootContext()->setContextProperty(QString("version"), QVariant(VERSION));
+    view->rootContext()->setContextProperty(QString("feedlyClientId"), QVariant(FEEDLY_CLIENT_ID));
+    view->rootContext()->setContextProperty(QString("feedlyClientSecret"), QVariant(FEEDLY_CLIENT_SECRET));
     view->setSource(SailfishApp::pathTo(QString("qml/harbour-feedhaven.qml")));
     view->show();
     return app->exec();

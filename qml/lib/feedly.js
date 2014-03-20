@@ -1,17 +1,32 @@
 .pragma library
 
-var _clientID = "sandbox";
-var _clientSecret = "W60IW73DYSUIISZX4OUP";
-var _apiCallBaseUrl = "http://sandbox.feedly.com/v3/";
+var _clientID;
+var _clientSecret;
+var _apiCallBaseUrl;
 var _redirectUri = "urn:ietf:wg:oauth:2.0:oob";
 var _apiCalls = {
-    "auth": { "method": "GET", "url": _apiCallBaseUrl + "auth/auth?response_type=code&scope=https://cloud.feedly.com/subscriptions&client_id=" + _clientID + "&redirect_uri=" + _redirectUri },
-    "authRefreshToken": { "method": "POST", "url": _apiCallBaseUrl +  "auth/token" },
-    "subscriptions": { "method": "GET", "url": _apiCallBaseUrl + "subscriptions" },
-    "markers": { "method": "POST", "url": _apiCallBaseUrl + "markers" },
-    "markersCounts": { "method": "GET", "url": _apiCallBaseUrl + "markers/counts" },
-    "streamContent": { "method": "GET", "url": _apiCallBaseUrl + "streams/contents" },
-    "entries": { "method": "GET", "url": _apiCallBaseUrl + "entries" }
+    "auth": { "method": "GET", "url": "https://" + _apiCallBaseUrl + "auth/auth?response_type=code&scope=https://cloud.feedly.com/subscriptions&client_id=" + _clientID + "&redirect_uri=" + _redirectUri },
+    "authRefreshToken": { "method": "POST", "url": "https://" + _apiCallBaseUrl +  "auth/token" },
+    "subscriptions": { "method": "GET", "url": "https://" + _apiCallBaseUrl + "subscriptions" },
+    "markers": { "method": "POST", "url": "http://" + _apiCallBaseUrl + "markers" },
+    "markersCounts": { "method": "GET", "url": "http://" + _apiCallBaseUrl + "markers/counts" },
+    "streamContent": { "method": "GET", "url": "http://" + _apiCallBaseUrl + "streams/contents" },
+    "entries": { "method": "GET", "url": "http://" + _apiCallBaseUrl + "entries" }
+}
+
+/*
+ * Initialize API keys
+ */
+function init(clientID, clientSecret, useTest) {
+    if (useTest) {
+        _clientID = "sandbox";
+        _clientSecret = "W60IW73DYSUIISZX4OUP";
+        _apiCallBaseUrl = "sandbox.feedly.com/v3/";
+    } else {
+        _clientID = clientID;
+        _clientSecret = clientSecret;
+        _apiCallBaseUrl = "cloud.feedly.com/v3/";
+    }
 }
 
 /*
@@ -36,7 +51,7 @@ function call(method, param, callback, accessToken) {
 
     xhr.timeout = 10000;
     xhr.open(_apiCalls[method].method, url, true);
-    if (accessToken !== "") xhr.setRequestHeader("Authorization", "OAuth " + accessToken);
+    if (accessToken) xhr.setRequestHeader("Authorization", "OAuth " + accessToken);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             var tmpResp;
@@ -54,7 +69,7 @@ function call(method, param, callback, accessToken) {
             callback(retObj);
         }
     }
-    xhr.ontimeout = function() { console.log("API call timeot"); }
+    xhr.ontimeout = function() { console.log("API call timeout"); }
     if ((_apiCalls[method].method === "POST") && (param !== null) && (typeof param === "object")) {
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(param));
