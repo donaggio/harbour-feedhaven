@@ -107,7 +107,7 @@ Page {
 
             onPressAndHold: {
                 if (unread || contentUrl) {
-                    if (!articlesListView.contextMenu) articlesListView.contextMenu = contextMenuComponent.createObject(articlesListView)
+                    if (!articlesListView.contextMenu) articlesListView.contextMenu = contextMenuComponent.createObject(articlesListView);
                     articlesListView.contextMenu.articleId = id;
                     articlesListView.contextMenu.articleUnread = unread;
                     articlesListView.contextMenu.articleUrl = contentUrl;
@@ -128,16 +128,18 @@ Page {
                 property string articleUrl
 
                 MenuItem {
-                    visible: parent.articleUnread
+                    visible: (parent.articleUnread ? parent.articleUnread : false)
                     text: qsTr("Mark as read")
                     onClicked: feedly.markEntryAsRead(parent.articleId)
                 }
 
                 MenuItem {
-                    visible: (parent.articleUrl != "")
+                    visible: (parent.articleUrl ? parent.articleUrl : false)
                     text: qsTr("Open original link")
                     onClicked: Qt.openUrlExternally(parent.articleUrl)
                 }
+                // DEBUG
+                onActiveChanged: console.log(articleId + ", " + articleUnread + ", " + articleUrl);
             }
         }
 

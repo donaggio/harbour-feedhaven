@@ -80,24 +80,8 @@ Page {
 
     }
 
-    Connections {
-        target: feedly
-
-        onSignedInChanged: {
-            if (feedly.signedIn && (feedsListView.count == 0)) {
-                feedly.getSubscriptions();
-            }
-        }
-    }
-
     onStatusChanged: {
         if (status === PageStatus.Activating) feedly.acquireStatusIndicator(page);
-    }
-
-    Component.onCompleted: {
-        if (feedly.signedIn) {
-            feedly.getSubscriptions();
-        }
     }
 }
 

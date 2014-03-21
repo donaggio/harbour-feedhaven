@@ -1,31 +1,26 @@
 .pragma library
 
-var _clientID;
-var _clientSecret;
+var _isInitialized = false;
 var _apiCallBaseUrl;
 var _redirectUri = "urn:ietf:wg:oauth:2.0:oob";
 var _apiCalls = {
-    "auth": { "method": "GET", "url": "https://" + _apiCallBaseUrl + "auth/auth?response_type=code&scope=https://cloud.feedly.com/subscriptions&client_id=" + _clientID + "&redirect_uri=" + _redirectUri },
-    "authRefreshToken": { "method": "POST", "url": "https://" + _apiCallBaseUrl +  "auth/token" },
-    "subscriptions": { "method": "GET", "url": "https://" + _apiCallBaseUrl + "subscriptions" },
-    "markers": { "method": "POST", "url": "http://" + _apiCallBaseUrl + "markers" },
-    "markersCounts": { "method": "GET", "url": "http://" + _apiCallBaseUrl + "markers/counts" },
-    "streamContent": { "method": "GET", "url": "http://" + _apiCallBaseUrl + "streams/contents" },
-    "entries": { "method": "GET", "url": "http://" + _apiCallBaseUrl + "entries" }
+    "auth": { "method": "GET", "protocol": "https", "url": "auth/auth?response_type=code&scope=https://cloud.feedly.com/subscriptions&redirect_uri=" + _redirectUri + "&client_id=" },
+    "authRefreshToken": { "method": "POST", "protocol": "https", "url":  "auth/token" },
+    "subscriptions": { "method": "GET", "protocol": "https", "url": "subscriptions" },
+    "markers": { "method": "POST", "protocol": "http", "url": "markers" },
+    "markersCounts": { "method": "GET", "protocol": "http", "url": "markers/counts" },
+    "streamContent": { "method": "GET", "protocol": "http", "url": "streams/contents" },
+    "entries": { "method": "GET", "protocol": "http", "url": "entries" }
 }
 
 /*
- * Initialize API keys
+ * Initialize API
  */
-function init(clientID, clientSecret, useTest) {
-    if (useTest) {
-        _clientID = "sandbox";
-        _clientSecret = "W60IW73DYSUIISZX4OUP";
-        _apiCallBaseUrl = "sandbox.feedly.com/v3/";
-    } else {
-        _clientID = clientID;
-        _clientSecret = clientSecret;
-        _apiCallBaseUrl = "cloud.feedly.com/v3/";
+function init(useTest) {
+    if (!_isInitialized) {
+        if (useTest) _apiCallBaseUrl = "sandbox.feedly.com/v3/";
+        else _apiCallBaseUrl = "cloud.feedly.com/v3/";
+        _isInitialized = true;
     }
 }
 
@@ -35,7 +30,7 @@ function init(clientID, clientSecret, useTest) {
  */
 function call(method, param, callback, accessToken) {
     var xhr = new XMLHttpRequest();
-    var url = _apiCalls[method].url;
+    var url = _apiCalls[method].protocol + "://" + _apiCallBaseUrl + _apiCalls[method].url;
 
     if ((_apiCalls[method].method === "GET") && (param !== null)) {
         if (typeof param === "object") {

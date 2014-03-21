@@ -12,8 +12,5 @@ ApplicationWindow {
         id: feedly
     }
 
-    Component.onCompleted: {
-        if (!feedly.refreshToken) pageStack.push(Qt.resolvedUrl("pages/SignInPage.qml"));
-        else if (!feedly.accessToken || (feedly.expires < (Date.now() + 3600000))) feedly.getAccessToken();
-    }
+    Component.onCompleted: { if (!feedly.refreshToken) pageStack.push(Qt.resolvedUrl("SignInPage.qml")); }
 }

@@ -14,6 +14,7 @@ QtObject {
     property var currentEntry: null
     property string continuation: ""
     property int totalUnread: 0
+    property int uniqueFeeds: 0
     property QtObject feedsListModel: null
     property QtObject articlesListModel: null
     property Item _statusIndicator: null
@@ -24,7 +25,7 @@ QtObject {
      * Return URL to sign in into Feedly
      */
     function getSignInUrl() {
-        return FeedlyAPI._apiCalls["auth"].url;
+        return (FeedlyAPI._apiCalls["auth"].protocol + "://" + FeedlyAPI._apiCallBaseUrl + FeedlyAPI._apiCalls["auth"].url + feedlyClientId);
     }
 
     /*
@@ -33,7 +34,7 @@ QtObject {
     function getAuthCodeFromUrl(url) {
         var retObj = { "authCode": "", "error": false };
 
-        if ((url !== FeedlyAPI._apiCalls["auth"].url) && (url.indexOf(FeedlyAPI._redirectUri) >= 0)) {
+        if ((url !== getSignInUrl()) && (url.indexOf(FeedlyAPI._redirectUri) >= 0)) {
             var startPos = url.indexOf("code=") + 5;
             if (startPos >= 0) {
                 retObj.authCode = url.substring(startPos, url.indexOf("&state=", startPos));
@@ -41,8 +42,6 @@ QtObject {
                 // console.log("Feedly auth code: " + retObj.authCode);
             } else {
                 retObj.error = true;
-                // DEBUG
-                console.log("Feedly auth error!");
             }
         }
         return retObj;
@@ -92,16 +91,13 @@ QtObject {
 
         if (authCode || refreshToken) {
             if (authCode) {
-                param = { "code": authCode, "client_id": FeedlyAPI._clientID, "client_secret": FeedlyAPI._clientSecret, "redirect_uri": FeedlyAPI._redirectUri, "state": "", "grant_type": "authorization_code" };
+                param = { "code": authCode, "client_id": feedlyClientId, "client_secret": feedlyClientSecret, "redirect_uri": FeedlyAPI._redirectUri, "state": "", "grant_type": "authorization_code" };
             } else {
-                param = { "refresh_token": refreshToken, "client_id": FeedlyAPI._clientID, "client_secret": FeedlyAPI._clientSecret, "grant_type": "refresh_token" };
+                param = { "refresh_token": refreshToken, "client_id": feedlyClientId, "client_secret": feedlyClientSecret, "grant_type": "refresh_token" };
             }
             busy = true;
             FeedlyAPI.call("authRefreshToken", param, accessTokenDoneCB);
-        } else {
-            // DEBUG
-            console.log("No authCode given nor refreshToken found.");
-        }
+        } else error("Neither authCode nor refreshToken found.");
     }
 
     function accessTokenDoneCB(retObj) {
@@ -124,7 +120,7 @@ QtObject {
             error(qsTr("Feedly authentication error"));
         }
         // DEBUG
-        console.log(JSON.stringify(retObj));
+//        console.log(JSON.stringify(retObj));
      }
 
     /*
@@ -143,8 +139,10 @@ QtObject {
     function subscriptionsDoneCB(retObj) {
         if (checkResponse(retObj, subscriptionsDoneCB)) {
             feedsListModel.clear();
+            uniqueFeeds = 0;
             if (Array.isArray(retObj.response)) {
                 for (var i = 0; i < retObj.response.length; i++) {
+                    uniqueFeeds++;
                     var tmpObj = retObj.response[i];
                     for (var j = 0; j < tmpObj.categories.length; j++) {
                         feedsListModel.append({ "id": tmpObj.id,
@@ -375,6 +373,19 @@ QtObject {
         if (_createStatusIndicator()) _statusIndicator.busyIndRunning = busy;
     }
 
+    onSignedInChanged: {
+        if (signedIn) getSubscriptions();
+        else {
+            // Do some cleanup
+            feedsListModel.clear();
+            articlesListModel.clear();
+            currentEntry = null;
+            continuation = "";
+            totalUnread = 0;
+            uniqueFeeds = 0;
+        }
+    }
+
     onError: {
         if (_createStatusIndicator()) _statusIndicator.showErrorIndicator(message);
         // DEBUG
@@ -382,9 +393,10 @@ QtObject {
     }
 
     Component.onCompleted: {
-        FeedlyAPI.init(feedlyClientId, feedlyClientSecret, true);
+        FeedlyAPI.init(true);
         feedsListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         articlesListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         DB.getAuthTokens(feedly);
+        if (refreshToken && (!accessToken || (expires < (Date.now() + 3600000)))) getAccessToken();
     }
 }

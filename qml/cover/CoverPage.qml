@@ -20,7 +20,7 @@ CoverBackground {
         width: cover.width - (2 * Theme.paddingMedium)
         x: Theme.paddingMedium
         spacing: Theme.paddingSmall
-        visible: !labelLoading.visible
+        visible: (feedly.signedIn && !labelLoading.visible)
 
         Item {
             width: parent.width
@@ -72,7 +72,7 @@ CoverBackground {
                 horizontalAlignment: Text.AlignRight
                 wrapMode: Text.NoWrap
                 font.pixelSize: Theme.fontSizeExtraLarge
-                text: (feedly.feedsListModel !== null) ? feedly.feedsListModel.count: 0
+                text: feedly.uniqueFeeds
             }
 
             Label {
@@ -108,6 +108,16 @@ CoverBackground {
             NumberAnimation { to: 0; duration: 1000 }
             NumberAnimation { to: 1; duration: 1000 }
         }
+    }
+
+    Label {
+        id: labeNotSignedIn
+
+        anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
+        horizontalAlignment: Text.AlignHCenter
+        wrapMode: Text.WordWrap
+        text: qsTr("Not signed in")
+        visible: (!feedly.signedIn && !feedly.busy)
     }
 
     CoverActionList {
