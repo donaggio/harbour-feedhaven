@@ -43,7 +43,6 @@ function saveAuthTokens(feedlyObj) {
 
 function getAuthTokens(feedlyObj) {
     var db = getDB();
-    var hs = [];
 
     if (typeof db == "object") {
         try {
@@ -62,6 +61,4 @@ function getAuthTokens(feedlyObj) {
             console.log(error);
         }
     }
-
-    return hs;
 }

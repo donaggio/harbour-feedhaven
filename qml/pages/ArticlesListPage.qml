@@ -123,23 +123,23 @@ Page {
             id: contextMenuComponent
 
             ContextMenu {
+                id: contextMenu
+
                 property string articleId
                 property bool articleUnread
                 property string articleUrl
 
                 MenuItem {
-                    visible: (parent.articleUnread ? parent.articleUnread : false)
+                    visible: (contextMenu.articleUnread ? contextMenu.articleUnread : false)
                     text: qsTr("Mark as read")
-                    onClicked: feedly.markEntryAsRead(parent.articleId)
+                    onClicked: feedly.markEntryAsRead(contextMenu.articleId)
                 }
 
                 MenuItem {
-                    visible: (parent.articleUrl ? parent.articleUrl : false)
+                    visible: (contextMenu.articleUrl ? contextMenu.articleUrl : false)
                     text: qsTr("Open original link")
-                    onClicked: Qt.openUrlExternally(parent.articleUrl)
+                    onClicked: Qt.openUrlExternally(contextMenu.articleUrl)
                 }
-                // DEBUG
-                onActiveChanged: console.log(articleId + ", " + articleUnread + ", " + articleUrl);
             }
         }
 

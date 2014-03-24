@@ -103,15 +103,17 @@ QtObject {
     function accessTokenDoneCB(retObj) {
         if (retObj.status == 200) {
             accessToken = retObj.response.access_token;
-            var now = new Date();
-            var exp = new Date(now.getMilliseconds() + (retObj.response.expires_in * 1000));
-            expires = exp.getMilliseconds();
+            var tmpDate = new Date();
+            tmpDate.setSeconds(tmpDate.getSeconds() + retObj.response.expires_in);
+            expires = tmpDate.getTime();
+            console.log(expires);
             if (typeof retObj.response.refresh_token !== "undefined") refreshToken = retObj.response.refresh_token;
             signedIn = true;
             DB.saveAuthTokens(feedly);
             if (pendingRequest !== null) {
                 busy = true;
                 FeedlyAPI.call(pendingRequest.method, pendingRequest.param, pendingRequest.callback);
+                pendingRequest = null;
             } else busy = false;
         } else {
             // ERROR
@@ -120,7 +122,7 @@ QtObject {
             error(qsTr("Feedly authentication error"));
         }
         // DEBUG
-//        console.log(JSON.stringify(retObj));
+        // console.log(JSON.stringify(retObj));
      }
 
     /*
@@ -388,8 +390,6 @@ QtObject {
 
     onError: {
         if (_createStatusIndicator()) _statusIndicator.showErrorIndicator(message);
-        // DEBUG
-        console.log("Feedly API error (" + message + ")");
     }
 
     Component.onCompleted: {
@@ -397,6 +397,8 @@ QtObject {
         feedsListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         articlesListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         DB.getAuthTokens(feedly);
-        if (refreshToken && (!accessToken || (expires < (Date.now() + 3600000)))) getAccessToken();
+        var tmpDate = new Date();
+        tmpDate.setHours(tmpDate.getHours() + 1);
+        if (refreshToken && (!accessToken || (expires < tmpDate.getTime()))) getAccessToken();
     }
 }
