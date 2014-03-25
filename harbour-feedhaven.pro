@@ -40,4 +40,5 @@ TRANSLATIONS += harbour-feedhaven-it.ts
 
 DEFINES += APP_VERSION=\"\\\"$$VERSION\\\"\"
 
-include("feedly-api-config.pri")
+FEEDLY_API_CONFIG = feedly-api-config.pri
+exists($$FEEDLY_API_CONFIG) include($$FEEDLY_API_CONFIG)
