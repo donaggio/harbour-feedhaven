@@ -1,6 +1,12 @@
 /*
- * Utility functions to acces Local Storage
- */
+  Copyright (C) 2014 Luca Donaggio
+  Contact: Luca Donaggio <donaggio@gmail.com>
+  All rights reserved.
+
+  You may use this file under the terms of MIT license
+
+  Utility functions to acces Local Storage
+*/
 
 .import QtQuick.LocalStorage 2.0 as LS
 

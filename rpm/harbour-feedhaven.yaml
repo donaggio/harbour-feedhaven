@@ -12,6 +12,8 @@ Description: |-
   You can access to your subscribed feeds content and to each article's original web page as well.
   Subscribing to new feeds is currently not supported, you need to log in to Feedly.com using a web browser in order to manage your feeds.
 Configure: none
+QMakeOptions:
+- VERSION=%{version}
 Builder: qtc5
 PkgConfigBR:
 - sailfishapp >= 0.0.10

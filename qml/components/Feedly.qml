@@ -1,3 +1,11 @@
+/*
+  Copyright (C) 2014 Luca Donaggio
+  Contact: Luca Donaggio <donaggio@gmail.com>
+  All rights reserved.
+
+  You may use this file under the terms of MIT license
+*/
+
 import QtQuick 2.0
 import "../lib/feedly.js" as FeedlyAPI
 import "../lib/dbmanager.js" as DB
@@ -7,7 +15,7 @@ QtObject {
 
     property string refreshToken: ""
     property string accessToken: ""
-    property int expires: 0
+    property string expires: ""
     property bool signedIn: false
     property bool busy: false
     property var pendingRequest: null
@@ -77,7 +85,7 @@ QtObject {
      */
     function resetAuthorization() {
         accessToken = "";
-        expires = 0;
+        expires = "";
         refreshToken = ""
         signedIn = false;
         DB.saveAuthTokens(feedly);
@@ -97,7 +105,7 @@ QtObject {
             }
             busy = true;
             FeedlyAPI.call("authRefreshToken", param, accessTokenDoneCB);
-        } else error("Neither authCode nor refreshToken found.");
+        } else error(qsTr("Neither authCode nor refreshToken found."));
     }
 
     function accessTokenDoneCB(retObj) {
@@ -106,7 +114,6 @@ QtObject {
             var tmpDate = new Date();
             tmpDate.setSeconds(tmpDate.getSeconds() + retObj.response.expires_in);
             expires = tmpDate.getTime();
-            console.log(expires);
             if (typeof retObj.response.refresh_token !== "undefined") refreshToken = retObj.response.refresh_token;
             signedIn = true;
             DB.saveAuthTokens(feedly);
@@ -132,10 +139,7 @@ QtObject {
         if (accessToken) {
             busy = true;
             FeedlyAPI.call("subscriptions", null, subscriptionsDoneCB, accessToken);
-        } else {
-            // DEBUG
-            console.log("No accessToken found.");
-        }
+        } else error(qsTr("No accessToken found."));
     }
 
     function subscriptionsDoneCB(retObj) {
@@ -170,10 +174,7 @@ QtObject {
         if (accessToken) {
             busy = true;
             FeedlyAPI.call("markersCounts", null, markersCountsDoneCB, accessToken);
-        } else {
-            // DEBUG
-            console.log("accessToken: " + accessToken);
-        }
+        } else error(qsTr("No accessToken found."));
     }
 
     function markersCountsDoneCB(retObj) {
@@ -208,10 +209,7 @@ QtObject {
             busy = true;
             var param = { "streamId": subscriptionId, "count": 40, "ranked": "newest", "unreadOnly": "true", "continuation": (more ? continuation : "") };
             FeedlyAPI.call("streamContent", param, streamContentDoneCB, accessToken);
-        } else {
-            // DEBUG
-            console.log("No subscriptionId given.");
-        }
+        } else error(qsTr("No subscriptionId found."));
     }
 
     function streamContentDoneCB(retObj) {
@@ -255,10 +253,7 @@ QtObject {
                 busy = true;
                 FeedlyAPI.call("entries", entryId, entryDoneCB, accessToken);
             }
-        } else {
-            // DEBUG
-            console.log("No entryId given.");
-        }
+        } else error(qsTr("No entryId found."));
     }
 
     function entryDoneCB(retObj) {
@@ -290,10 +285,7 @@ QtObject {
             if (lastEntryId) param.lastReadEntryId = lastEntryId;
             else param.asOf = Date.now();
             FeedlyAPI.call("markers", param, markFeedAsReadDoneCB, accessToken);
-        } else {
-            // DEBUG
-            console.log("No feedId given.");
-        }
+        } else error(qsTr("No feedId found."));
     }
 
     function markFeedAsReadDoneCB(retObj) {
@@ -317,10 +309,7 @@ QtObject {
         if (entryId) {
             var param = { "action": "markAsRead", "type": "entries", "entryIds": [entryId] };
             FeedlyAPI.call("markers", param, markEntryAsReadDoneCB, accessToken);
-        } else {
-            // DEBUG
-            console.log("No entryId given.");
-        }
+        } else error(qsTr("No entryId found."));
     }
 
     function markEntryAsReadDoneCB(retObj) {
@@ -397,8 +386,11 @@ QtObject {
         feedsListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         articlesListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         DB.getAuthTokens(feedly);
-        var tmpDate = new Date();
-        tmpDate.setHours(tmpDate.getHours() + 1);
-        if (refreshToken && (!accessToken || (expires < tmpDate.getTime()))) getAccessToken();
+        if (refreshToken) {
+            var tmpDate = new Date();
+            tmpDate.setHours(tmpDate.getHours() + 1);
+            if (!accessToken || (expires < tmpDate.getTime())) getAccessToken();
+            else signedIn = true;
+        }
     }
 }

@@ -38,8 +38,6 @@ lupdate_only {
 
 TRANSLATIONS += harbour-feedhaven-it.ts
 
-VERSION = 0.0
-
 DEFINES += APP_VERSION=\"\\\"$$VERSION\\\"\"
 
 include("feedly-api-config.pri")

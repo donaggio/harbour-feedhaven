@@ -1,3 +1,13 @@
+/*
+  Copyright (C) 2014 Luca Donaggio
+  Contact: Luca Donaggio <donaggio@gmail.com>
+  All rights reserved.
+
+  You may use this file under the terms of MIT license
+
+  Feedly API wrapper
+*/
+
 .pragma library
 
 var _isInitialized = false;
