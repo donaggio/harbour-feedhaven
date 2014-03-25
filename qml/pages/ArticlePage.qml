@@ -79,6 +79,8 @@ Page {
                 wrapMode: Text.WordWrap
                 textFormat: Text.RichText
                 text: "<style>a:link { color: " + Theme.highlightColor + "; }</style>" + page.content;
+
+                onLinkActivated: Qt.openUrlExternally(link)
             }
         }
 

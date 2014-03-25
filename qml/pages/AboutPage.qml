@@ -34,11 +34,14 @@ Page {
         Label {
             width: parent.width
             wrapMode: Text.WordWrap
-            textFormat: Text.RichText
-            text: qsTr("<style>a:link { color: " + Theme.highlightColor + "; }</style><p><i>Feed Haven</i> is a native client for Feedly news reader service.</p>
+            textFormat: Text.StyledText
+            linkColor: Theme.highlightColor
+            text: qsTr("<p><i>Feed Haven</i> is a native client for Feedly news reader service.</p>
 <p>You can access to your subscribed feeds content and to each article's original web page as well.</p>
 <p>Subscribing to new feeds is currently not supported, you need to log in to Feedly.com using a web browser in order to manage your feeds.</p>
 <p>This is an open source project released under the MIT license, you can find its source code <a href=\"https://code.google.com/p/harbour-feedhaven/source/\">here</a>.</p>")
+
+            onLinkActivated: Qt.openUrlExternally(link)
         }
     }
 }
