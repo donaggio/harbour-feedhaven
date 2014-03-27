@@ -7,6 +7,7 @@
 */
 
 import QtQuick 2.0
+import Sailfish.Silica 1.0
 import "../lib/feedly.js" as FeedlyAPI
 import "../lib/dbmanager.js" as DB
 
@@ -144,6 +145,7 @@ QtObject {
 
     function subscriptionsDoneCB(retObj) {
         if (checkResponse(retObj, subscriptionsDoneCB)) {
+            var tmpSubscriptions = [];
             feedsListModel.clear();
             uniqueFeeds = 0;
             if (Array.isArray(retObj.response)) {
@@ -151,11 +153,19 @@ QtObject {
                     uniqueFeeds++;
                     var tmpObj = retObj.response[i];
                     for (var j = 0; j < tmpObj.categories.length; j++) {
-                        feedsListModel.append({ "id": tmpObj.id,
+                        tmpSubscriptions.push({ "id": tmpObj.id,
                                                 "title": tmpObj.title,
-                                                "category": tmpObj.categories[j].label,
+                                                "category": tmpObj.categories[j].label.trim(),
                                                 "unreadCount": 0 });
                     }
+                }
+                tmpSubscriptions.sort(function (a, b) {
+                    if (a.category > b.category) return 1;
+                    if (a.category < b.category) return -1;
+                    return 0;
+                });
+                for (i = 0; i < tmpSubscriptions.length; i++) {
+                    feedsListModel.append(tmpSubscriptions[i]);
                 }
             }
             busy = false;
@@ -228,11 +238,11 @@ QtObject {
                     articlesListModel.append({ "id": tmpObj.id,
                                                "author": tmpObj.author,
                                                "updated": tmpUpd,
-                                               "updatedDate": tmpUpdDate,
+                                               "sectionLabel": Format.formatDate(tmpUpd, Formatter.TimepointSectionRelative),
                                                "title": tmpObj.title,
                                                "imgUrl": (((typeof tmpObj.visual !== "undefined") && tmpObj.visual.url && tmpObj.visual.url !== "none") ? tmpObj.visual.url : ""),
                                                "unread": tmpObj.unread,
-                                               "summary": ((typeof tmpObj.summary.content !== "undefined") ? tmpObj.summary.content.replace(stripHtmlTags, " ").replace(normalizeSpaces, " ").trimLeft() : qsTr("No content preview")),
+                                               "summary": (((typeof tmpObj.summary !== "undefined") && (tmpObj.summary.content)) ? tmpObj.summary.content.replace(stripHtmlTags, " ").replace(normalizeSpaces, " ").trimLeft() : qsTr("No content preview")),
                                                "contentUrl": ((typeof tmpObj.alternate !== "undefined") ? tmpObj.alternate[0].href : ""),
                                                "streamId": retObj.response.id });
                 }
@@ -261,7 +271,7 @@ QtObject {
             if (Array.isArray(retObj.response) && (retObj.response.length > 0)) {
                 var tmpObj = retObj.response[0];
                 var tmpContent = ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ""))
-                tmpContent = tmpContent.replace(new RegExp("<img[^>]*>", "gi"), " ").replace(new RegExp("\\s+", "g"), " ").trim();
+                if (tmpContent) tmpContent = tmpContent.replace(new RegExp("<img[^>]*>", "gi"), " ").replace(new RegExp("\\s+", "g"), " ").trim();
                 currentEntry = new Object({ "id": tmpObj.id,
                                             "title": tmpObj.title,
                                             "author": tmpObj.author,
@@ -382,7 +392,7 @@ QtObject {
     }
 
     Component.onCompleted: {
-        FeedlyAPI.init(true);
+        FeedlyAPI.init();
         feedsListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         articlesListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         DB.getAuthTokens(feedly);

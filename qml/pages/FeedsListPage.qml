@@ -12,7 +12,7 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
-    allowedOrientations: Orientation.Portrait || Orientation.Landscape
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
     SilicaListView {
         id: feedsListView

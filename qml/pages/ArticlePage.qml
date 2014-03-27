@@ -19,7 +19,7 @@ Page {
     property string content: ""
     property string contentUrl: ""
 
-    allowedOrientations: Orientation.Portrait || Orientation.Landscape
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
     SilicaFlickable {
         id: articleView
@@ -43,7 +43,7 @@ Page {
                 id: articleTitle
 
                 width: parent.width
-                font.pixelSize: Theme.fontSizeSmall
+                font.pixelSize: Theme.fontSizeMedium
                 font.weight: Font.Bold
                 wrapMode: Text.WordWrap
                 text: page.title
@@ -75,7 +75,7 @@ Page {
 
                 width: parent.width
                 horizontalAlignment: Text.AlignJustify
-                font.pixelSize: Theme.fontSizeExtraSmall
+                font.pixelSize: Theme.fontSizeSmall
                 wrapMode: Text.WordWrap
                 textFormat: Text.RichText
                 text: "<style>a:link { color: " + Theme.highlightColor + "; }</style>" + page.content;

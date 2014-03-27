@@ -15,7 +15,7 @@ Page {
     property string title
     property string streamId
 
-    allowedOrientations: Orientation.Portrait || Orientation.Landscape
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
     SilicaListView {
         id: articlesListView
@@ -24,7 +24,7 @@ Page {
 
         anchors.fill: parent
         visible: !feedly.busy
-        spacing: Theme.paddingSmall
+        spacing: Theme.paddingMedium
 
         header: PageHeader {
             title: page.title
@@ -39,75 +39,73 @@ Page {
             width: articlesListView.width
             contentHeight: menuOpen ? articlesListView.contextMenu.height + Theme.itemSizeExtraLarge : Theme.itemSizeExtraLarge
 
-            GlassItem {
-                id: unreadIndicator
+            Item {
+                id: articleText
 
-                width: Theme.itemSizeExtraSmall
-                height: width
-                x: -(width / 2)
-                anchors.verticalCenter: articleTitle.verticalCenter
-                color: highlighted ? Theme.highlightColor : Theme.primaryColor
-                visible: unread
+                anchors { top: parent.top; left: parent.left; right: articleVisual.left; leftMargin: Theme.paddingLarge; rightMargin: (articleVisual.width ? Theme.paddingSmall : 0) }
+
+                GlassItem {
+                    id: unreadIndicator
+
+                    width: Theme.itemSizeExtraSmall
+                    height: width
+                    x: -(Theme.paddingLarge + (width / 2))
+                    anchors.verticalCenter: articleTitle.verticalCenter
+                    color: highlighted ? Theme.highlightColor : Theme.primaryColor
+                    visible: unread
+                }
+
+                Label {
+                    id: articleTitle
+
+                    anchors { top: parent.top; left: parent.left; right: parent.right }
+                    font.pixelSize: Theme.fontSizeSmall
+                    truncationMode: TruncationMode.Fade
+                    text: title
+                    color: highlighted ? Theme.highlightColor : Theme.primaryColor
+                }
+
+                Label {
+                    id: articleSummary
+
+                    anchors { top: articleTitle.bottom; left: parent.left; right: parent.right; }
+                    font.pixelSize: Theme.fontSizeExtraSmall
+                    elide: Text.ElideRight
+                    maximumLineCount: 3
+                    wrapMode: Text.WordWrap
+                    text: summary
+                    color: highlighted ? (unread ? Theme.highlightColor : Theme.secondaryHighlightColor) : (unread ? Theme.primaryColor : Theme.secondaryColor)
+                }
             }
 
-            Label {
-                id: articleTitle
+            Image {
+                id: articleVisual
 
-                anchors.top: parent.top
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.leftMargin: Theme.paddingLarge
-                anchors.rightMargin: Theme.paddingLarge
-                font.pixelSize: Theme.fontSizeSmall
-                truncationMode: TruncationMode.Fade
-                text: title
-                color: highlighted ? Theme.highlightColor : Theme.primaryColor
+                anchors { top: parent.top; right: parent.right; rightMargin: Theme.paddingLarge }
+                width: 0
+                height: parent.height
+                sourceSize.width: parent.height * 2
+                sourceSize.height: parent.height * 2
+                fillMode: Image.PreserveAspectCrop
+                smooth: true
+                clip: true
+                source: imgUrl
+
+                Behavior on width {
+                    NumberAnimation { duration: 500 }
+                }
+
+                Connections {
+                    target: page
+
+                    onIsLandscapeChanged: {
+                        if (page.isLandscape && (articleVisual.status === Image.Ready)) articleVisual.width = height;
+                        else articleVisual.width = 0;
+                    }
+                }
+
+                onStatusChanged: { if (page.isLandscape && (status === Image.Ready)) width = height; }
             }
-
-            Label {
-                id: articleSummary
-
-                anchors.top: articleTitle.bottom
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.leftMargin: Theme.paddingLarge
-                anchors.rightMargin: Theme.paddingLarge
-                font.pixelSize: Theme.fontSizeExtraSmall
-                elide: Text.ElideRight
-                maximumLineCount: 3
-                wrapMode: Text.WordWrap
-                text: summary
-                color: highlighted ? (unread ? Theme.highlightColor : Theme.secondaryHighlightColor) : (unread ? Theme.primaryColor : Theme.secondaryColor)
-            }
-
-//            Label {
-//                id: articleTitle
-
-//                anchors.top: parent.top
-//                anchors.left: parent.left
-//                anchors.leftMargin: (articleVisual.width ? (articleVisual.width + Theme.paddingSmall) : 0)
-//                anchors.right: parent.right
-//                elide: Text.ElideRight
-//                maximumLineCount: 3
-//                wrapMode: Text.WordWrap
-//                font.pixelSize: Theme.fontSizeSmall
-//                text: title
-//                color: highlighted ? Theme.highlightColor : Theme.primaryColor
-
-//                Image {
-//                    id: articleVisual
-
-//                    x: (width ? -(width + Theme.paddingSmall) : 0)
-//                    width: height
-//                    height: (source ? articleItem.height : 0)
-//                    sourceSize.width: articleItem.height * 2
-//                    sourceSize.height: articleItem.height * 2
-//                    fillMode: Image.PreserveAspectCrop
-//                    smooth: true
-//                    clip: true
-//                    source: imgUrl
-//                }
-//            }
 
             onClicked: {
                 if (unread) feedly.markEntryAsRead(id);
@@ -126,8 +124,8 @@ Page {
             }
         }
 
-        section.property: "updatedDate"
-        section.delegate: SectionHeader { text: Format.formatDate(section, Formatter.TimepointSectionRelative) }
+        section.property: "sectionLabel"
+        section.delegate: SectionHeader { text: section }
 
         Component {
             id: contextMenuComponent

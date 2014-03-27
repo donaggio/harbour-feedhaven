@@ -12,11 +12,11 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
-    allowedOrientations: Orientation.Portrait || Orientation.Landscape
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
     Column {
-        width: (parent.width - (2 * Theme.paddingMedium))
-        x: Theme.paddingMedium
+        width: (parent.width - (2 * Theme.paddingLarge))
+        x: Theme.paddingLarge
         spacing: Theme.paddingLarge
 
         PageHeader {
