@@ -14,6 +14,7 @@ import "../lib/dbmanager.js" as DB
 QtObject {
     id: feedly
 
+    property string userId: ""
     property string refreshToken: ""
     property string accessToken: ""
     property string expires: ""
@@ -85,6 +86,7 @@ QtObject {
      * Reset authorization
      */
     function resetAuthorization() {
+        userId = "";
         accessToken = "";
         expires = "";
         refreshToken = ""
@@ -111,6 +113,7 @@ QtObject {
 
     function accessTokenDoneCB(retObj) {
         if (retObj.status == 200) {
+            userId = retObj.response.id;
             accessToken = retObj.response.access_token;
             var tmpDate = new Date();
             tmpDate.setSeconds(tmpDate.getSeconds() + retObj.response.expires_in);
@@ -164,8 +167,16 @@ QtObject {
                     if (a.category < b.category) return -1;
                     return 0;
                 });
-                for (i = 0; i < tmpSubscriptions.length; i++) {
-                    feedsListModel.append(tmpSubscriptions[i]);
+                if (tmpSubscriptions.length) {
+                    if (userId) {
+                        feedsListModel.append({ "id": "user/" + userId + "/categories/global.all",
+                                                "title": qsTr("All feeds"),
+                                                "category": "",
+                                                "unreadCount": totalUnread });
+                    }
+                    for (i = 0; i < tmpSubscriptions.length; i++) {
+                        feedsListModel.append(tmpSubscriptions[i]);
+                    }
                 }
             }
             busy = false;

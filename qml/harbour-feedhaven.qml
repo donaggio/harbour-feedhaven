@@ -19,6 +19,4 @@ ApplicationWindow {
     Feedly {
         id: feedly
     }
-
-    Component.onCompleted: { if (!feedly.refreshToken) pageStack.push(Qt.resolvedUrl("SignInPage.qml")); }
 }
