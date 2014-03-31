@@ -18,6 +18,7 @@ Page {
     property string imgUrl: ""
     property string content: ""
     property string contentUrl: ""
+    property ListModel galleryModel
 
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
@@ -57,17 +58,43 @@ Page {
                 text: qsTr("by %1, published on: %2").arg(page.author).arg(Qt.formatDateTime(page.updated))
             }
 
-            Image {
-                id: articleVisual
-
+            SlideshowView {
+                id: articleGalleryView
                 width: parent.width
                 height: (Theme.itemSizeExtraLarge * 2)
-                fillMode: Image.PreserveAspectFit
-                smooth: true
+                itemWidth: width
+                itemHeight: height
                 clip: true
-                source: page.imgUrl
-                visible: (source != "")
-                onPaintedHeightChanged: { if (paintedHeight < height) height = paintedHeight; }
+                visible: (count > 0)
+
+                model: page.galleryModel
+                delegate: Image {
+                    id: articleVisual
+
+                    width: articleGalleryView.width
+                    height: articleGalleryView.height
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                    clip: true
+                    source: ((typeof model.imgUrl !== "undefined") ? model.imgUrl : "")
+                    visible: (source != "")
+
+                    onPaintedWidthChanged: {
+                        if (paintedWidth < width) {
+                            width = paintedWidth;
+                            fillMode = Image.Pad;
+                        }
+                    }
+
+                    onPaintedHeightChanged: {
+                        if (paintedHeight < height) {
+                            height = paintedHeight;
+                            fillMode = Image.Pad;
+                        }
+                    }
+
+                    onStatusChanged: { if (status === Image.Error) articleGalleryView.model.remove(index); }
+                }
             }
 
             Label {
@@ -109,6 +136,7 @@ Page {
                 imgUrl = feedly.currentEntry.imgUrl;
                 content = feedly.currentEntry.content;
                 contentUrl = feedly.currentEntry.contentUrl;
+                galleryModel = feedly.currentEntry.gallery;
             }
         }
     }
@@ -125,6 +153,7 @@ Page {
             imgUrl = feedly.currentEntry.imgUrl;
             content = feedly.currentEntry.content;
             contentUrl = feedly.currentEntry.contentUrl;
+            galleryModel = feedly.currentEntry.gallery;
         }
     }
 }

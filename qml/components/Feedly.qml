@@ -236,6 +236,7 @@ QtObject {
     function streamContentDoneCB(retObj) {
         if (checkResponse(retObj, streamContentDoneCB)) {
             var stripHtmlTags = new RegExp("<[^>]*>", "gi");
+            var stripImgTag = new RegExp("<img[^>]*>", "gi");
             var normalizeSpaces = new RegExp("\\s+", "g");
             if (!retObj.callParams.continuation) articlesListModel.clear();
             continuation = ((typeof retObj.response.continuation != "undefined") ? retObj.response.continuation : "");
@@ -246,16 +247,26 @@ QtObject {
                     var tmpUpd = new Date(((typeof tmpObj.updated !== "undefined") ? tmpObj.updated : tmpObj.published));
                     // Extract date part
                     var tmpUpdDate = new Date(tmpUpd.getFullYear(), tmpUpd.getMonth(), tmpUpd.getDate());
+                    // Clean article content and extract image urls
+                    var tmpContent = ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ""))
+                    var findImgUrls = new RegExp("<img[^>]+src\s*=\s*(?:\"|')(.+?)(?:\"|')", "gi");
+                    var tmpGallery = [];
+                    var tmpMatch;
+                    while ((tmpMatch = findImgUrls.exec(tmpContent)) !== null) tmpGallery.push({ "imgUrl": tmpMatch[1] });
+                    if (tmpContent) tmpContent = tmpContent.replace(stripImgTag, " ").replace(normalizeSpaces, " ").trim();
                     articlesListModel.append({ "id": tmpObj.id,
+                                               "title": tmpObj.title,
                                                "author": tmpObj.author,
                                                "updated": tmpUpd,
                                                "sectionLabel": Format.formatDate(tmpUpd, Formatter.TimepointSectionRelative),
-                                               "title": tmpObj.title,
                                                "imgUrl": (((typeof tmpObj.visual !== "undefined") && tmpObj.visual.url && tmpObj.visual.url !== "none") ? tmpObj.visual.url : ""),
                                                "unread": tmpObj.unread,
                                                "summary": (((typeof tmpObj.summary !== "undefined") && (tmpObj.summary.content)) ? tmpObj.summary.content.replace(stripHtmlTags, " ").replace(normalizeSpaces, " ").trimLeft() : qsTr("No content preview")),
+                                               "content": tmpContent,
                                                "contentUrl": ((typeof tmpObj.alternate !== "undefined") ? tmpObj.alternate[0].href : ""),
-                                               "streamId": retObj.response.id });
+                                               "gallery": tmpGallery,
+                                               "streamId": retObj.response.id,
+                                               "streamTitle": ((typeof retObj.response.title !== "undefined") ? typeof retObj.response.title : "") });
                 }
             }
             busy = false;
