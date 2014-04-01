@@ -15,7 +15,6 @@ Page {
     property string title: ""
     property string author: ""
     property var updated: null
-    property string imgUrl: ""
     property string content: ""
     property string contentUrl: ""
     property ListModel galleryModel
@@ -25,7 +24,6 @@ Page {
             title = feedly.currentEntry.title;
             author = feedly.currentEntry.author;
             updated = new Date(feedly.currentEntry.updated);
-            imgUrl = feedly.currentEntry.imgUrl;
             content = feedly.currentEntry.content;
             contentUrl = feedly.currentEntry.contentUrl;
             galleryModel = feedly.currentEntry.gallery;
@@ -85,11 +83,10 @@ Page {
 
                     width: articleGalleryView.width
                     height: articleGalleryView.height
-                    fillMode: (((status === Image.Ready) && ((paintedWidth > width) || (paintedHeight > height))) ? Image.PreserveAspectFit : Image.Pad)
+                    fillMode: Image.Pad
                     smooth: true
                     clip: true
                     source: ((typeof model.imgUrl !== "undefined") ? model.imgUrl : "")
-                    visible: (source != "")
 
                     BusyIndicator {
                         anchors.centerIn: parent
@@ -99,9 +96,11 @@ Page {
                     }
 
                     onStatusChanged: { if (status === Image.Error) articleGalleryView.model.remove(index); }
-                }
 
-                HorizontalScrollDecorator { flickable: articleGalleryView }
+                    onPaintedWidthChanged: { if (paintedWidth > width) fillMode = Image.PreserveAspectFit }
+
+                    onPaintedHeightChanged: { if (paintedHeight > height) fillMode = Image.PreserveAspectFit }
+                }
             }
 
             Label {

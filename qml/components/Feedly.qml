@@ -258,7 +258,9 @@ QtObject {
                     var findImgUrls = new RegExp("<img[^>]+src\s*=\s*(?:\"|')(.+?)(?:\"|')", "gi");
                     var tmpGallery = [];
                     var tmpMatch;
-                    while ((tmpMatch = findImgUrls.exec(tmpContent)) !== null) tmpGallery.push({ "imgUrl": tmpMatch[1] });
+                    while ((tmpMatch = findImgUrls.exec(tmpContent)) !== null) {
+                        if(tmpMatch[1]) tmpGallery.push({ "imgUrl": tmpMatch[1] });
+                    }
                     if (tmpContent) tmpContent = tmpContent.replace(stripImgTag, " ").replace(normalizeSpaces, " ").trim();
                     articlesListModel.append({ "id": tmpObj.id,
                                                "title": tmpObj.title,
