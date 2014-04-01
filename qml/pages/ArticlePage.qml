@@ -90,7 +90,7 @@ Page {
 
                     BusyIndicator {
                         anchors.centerIn: parent
-                        size: BusyIndicatorSize.Small
+                        size: BusyIndicatorSize.Medium
                         running: (parent.status === Image.Loading)
                         visible: running
                     }
