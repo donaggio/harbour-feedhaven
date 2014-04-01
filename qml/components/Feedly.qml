@@ -169,10 +169,10 @@ QtObject {
                 });
                 if (tmpSubscriptions.length) {
                     if (userId) {
-                        feedsListModel.append({ "id": "user/" + userId + "/categories/global.all",
+                        feedsListModel.append({ "id": "user/" + userId + "/category/global.all",
                                                 "title": qsTr("All feeds"),
                                                 "category": "",
-                                                "unreadCount": totalUnread });
+                                                "unreadCount": 0 });
                     }
                     for (i = 0; i < tmpSubscriptions.length; i++) {
                         feedsListModel.append(tmpSubscriptions[i]);
@@ -205,7 +205,9 @@ QtObject {
                 for (var i = 0; i < retObj.response.unreadcounts.length; i++) {
                     var tmpObj = retObj.response.unreadcounts[i];
                     var tmpTotUnreadUpd = false;
+                    var allFeedsIdx = -1;
                     for (var j = 0; j < feedsListModel.count; j++) {
+                        if (userId && (feedsListModel.get(j).id === ("user/" + userId + "/category/global.all"))) allFeedsIdx = j;
                         if (feedsListModel.get(j).id === tmpObj.id) {
                             feedsListModel.setProperty(j, "unreadCount", tmpObj.count);
                             if (!tmpTotUnreadUpd) {
@@ -215,6 +217,7 @@ QtObject {
                         }
                     }
                 }
+                if (allFeedsIdx >= 0) feedsListModel.setProperty(allFeedsIdx, "unreadCount", totalUnread);
             }
             busy = false;
         }
@@ -247,6 +250,9 @@ QtObject {
                     var tmpUpd = new Date(((typeof tmpObj.updated !== "undefined") ? tmpObj.updated : tmpObj.published));
                     // Extract date part
                     var tmpUpdDate = new Date(tmpUpd.getFullYear(), tmpUpd.getMonth(), tmpUpd.getDate());
+                    // Create article summary
+                    var tmpSummary = ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ""));
+                    if (tmpSummary) tmpSummary = tmpSummary.replace(stripHtmlTags, " ").substr(0, 128).replace(normalizeSpaces, " ").trim();
                     // Clean article content and extract image urls
                     var tmpContent = ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ""))
                     var findImgUrls = new RegExp("<img[^>]+src\s*=\s*(?:\"|')(.+?)(?:\"|')", "gi");
@@ -261,7 +267,7 @@ QtObject {
                                                "sectionLabel": Format.formatDate(tmpUpd, Formatter.TimepointSectionRelative),
                                                "imgUrl": (((typeof tmpObj.visual !== "undefined") && tmpObj.visual.url && tmpObj.visual.url !== "none") ? tmpObj.visual.url : ""),
                                                "unread": tmpObj.unread,
-                                               "summary": (((typeof tmpObj.summary !== "undefined") && (tmpObj.summary.content)) ? tmpObj.summary.content.replace(stripHtmlTags, " ").replace(normalizeSpaces, " ").trimLeft() : qsTr("No content preview")),
+                                               "summary": (tmpSummary ? tmpSummary : qsTr("No preview")),
                                                "content": tmpContent,
                                                "contentUrl": ((typeof tmpObj.alternate !== "undefined") ? tmpObj.alternate[0].href : ""),
                                                "gallery": tmpGallery,
@@ -355,8 +361,10 @@ QtObject {
                         streamId = articlesListModel.get(i).streamId;
                     }
                 }
-                if (streamId != "") {
+                var allFeedsIdx = -1;
+                if (streamId) {
                     for (var j = 0; j < feedsListModel.count; j++) {
+                        if (userId && (feedsListModel.get(j).id === ("user/" + userId + "/category/global.all"))) allFeedsIdx = j;
                         if (feedsListModel.get(j).id === streamId) {
                             var tmpUnreadCount = feedsListModel.get(j).unreadCount;
                             if (tmpUnreadCount > 0) feedsListModel.setProperty(j, "unreadCount", (tmpUnreadCount - 1));
@@ -364,6 +372,7 @@ QtObject {
                     }
                 }
                 if (totalUnread > 0) totalUnread--;
+                if (allFeedsIdx >= 0) feedsListModel.setProperty(allFeedsIdx, "unreadCount", totalUnread);
             }
             busy = false;
         }

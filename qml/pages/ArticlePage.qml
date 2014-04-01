@@ -20,6 +20,18 @@ Page {
     property string contentUrl: ""
     property ListModel galleryModel
 
+    function update() {
+        if (feedly.currentEntry !== null) {
+            title = feedly.currentEntry.title;
+            author = feedly.currentEntry.author;
+            updated = new Date(feedly.currentEntry.updated);
+            imgUrl = feedly.currentEntry.imgUrl;
+            content = feedly.currentEntry.content;
+            contentUrl = feedly.currentEntry.contentUrl;
+            galleryModel = feedly.currentEntry.gallery;
+        }
+    }
+
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
     SilicaFlickable {
@@ -73,28 +85,23 @@ Page {
 
                     width: articleGalleryView.width
                     height: articleGalleryView.height
-                    fillMode: Image.PreserveAspectFit
+                    fillMode: (((status === Image.Ready) && ((paintedWidth > width) || (paintedHeight > height))) ? Image.PreserveAspectFit : Image.Pad)
                     smooth: true
                     clip: true
                     source: ((typeof model.imgUrl !== "undefined") ? model.imgUrl : "")
                     visible: (source != "")
 
-                    onPaintedWidthChanged: {
-                        if (paintedWidth < width) {
-                            width = paintedWidth;
-                            fillMode = Image.Pad;
-                        }
-                    }
-
-                    onPaintedHeightChanged: {
-                        if (paintedHeight < height) {
-                            height = paintedHeight;
-                            fillMode = Image.Pad;
-                        }
+                    BusyIndicator {
+                        anchors.centerIn: parent
+                        size: BusyIndicatorSize.Small
+                        running: (parent.status === Image.Loading)
+                        visible: running
                     }
 
                     onStatusChanged: { if (status === Image.Error) articleGalleryView.model.remove(index); }
                 }
+
+                HorizontalScrollDecorator { flickable: articleGalleryView }
             }
 
             Label {
@@ -128,32 +135,12 @@ Page {
     Connections {
         target: feedly
 
-        onCurrentEntryChanged: {
-            if (feedly.currentEntry !== null) {
-                title = feedly.currentEntry.title;
-                author = feedly.currentEntry.author;
-                updated = new Date(feedly.currentEntry.updated);
-                imgUrl = feedly.currentEntry.imgUrl;
-                content = feedly.currentEntry.content;
-                contentUrl = feedly.currentEntry.contentUrl;
-                galleryModel = feedly.currentEntry.gallery;
-            }
-        }
+        onCurrentEntryChanged: update()
     }
 
     onStatusChanged: {
         if (status === PageStatus.Activating) feedly.acquireStatusIndicator(page);
     }
 
-    Component.onCompleted: {
-        if (feedly.currentEntry !== null) {
-            title = feedly.currentEntry.title;
-            author = feedly.currentEntry.author;
-            updated = new Date(feedly.currentEntry.updated);
-            imgUrl = feedly.currentEntry.imgUrl;
-            content = feedly.currentEntry.content;
-            contentUrl = feedly.currentEntry.contentUrl;
-            galleryModel = feedly.currentEntry.gallery;
-        }
-    }
+    Component.onCompleted: update()
 }
