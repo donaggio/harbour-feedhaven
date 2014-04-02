@@ -51,7 +51,7 @@ Page {
                     height: width
                     x: -(Theme.paddingLarge + (width / 2))
                     anchors.verticalCenter: articleTitle.verticalCenter
-                    color: highlighted ? Theme.highlightColor : Theme.primaryColor
+                    color: Theme.highlightColor
                     visible: unread
                 }
 
@@ -59,7 +59,7 @@ Page {
                     id: articleTitle
 
                     anchors { top: parent.top; left: parent.left; right: parent.right }
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: Theme.fontSizeMedium
                     truncationMode: TruncationMode.Fade
                     text: title
                     color: highlighted ? Theme.highlightColor : Theme.primaryColor
@@ -108,8 +108,8 @@ Page {
             }
 
             onClicked: {
+                // DEBUG
                 // if (unread) feedly.markEntryAsRead(id);
-                // feedly.getEntry(id);
                 feedly.currentEntry = articlesListView.model.get(index);
                 pageStack.push(Qt.resolvedUrl("ArticlePage.qml"));
             }

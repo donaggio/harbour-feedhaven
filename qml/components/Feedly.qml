@@ -155,25 +155,33 @@ QtObject {
                 for (var i = 0; i < retObj.response.length; i++) {
                     uniqueFeeds++;
                     var tmpObj = retObj.response[i];
-                    for (var j = 0; j < tmpObj.categories.length; j++) {
-                        tmpSubscriptions.push({ "id": tmpObj.id,
-                                                "title": tmpObj.title,
-                                                "category": tmpObj.categories[j].label.trim(),
-                                                "unreadCount": 0 });
-                    }
+                    if (tmpObj.categories.length) {
+                        for (var j = 0; j < tmpObj.categories.length; j++) {
+                            tmpSubscriptions.push({ "id": tmpObj.id,
+                                                    "title": tmpObj.title,
+                                                    "category": tmpObj.categories[j].label.trim(),
+                                                    "unreadCount": 0 });
+                        }
+                    } else tmpSubscriptions.push({ "id": tmpObj.id,
+                                                   "title": tmpObj.title,
+                                                   "category": qsTr("Uncategorized"),
+                                                   "unreadCount": 0 });
                 }
+                // Sort subscriptions by category
                 tmpSubscriptions.sort(function (a, b) {
                     if (a.category > b.category) return 1;
                     if (a.category < b.category) return -1;
                     return 0;
                 });
                 if (tmpSubscriptions.length) {
+                    // Add "All feeds" fake subscription
                     if (userId) {
                         feedsListModel.append({ "id": "user/" + userId + "/category/global.all",
                                                 "title": qsTr("All feeds"),
                                                 "category": "",
                                                 "unreadCount": 0 });
                     }
+                    // Populate ListModel
                     for (i = 0; i < tmpSubscriptions.length; i++) {
                         feedsListModel.append(tmpSubscriptions[i]);
                     }
@@ -252,7 +260,7 @@ QtObject {
                     var tmpUpdDate = new Date(tmpUpd.getFullYear(), tmpUpd.getMonth(), tmpUpd.getDate());
                     // Create article summary
                     var tmpSummary = ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ""));
-                    if (tmpSummary) tmpSummary = tmpSummary.replace(stripHtmlTags, " ").substr(0, 128).replace(normalizeSpaces, " ").trim();
+                    if (tmpSummary) tmpSummary = tmpSummary.replace(stripHtmlTags, " ").replace(normalizeSpaces, " ").trim().substr(0, 256);
                     // Clean article content and extract image urls
                     var tmpContent = ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ""))
                     var findImgUrls = new RegExp("<img[^>]+src\s*=\s*(?:\"|')(.+?)(?:\"|')", "gi");
@@ -263,8 +271,8 @@ QtObject {
                     }
                     if (tmpContent) tmpContent = tmpContent.replace(stripImgTag, " ").replace(normalizeSpaces, " ").trim();
                     articlesListModel.append({ "id": tmpObj.id,
-                                               "title": tmpObj.title,
-                                               "author": tmpObj.author,
+                                               "title": ((typeof tmpObj.title !== "undefined") ? tmpObj.title : qsTr("No title")),
+                                               "author": ((typeof tmpObj.author !== "undefined") ? tmpObj.author : qsTr("Unknown")),
                                                "updated": tmpUpd,
                                                "sectionLabel": Format.formatDate(tmpUpd, Formatter.TimepointSectionRelative),
                                                "imgUrl": (((typeof tmpObj.visual !== "undefined") && tmpObj.visual.url && tmpObj.visual.url !== "none") ? tmpObj.visual.url : ""),
