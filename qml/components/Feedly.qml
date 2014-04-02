@@ -213,19 +213,20 @@ QtObject {
                 for (var i = 0; i < retObj.response.unreadcounts.length; i++) {
                     var tmpObj = retObj.response.unreadcounts[i];
                     var tmpTotUnreadUpd = false;
-                    var allFeedsIdx = -1;
                     for (var j = 0; j < feedsListModel.count; j++) {
-                        if (userId && (feedsListModel.get(j).id === ("user/" + userId + "/category/global.all"))) allFeedsIdx = j;
                         if (feedsListModel.get(j).id === tmpObj.id) {
                             feedsListModel.setProperty(j, "unreadCount", tmpObj.count);
-                            if (!tmpTotUnreadUpd) {
-                                totalUnread += tmpObj.count;
-                                tmpTotUnreadUpd = true;
+                            if (userId) {
+                                if (tmpObj.id === ("user/" + userId + "/category/global.all")) totalUnread = tmpObj.count;
+                            } else {
+                                if (!tmpTotUnreadUpd) {
+                                    totalUnread += tmpObj.count;
+                                    tmpTotUnreadUpd = true;
+                                }
                             }
                         }
                     }
                 }
-                if (allFeedsIdx >= 0) feedsListModel.setProperty(allFeedsIdx, "unreadCount", totalUnread);
             }
             busy = false;
         }
