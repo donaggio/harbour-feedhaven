@@ -283,7 +283,7 @@ QtObject {
                                                "contentUrl": ((typeof tmpObj.alternate !== "undefined") ? tmpObj.alternate[0].href : ""),
                                                "gallery": tmpGallery,
                                                "streamId": retObj.response.id,
-                                               "streamTitle": ((typeof retObj.response.title !== "undefined") ? typeof retObj.response.title : "") });
+                                               "streamTitle": ((typeof retObj.response.title !== "undefined") ? retObj.response.title : "") });
                 }
             }
             busy = false;

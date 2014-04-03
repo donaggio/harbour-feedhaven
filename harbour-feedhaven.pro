@@ -26,7 +26,8 @@ OTHER_FILES += qml/harbour-feedhaven.qml \
     qml/components/Feedly.qml \
     qml/components/StatusIndicator.qml \
     qml/pages/AboutPage.qml \
-    feedly-api-config.pri
+    feedly-api-config.pri \
+    qml/pages/ArticleInfoPage.qml
 
 lupdate_only {
     SOURCES += qml/*.qml \

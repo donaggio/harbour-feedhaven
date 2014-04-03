@@ -13,8 +13,6 @@ Page {
     id: page
 
     property string title: ""
-    property string author: ""
-    property var updated: null
     property string content: ""
     property string contentUrl: ""
     property ListModel galleryModel
@@ -22,11 +20,24 @@ Page {
     function update() {
         if (feedly.currentEntry !== null) {
             title = feedly.currentEntry.title;
-            author = feedly.currentEntry.author;
-            updated = new Date(feedly.currentEntry.updated);
             content = feedly.currentEntry.content;
             contentUrl = feedly.currentEntry.contentUrl;
             galleryModel = feedly.currentEntry.gallery;
+            var articleInfoProp = { "title": feedly.currentEntry.title,
+                                    "author": feedly.currentEntry.author,
+                                    "updated": new Date(feedly.currentEntry.updated),
+                                    "streamTitle": feedly.currentEntry.streamTitle };
+            pageContainer.pushAttached(Qt.resolvedUrl("ArticleInfoPage.qml"), articleInfoProp);
+        }
+    }
+
+    function attachInfoPage() {
+        if (feedly.currentEntry !== null) {
+            var articleInfoProp = { "title": feedly.currentEntry.title,
+                                    "author": feedly.currentEntry.author,
+                                    "updated": new Date(feedly.currentEntry.updated),
+                                    "streamTitle": feedly.currentEntry.streamTitle };
+            pageContainer.pushAttached(Qt.resolvedUrl("ArticleInfoPage.qml"), articleInfoProp);
         }
     }
 
@@ -48,24 +59,6 @@ Page {
 
             PageHeader {
                 title: page.title
-            }
-
-            Label {
-                id: articleTitle
-
-                width: parent.width
-                font.pixelSize: Theme.fontSizeMedium
-                font.weight: Font.Bold
-                wrapMode: Text.WordWrap
-                text: page.title
-            }
-
-            Label {
-                id: articleAuthorDate
-
-                width: parent.width
-                font.pixelSize: Theme.fontSizeTiny
-                text: qsTr("by %1, published on: %2").arg(page.author).arg(Qt.formatDateTime(page.updated))
             }
 
             SlideshowView {
@@ -134,12 +127,12 @@ Page {
     Connections {
         target: feedly
 
-        onCurrentEntryChanged: update()
+        onCurrentEntryChanged: update();
     }
 
     onStatusChanged: {
         if (status === PageStatus.Activating) feedly.acquireStatusIndicator(page);
+        if (status === PageStatus.Active) update();
     }
 
-    Component.onCompleted: update()
 }

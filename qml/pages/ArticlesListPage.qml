@@ -108,8 +108,7 @@ Page {
             }
 
             onClicked: {
-                // DEBUG
-                // if (unread) feedly.markEntryAsRead(id);
+                if (unread) feedly.markEntryAsRead(id);
                 feedly.currentEntry = articlesListView.model.get(index);
                 pageStack.push(Qt.resolvedUrl("ArticlePage.qml"));
             }
