@@ -261,7 +261,7 @@ QtObject {
                     var tmpUpdDate = new Date(tmpUpd.getFullYear(), tmpUpd.getMonth(), tmpUpd.getDate());
                     // Create article summary
                     var tmpSummary = ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ""));
-                    if (tmpSummary) tmpSummary = tmpSummary.replace(stripHtmlTags, " ").replace(normalizeSpaces, " ").trim().substr(0, 256);
+                    if (tmpSummary) tmpSummary = tmpSummary.replace(stripHtmlTags, " ").replace(normalizeSpaces, " ").trim().substr(0, 320);
                     // Clean article content and extract image urls
                     var tmpContent = ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ""))
                     var findImgUrls = new RegExp("<img[^>]+src\s*=\s*(?:\"|')(.+?)(?:\"|')", "gi");

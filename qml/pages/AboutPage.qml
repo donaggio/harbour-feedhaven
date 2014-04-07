@@ -14,34 +14,47 @@ Page {
 
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
-    Column {
-        width: (parent.width - (2 * Theme.paddingLarge))
-        x: Theme.paddingLarge
-        spacing: Theme.paddingLarge
+    SilicaFlickable {
+        id: aboutFlickable
 
-        PageHeader {
-            title: qsTr("About Feed Haven")
+        anchors.fill: parent
+        contentHeight: aboutContainer.height
+
+        Column {
+            id: aboutContainer
+
+            width: (parent.width - (2 * Theme.paddingLarge))
+            x: Theme.paddingLarge
+            spacing: Theme.paddingLarge
+
+            PageHeader {
+                title: qsTr("About Feed Haven")
+            }
+
+            Label {
+                width: parent.width
+                horizontalAlignment: Text.AlignRight
+                font.pixelSize: Theme.fontSizeSmall
+                font.italic: true
+                wrapMode: Text.WordWrap
+                text: qsTr("Version %1\n(C) 2014 by Luca Donaggio").arg(Qt.application.version)
+            }
+
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                textFormat: Text.StyledText
+                linkColor: Theme.highlightColor
+                text: qsTr("<p><i>Feed Haven</i> is a native client for Feedly.com on-line news reader service.</p>
+    <p>You can access your subscribed feeds content: as soon as you'll read an article, it will be marked as read on Feedly.com as well.</p>
+    <p>Subscribing to new feeds is currently not supported, you need to log in to Feedly.com using a web browser in order to manage your feeds.</p>
+    <p>Image thumbnails in article list are displayed in landscape mode only.</p>
+    <p>This is an open source project released under the MIT license, source code is available <a href=\"https://code.google.com/p/harbour-feedhaven/source/\">here</a>.</p>")
+
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
         }
 
-        Label {
-            width: parent.width
-            horizontalAlignment: Text.AlignRight
-            font.pixelSize: Theme.fontSizeSmall
-            font.italic: true
-            text: qsTr("Version %1").arg(Qt.application.version)
-        }
-
-        Label {
-            width: parent.width
-            wrapMode: Text.WordWrap
-            textFormat: Text.StyledText
-            linkColor: Theme.highlightColor
-            text: qsTr("<p><i>Feed Haven</i> is a native client for Feedly news reader service.</p>
-<p>You can access to your subscribed feeds content and to each article's original web page as well.</p>
-<p>Subscribing to new feeds is currently not supported, you need to log in to Feedly.com using a web browser in order to manage your feeds.</p>
-<p>This is an open source project released under the MIT license, you can find its source code <a href=\"https://code.google.com/p/harbour-feedhaven/source/\">here</a>.</p>")
-
-            onLinkActivated: Qt.openUrlExternally(link)
-        }
+        VerticalScrollDecorator { flickable: aboutFlickable }
     }
 }

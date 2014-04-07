@@ -1,6 +1,6 @@
 Name: harbour-feedhaven
 Summary: Feedly unofficial client
-Version: 1.0
+Version: 1.0.1
 Release: 1
 Group: Qt/Qt
 URL: http://example.org/
@@ -8,9 +8,10 @@ License: MIT
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |-
-  Feed Haven is a native client for Feedly news reader service.
-  You can access to your subscribed feeds content and to each article's original web page as well.
+  Feed Haven is a native client for Feedly.com on-line news reader service.
+  You can access your subscribed feeds content: as soon as you'll read an article, it will be marked as read on Feedly.com as well.
   Subscribing to new feeds is currently not supported, you need to log in to Feedly.com using a web browser in order to manage your feeds.
+  Image thumbnails in article list are displayed in landscape mode only.
 Configure: none
 QMakeOptions:
 - VERSION=%{version}

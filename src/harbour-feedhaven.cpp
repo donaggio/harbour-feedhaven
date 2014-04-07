@@ -26,7 +26,7 @@
 #include <QVariant>
 #include <QGuiApplication>
 #include <QQuickView>
-//#include <QQmlContext>
+#include <QQmlContext>
 #include <sailfishapp.h>
 
 
