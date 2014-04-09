@@ -104,14 +104,25 @@ Page {
             Label {
                 id: articleContent
 
+                property string _linkStyle: "<style>a:link { color: " + Theme.highlightColor + "; }</style>"
+
                 width: parent.width
                 horizontalAlignment: Text.AlignJustify
                 font.pixelSize: Theme.fontSizeSmall
                 wrapMode: Text.WordWrap
                 textFormat: Text.RichText
-                text: "<style>a:link { color: " + Theme.highlightColor + "; }</style>" + page.content;
+                text: _linkStyle + page.content;
 
                 onLinkActivated: Qt.openUrlExternally(link)
+
+                onWidthChanged: {
+                    // This is needed as a workaround for the following bug:
+                    // if textFormat === Text.RichText text does not reflow when width changes
+                    if (page.content) {
+                        text = "";
+                        text = _linkStyle + page.content;
+                    }
+                }
             }
         }
 
