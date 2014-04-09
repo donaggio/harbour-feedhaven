@@ -31,16 +31,6 @@ Page {
         }
     }
 
-    function attachInfoPage() {
-        if (feedly.currentEntry !== null) {
-            var articleInfoProp = { "title": feedly.currentEntry.title,
-                                    "author": feedly.currentEntry.author,
-                                    "updated": new Date(feedly.currentEntry.updated),
-                                    "streamTitle": feedly.currentEntry.streamTitle };
-            pageContainer.pushAttached(Qt.resolvedUrl("ArticleInfoPage.qml"), articleInfoProp);
-        }
-    }
-
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
     SilicaFlickable {
@@ -53,7 +43,7 @@ Page {
         Column {
             id: articleContainer
 
-            width: page.width - (2 * Theme.paddingLarge)
+            width: parent.width - (2 * Theme.paddingLarge)
             x: Theme.paddingLarge
             spacing: Theme.paddingSmall
 
@@ -74,12 +64,21 @@ Page {
                 delegate: Image {
                     id: articleVisual
 
+                    property bool _removed: false
+
                     width: articleGalleryView.width
                     height: articleGalleryView.height
                     fillMode: Image.Pad
                     smooth: true
                     clip: true
                     source: ((typeof model.imgUrl !== "undefined") ? model.imgUrl : "")
+
+                    function removeFromModel() {
+                        if (!_removed) {
+                            _removed = true;
+                            parent.model.remove(index);
+                        }
+                    }
 
                     BusyIndicator {
                         anchors.centerIn: parent
@@ -88,11 +87,17 @@ Page {
                         visible: running
                     }
 
-                    onStatusChanged: { if (status === Image.Error) articleGalleryView.model.remove(index); }
+                    onStatusChanged: { if (status === Image.Error) removeFromModel(); }
 
-                    onPaintedWidthChanged: { if (paintedWidth > width) fillMode = Image.PreserveAspectFit }
+                    onPaintedWidthChanged: {
+                        if (paintedWidth > width) fillMode = Image.PreserveAspectFit;
+                        if ((paintedWidth > 0) && (paintedWidth <= Theme.iconSizeSmall)) removeFromModel();
+                    }
 
-                    onPaintedHeightChanged: { if (paintedHeight > height) fillMode = Image.PreserveAspectFit }
+                    onPaintedHeightChanged: {
+                        if (paintedHeight > height) fillMode = Image.PreserveAspectFit;
+                        if ((paintedWidth > 0) && (paintedHeight <= Theme.iconSizeSmall)) removeFromModel();
+                    }
                 }
             }
 

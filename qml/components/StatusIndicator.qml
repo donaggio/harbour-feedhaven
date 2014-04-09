@@ -30,13 +30,42 @@ Item {
     visible: (busyIndRunning || errorIndVisible)
     parent: null
 
-    BusyIndicator {
+    Item {
         id: busyIndicator
 
+        property bool running: false
+
         anchors.centerIn: parent
-        size: BusyIndicatorSize.Large
-        running: false
+        width: parent.width - (2 * Theme.paddingLarge)
+        height: busyContainer.height
         visible: running
+
+        Column {
+            id: busyContainer
+
+            width: parent.width
+            spacing: Theme.paddingSmall
+
+            Label {
+                id: labelBusyMessage
+
+                width: parent.width
+                font.pixelSize: Theme.fontSizeLarge
+                color: Theme.highlightColor
+                wrapMode: Text.NoWrap
+                truncationMode: TruncationMode.Fade
+                horizontalAlignment: Text.AlignHCenter
+                text: qsTr("Updating ...")
+            }
+
+            BusyIndicator {
+                id: indicator
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                size: BusyIndicatorSize.Large
+                running: busyIndicator.running
+            }
+        }
     }
 
     Rectangle {
