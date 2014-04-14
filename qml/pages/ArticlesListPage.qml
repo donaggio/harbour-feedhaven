@@ -14,6 +14,8 @@ Page {
 
     property string title
     property string streamId
+    property int unreadCount
+    readonly property string pageType: "articlesList"
 
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
 

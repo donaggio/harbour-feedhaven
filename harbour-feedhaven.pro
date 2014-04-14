@@ -13,7 +13,6 @@ CONFIG += sailfishapp
 SOURCES += src/harbour-feedhaven.cpp
 
 OTHER_FILES += qml/harbour-feedhaven.qml \
-    qml/cover/CoverPage.qml \
     rpm/harbour-feedhaven.spec \
     rpm/harbour-feedhaven.yaml \
     harbour-feedhaven.desktop \
@@ -27,7 +26,10 @@ OTHER_FILES += qml/harbour-feedhaven.qml \
     qml/components/StatusIndicator.qml \
     qml/pages/AboutPage.qml \
     feedly-api-config.pri \
-    qml/pages/ArticleInfoPage.qml
+    qml/pages/ArticleInfoPage.qml \
+    qml/cover/DefaultCover.qml \
+    qml/cover/ArticlesListCover.qml \
+    qml/cover/ArticleContentCover.qml
 
 lupdate_only {
     SOURCES += qml/*.qml \

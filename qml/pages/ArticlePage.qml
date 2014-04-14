@@ -16,6 +16,7 @@ Page {
     property string content: ""
     property string contentUrl: ""
     property ListModel galleryModel
+    readonly property string pageType: "articleContent"
 
     function update() {
         if (feedly.currentEntry !== null) {

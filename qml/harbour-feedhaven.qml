@@ -14,9 +14,22 @@ ApplicationWindow {
     id: main
 
     initialPage: Qt.resolvedUrl("pages/FeedsListPage.qml")
-    cover: Qt.resolvedUrl("cover/CoverPage.qml")
+    cover: Qt.resolvedUrl("cover/DefaultCover.qml")
 
     Feedly {
         id: feedly
     }
+
+    states: [
+        State {
+            name: "articlesList"
+            when: pageStack.currentPage.pageType === "articlesList"
+            PropertyChanges { target: main; cover: Qt.resolvedUrl("cover/ArticlesListCover.qml") }
+        },
+        State {
+            name: "articleContent"
+            when: pageStack.currentPage.pageType === "articleContent"
+            PropertyChanges { target: main; cover: Qt.resolvedUrl("cover/ArticleContentCover.qml") }
+        }
+    ]
 }

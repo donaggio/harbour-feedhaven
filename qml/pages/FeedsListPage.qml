@@ -52,7 +52,7 @@ Page {
             }
 
             enabled: (unreadCount > 0)
-            onClicked: pageStack.push(Qt.resolvedUrl("ArticlesListPage.qml"), { "title": title, "streamId": id })
+            onClicked: pageStack.push(Qt.resolvedUrl("ArticlesListPage.qml"), { "title": title, "streamId": id, "unreadCount": unreadCount })
         }
 
         section.property: "category"
