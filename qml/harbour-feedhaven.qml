@@ -23,12 +23,12 @@ ApplicationWindow {
     states: [
         State {
             name: "articlesList"
-            when: pageStack.currentPage.pageType === "articlesList"
+            when: ((pageStack.currentPage.pageType === "articlesList") && (pageStack.currentPage.status === PageStatus.Active))
             PropertyChanges { target: main; cover: Qt.resolvedUrl("cover/ArticlesListCover.qml") }
         },
         State {
             name: "articleContent"
-            when: pageStack.currentPage.pageType === "articleContent"
+            when: ((pageStack.currentPage.pageType === "articleCount") && (pageStack.currentPage.status === PageStatus.Active))
             PropertyChanges { target: main; cover: Qt.resolvedUrl("cover/ArticleContentCover.qml") }
         }
     ]

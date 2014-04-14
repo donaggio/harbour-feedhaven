@@ -119,10 +119,9 @@ Page {
                 onWidthChanged: {
                     // This is needed as a workaround for the following bug:
                     // if textFormat === Text.RichText text does not reflow when width changes
-                    if (text) {
-                        var tmpText = text;
+                    if (page.content) {
                         text = "";
-                        text = tmpText;
+                        text = _linkStyle + page.content;
                     }
                 }
             }

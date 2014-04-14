@@ -110,7 +110,10 @@ Page {
             }
 
             onClicked: {
-                if (unread) feedly.markEntryAsReadUnread(id);
+                if (unread) {
+                    feedly.markEntryAsReadUnread(id);
+                    page.unreadCount--;
+                }
                 feedly.currentEntry = articlesListView.model.get(index);
                 pageStack.push(Qt.resolvedUrl("ArticlePage.qml"));
             }
@@ -139,7 +142,11 @@ Page {
 
                 MenuItem {
                     text: (contextMenu.articleUnread ? qsTr("Mark as read") : qsTr("Keep unread"))
-                    onClicked: feedly.markEntryAsReadUnread(contextMenu.articleId, !contextMenu.articleUnread)
+                    onClicked: {
+                        feedly.markEntryAsReadUnread(contextMenu.articleId, !contextMenu.articleUnread);
+                        if (contextMenu.articleUnread) page.unreadCount--;
+                        else page.unreadCount++;
+                    }
                 }
 
                 MenuItem {
