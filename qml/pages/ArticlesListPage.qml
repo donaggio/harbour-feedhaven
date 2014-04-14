@@ -108,19 +108,17 @@ Page {
             }
 
             onClicked: {
-                if (unread) feedly.markEntryAsRead(id);
+                if (unread) feedly.markEntryAsReadUnread(id);
                 feedly.currentEntry = articlesListView.model.get(index);
                 pageStack.push(Qt.resolvedUrl("ArticlePage.qml"));
             }
 
             onPressAndHold: {
-                if (unread || contentUrl) {
-                    if (!articlesListView.contextMenu) articlesListView.contextMenu = contextMenuComponent.createObject(articlesListView);
-                    articlesListView.contextMenu.articleId = id;
-                    articlesListView.contextMenu.articleUnread = unread;
-                    articlesListView.contextMenu.articleUrl = contentUrl;
-                    articlesListView.contextMenu.show(articleItem)
-                }
+                if (!articlesListView.contextMenu) articlesListView.contextMenu = contextMenuComponent.createObject(articlesListView);
+                articlesListView.contextMenu.articleId = id;
+                articlesListView.contextMenu.articleUnread = unread;
+                articlesListView.contextMenu.articleUrl = contentUrl;
+                articlesListView.contextMenu.show(articleItem)
             }
         }
 
@@ -138,9 +136,8 @@ Page {
                 property string articleUrl
 
                 MenuItem {
-                    visible: (contextMenu.articleUnread ? contextMenu.articleUnread : false)
-                    text: qsTr("Mark as read")
-                    onClicked: feedly.markEntryAsRead(contextMenu.articleId)
+                    text: (contextMenu.articleUnread ? qsTr("Mark as read") : qsTr("Keep unread"))
+                    onClicked: feedly.markEntryAsReadUnread(contextMenu.articleId, !contextMenu.articleUnread)
                 }
 
                 MenuItem {

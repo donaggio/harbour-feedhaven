@@ -104,7 +104,7 @@ Page {
             Label {
                 id: articleContent
 
-                property string _linkStyle: "<style>a:link { color: " + Theme.highlightColor + "; }</style>"
+                readonly property string _linkStyle: "<style>a:link { color: " + Theme.highlightColor + "; }</style>"
 
                 width: parent.width
                 horizontalAlignment: Text.AlignJustify
@@ -118,9 +118,10 @@ Page {
                 onWidthChanged: {
                     // This is needed as a workaround for the following bug:
                     // if textFormat === Text.RichText text does not reflow when width changes
-                    if (page.content) {
+                    if (text) {
+                        var tmpText = text;
                         text = "";
-                        text = _linkStyle + page.content;
+                        text = tmpText;
                     }
                 }
             }

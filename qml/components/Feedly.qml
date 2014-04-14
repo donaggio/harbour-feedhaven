@@ -287,6 +287,7 @@ QtObject {
                 }
             }
             busy = false;
+            if (!retObj.callParams.continuation) getMarkersCounts();
         }
         // DEBUG
         // console.log(JSON.stringify(retObj));
@@ -354,22 +355,29 @@ QtObject {
     /*
      * Mark entry as read
      */
-    function markEntryAsRead(entryId) {
+    function markEntryAsReadUnread(entryId, unread) {
         if (entryId) {
-            var param = { "action": "markAsRead", "type": "entries", "entryIds": [entryId] };
-            FeedlyAPI.call("markers", param, markEntryAsReadDoneCB, accessToken);
+            var param = { "action": (unread ? "keepUnread" : "markAsRead"), "type": "entries", "entryIds": [entryId] };
+            FeedlyAPI.call("markers", param, markEntryAsReadUnreadDoneCB, accessToken);
         } else error(qsTr("No entryId found."));
     }
 
-    function markEntryAsReadDoneCB(retObj) {
-        if (checkResponse(retObj, markEntryAsReadDoneCB)) {
+    function markEntryAsReadUnreadDoneCB(retObj) {
+        if (checkResponse(retObj, markEntryAsReadUnreadDoneCB)) {
             if (articlesListModel.count > 0) {
                 var entryId = retObj.callParams.entryIds[0];
                 var streamId = "";
                 for (var i = 0; i < articlesListModel.count; i++) {
-                    if ((articlesListModel.get(i).id === entryId) && articlesListModel.get(i).unread) {
-                        articlesListModel.setProperty(i, "unread", false);
-                        streamId = articlesListModel.get(i).streamId;
+                    if (articlesListModel.get(i).id === entryId) {
+                        var markersChanged = false;
+                        if ((retObj.callParams.action === "markAsRead") && articlesListModel.get(i).unread) {
+                            articlesListModel.setProperty(i, "unread", false);
+                            markersChanged = true;
+                        } else if ((retObj.callParams.action === "keepUnread") && !articlesListModel.get(i).unread) {
+                            articlesListModel.setProperty(i, "unread", true);
+                            markersChanged = true;
+                        }
+                        if (markersChanged) streamId = articlesListModel.get(i).streamId;
                     }
                 }
                 var allFeedsIdx = -1;
@@ -378,11 +386,14 @@ QtObject {
                         if (userId && (feedsListModel.get(j).id === ("user/" + userId + "/category/global.all"))) allFeedsIdx = j;
                         if (feedsListModel.get(j).id === streamId) {
                             var tmpUnreadCount = feedsListModel.get(j).unreadCount;
-                            if (tmpUnreadCount > 0) feedsListModel.setProperty(j, "unreadCount", (tmpUnreadCount - 1));
+                            if ((retObj.callParams.action === "markAsRead") && (tmpUnreadCount > 0)) tmpUnreadCount--;
+                            else if (retObj.callParams.action === "keepUnread") tmpUnreadCount++;
+                            feedsListModel.setProperty(j, "unreadCount", tmpUnreadCount);
                         }
                     }
                 }
-                if (totalUnread > 0) totalUnread--;
+                if ((retObj.callParams.action === "markAsRead") && (totalUnread > 0)) totalUnread--;
+                else if (retObj.callParams.action === "keepUnread") totalUnread++;
                 if (allFeedsIdx >= 0) feedsListModel.setProperty(allFeedsIdx, "unreadCount", totalUnread);
             }
             busy = false;
