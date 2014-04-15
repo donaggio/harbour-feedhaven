@@ -17,8 +17,17 @@ CoverBackground {
 
         anchors { top: parent.top; left: parent.left; right: parent.right; topMargin: Theme.paddingSmall; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        maximumLineCount: 6
+        maximumLineCount: 8
         elide: Text.ElideRight
-        text: "\"" + pageStack.currentPage.title + "\""
+        text: (feedly.currentEntry !== null) ? "\"" + feedly.currentEntry.title + "\"" : qsTr("No article selected")
+    }
+
+    Label {
+        id: labelFeedTitle
+
+        anchors { bottom: parent.bottom; left: parent.left; right: parent.right; bottomMargin: Theme.paddingSmall; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
+        wrapMode: Text.NoWrap
+        truncationMode: TruncationMode.Fade
+        text: (feedly.currentEntry !== null) ? feedly.currentEntry.streamTitle : ""
     }
 }

@@ -16,6 +16,7 @@ Page {
     property string author: ""
     property var updated: null
     property string streamTitle: ""
+    readonly property string pageType: "articleInfo"
 
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
 

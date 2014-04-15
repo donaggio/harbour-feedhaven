@@ -40,7 +40,7 @@ CoverBackground {
             horizontalAlignment: Text.AlignRight
             wrapMode: Text.NoWrap
             font.pixelSize: Theme.fontSizeExtraLarge
-            text: pageStack.currentPage.unreadCount
+            text: (typeof pageStack.currentPage.unreadCount !== "undefined") ? pageStack.currentPage.unreadCount : ""
         }
 
         Label {
