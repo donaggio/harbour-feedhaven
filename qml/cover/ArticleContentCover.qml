@@ -28,6 +28,7 @@ CoverBackground {
         anchors { bottom: parent.bottom; left: parent.left; right: parent.right; bottomMargin: Theme.paddingSmall; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
         wrapMode: Text.NoWrap
         truncationMode: TruncationMode.Fade
+        color: Theme.highlightColor
         text: (feedly.currentEntry !== null) ? feedly.currentEntry.streamTitle : ""
     }
 }

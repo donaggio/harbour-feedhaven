@@ -106,6 +106,7 @@ CoverBackground {
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.NoWrap
         truncationMode: TruncationMode.Fade
+        color: Theme.highlightColor
         text: qsTr("Updating ...")
         visible: feedly.busy
 
@@ -124,6 +125,7 @@ CoverBackground {
         anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.WordWrap
+        color: Theme.highlightColor
         text: qsTr("Not signed in")
         visible: (!feedly.signedIn && !feedly.busy)
     }
