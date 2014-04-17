@@ -15,7 +15,7 @@ CoverBackground {
     Label {
         id: labelFeedTitle
 
-        anchors { top: parent.top; left: parent.left; right: parent.right; topMargin: Theme.paddingSmall; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
+        anchors { top: parent.top; left: parent.left; right: parent.right; topMargin: Theme.paddingMedium; leftMargin: Theme.paddingMedium; rightMargin: Theme.paddingMedium }
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         maximumLineCount: 3
         elide: Text.ElideRight
@@ -24,7 +24,7 @@ CoverBackground {
     }
 
     Item {
-        anchors { top: labelFeedTitle.bottom; topMargin: Theme.paddingMedium; leftMargin: Theme.paddingMedium; rightMargin: Theme.paddingMedium }
+        anchors { top: labelFeedTitle.bottom; topMargin: Theme.paddingMedium; leftMargin: Theme.paddingLarge; rightMargin: Theme.paddingLarge }
         width: parent.width
         height: Theme.itemSizeSmall
         visible: (feedly.signedIn && !labelLoading.visible)
@@ -62,7 +62,7 @@ CoverBackground {
     Label {
         id: labelLoading
 
-        anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
+        anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: Theme.paddingMedium; rightMargin: Theme.paddingMedium }
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.NoWrap
         truncationMode: TruncationMode.Fade
@@ -82,7 +82,7 @@ CoverBackground {
     Label {
         id: labeNotSignedIn
 
-        anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
+        anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: Theme.paddingMedium; rightMargin: Theme.paddingMedium }
         horizontalAlignment: Text.AlignHCenter
         wrapMode: Text.WordWrap
         color: Theme.highlightColor

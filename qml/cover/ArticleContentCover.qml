@@ -15,7 +15,7 @@ CoverBackground {
     Label {
         id: labelTitle
 
-        anchors { top: parent.top; left: parent.left; right: parent.right; topMargin: Theme.paddingSmall; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
+        anchors { top: parent.top; left: parent.left; right: parent.right; topMargin: Theme.paddingMedium; leftMargin: Theme.paddingMedium; rightMargin: Theme.paddingMedium }
         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         maximumLineCount: 8
         elide: Text.ElideRight
@@ -25,7 +25,7 @@ CoverBackground {
     Label {
         id: labelFeedTitle
 
-        anchors { bottom: parent.bottom; left: parent.left; right: parent.right; bottomMargin: Theme.paddingSmall; leftMargin: Theme.paddingSmall; rightMargin: Theme.paddingSmall }
+        anchors { bottom: parent.bottom; left: parent.left; right: parent.right; bottomMargin: Theme.paddingMedium; leftMargin: Theme.paddingMedium; rightMargin: Theme.paddingMedium }
         wrapMode: Text.NoWrap
         truncationMode: TruncationMode.Fade
         color: Theme.highlightColor
