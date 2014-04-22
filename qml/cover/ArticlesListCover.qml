@@ -27,7 +27,7 @@ CoverBackground {
         anchors { top: labelFeedTitle.bottom; topMargin: Theme.paddingMedium; leftMargin: Theme.paddingLarge; rightMargin: Theme.paddingLarge }
         width: parent.width
         height: Theme.itemSizeSmall
-        visible: (feedly.signedIn && !labelLoading.visible)
+        visible: (!labelLoading.visible && !labeNotSignedIn.visible)
 
         Label {
             id: labelUnreadNum
@@ -71,7 +71,7 @@ CoverBackground {
         visible: feedly.busy
 
         SequentialAnimation on opacity {
-            paused: !visible
+            running: (parent.visible && (cover.status === Cover.Active))
             loops: Animation.Infinite
 
             NumberAnimation { to: 0; duration: 1000 }

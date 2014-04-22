@@ -28,7 +28,7 @@ CoverBackground {
         width: cover.width - (2 * Theme.paddingLarge)
         x: Theme.paddingLarge
         spacing: Theme.paddingSmall
-        visible: (feedly.signedIn && !labelLoading.visible)
+        visible: (!labelLoading.visible && !labeNotSignedIn.visible)
 
         Item {
             width: parent.width
@@ -111,7 +111,7 @@ CoverBackground {
         visible: feedly.busy
 
         SequentialAnimation on opacity {
-            paused: !visible
+            running: (parent.visible && (cover.status === Cover.Active))
             loops: Animation.Infinite
 
             NumberAnimation { to: 0; duration: 1000 }

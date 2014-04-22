@@ -72,6 +72,7 @@ function call(method, param, callback, accessToken) {
             // DEBUG
             // console.log(JSON.stringify(retObj));
             callback(retObj);
+            delete xhr;
         }
     }
     xhr.ontimeout = function() { console.log("API call timeout"); }

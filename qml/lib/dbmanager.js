@@ -44,6 +44,7 @@ function saveAuthTokens(feedlyObj) {
         } catch (error) {
             console.log(error);
         }
+        delete db;
     }
 }
 
@@ -67,5 +68,6 @@ function getAuthTokens(feedlyObj) {
         } catch (error) {
             console.log(error);
         }
+        delete db;
     }
 }
