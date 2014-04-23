@@ -1,11 +1,13 @@
-# The name of your app.
-# NOTICE: name defined in TARGET has a corresponding QML filename.
-#         If name defined in TARGET is changed, following needs to be
-#         done to match new name:
-#         - corresponding QML filename must be changed
-#         - desktop icon filename must be changed
-#         - desktop filename must be changed
-#         - icon definition filename in desktop file must be changed
+# NOTICE:
+#
+# Application name defined in TARGET has a corresponding QML filename.
+# If name defined in TARGET is changed, the following needs to be done
+# to match new name:
+#   - corresponding QML filename must be changed
+#   - desktop icon filename must be changed
+#   - desktop filename must be changed
+#   - icon definition filename in desktop file must be changed
+#   - translation filenames have to be changed
 TARGET = harbour-feedhaven
 
 CONFIG += sailfishapp
@@ -15,6 +17,7 @@ SOURCES += src/harbour-feedhaven.cpp
 OTHER_FILES += qml/harbour-feedhaven.qml \
     rpm/harbour-feedhaven.spec \
     rpm/harbour-feedhaven.yaml \
+    translations/*.ts \
     harbour-feedhaven.desktop \
     qml/lib/feedly.js \
     qml/pages/SignInPage.qml \
@@ -31,15 +34,10 @@ OTHER_FILES += qml/harbour-feedhaven.qml \
     qml/cover/ArticlesListCover.qml \
     qml/cover/ArticleContentCover.qml
 
-lupdate_only {
-    SOURCES += qml/*.qml \
-        qml/pages/*.qml \
-        qml/components/*.qml \
-        qml/cover/*.qml \
-        qml/lib/*.js
-}
-
-TRANSLATIONS += harbour-feedhaven-it.ts
+# to disable building translations every time, comment out the
+# following CONFIG line
+CONFIG += sailfishapp_i18n
+TRANSLATIONS += translations/harbour-feedhaven-it.ts
 
 DEFINES += APP_VERSION=\"\\\"$$VERSION\\\"\"
 
