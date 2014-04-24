@@ -150,7 +150,7 @@ Page {
                 }
 
                 MenuItem {
-                    visible: (contextMenu.articleUrl ? contextMenu.articleUrl : false)
+                    visible: (contextMenu.articleUrl ? true : false)
                     text: qsTr("Open original link")
                     onClicked: Qt.openUrlExternally(contextMenu.articleUrl)
                 }
@@ -171,11 +171,23 @@ Page {
         }
 
         PushUpMenu {
-            visible: (feedly.continuation !== "")
+            visible: (articlesListView.count > 0)
 
             MenuItem {
+                visible: (feedly.continuation !== "")
                 text: qsTr("More articles")
                 onClicked: feedly.getStreamContent(streamId, true)
+            }
+
+            MenuItem {
+                text: qsTr("Mark all as read")
+                onClicked: remorsePopup.execute(qsTr("Marking all articles as read"))
+            }
+
+            MenuItem {
+                visible: (articlesListView.count > 10)
+                text: qsTr("Back to the top")
+                onClicked: articlesListView.scrollToTop();
             }
         }
 
