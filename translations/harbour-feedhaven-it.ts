@@ -107,11 +107,13 @@ da leggere</translation>
     </message>
     <message>
         <location filename="../qml/pages/ArticlesListPage.qml" line="163"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="183"/>
         <source>Mark all as read</source>
         <translation>Segna tutti come già letti</translation>
     </message>
     <message>
         <location filename="../qml/pages/ArticlesListPage.qml" line="164"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="184"/>
         <source>Marking all articles as read</source>
         <translation>Segno tutti gli articoli come già letti</translation>
     </message>
@@ -121,12 +123,17 @@ da leggere</translation>
         <translation>Aggiorna il feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="177"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="178"/>
         <source>More articles</source>
         <translation>Altri articoli</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="184"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="189"/>
+        <source>Back to the top</source>
+        <translation>Torna all&apos;inizio</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="196"/>
         <source>No unread articles in this feed</source>
         <translation>Nessun articolo trovato</translation>
     </message>

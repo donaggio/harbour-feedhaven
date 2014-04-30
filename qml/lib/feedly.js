@@ -20,7 +20,8 @@ var _apiCalls = {
     "markers": { "method": "POST", "protocol": "http", "url": "markers" },
     "markersCounts": { "method": "GET", "protocol": "http", "url": "markers/counts" },
     "streamContent": { "method": "GET", "protocol": "http", "url": "streams/contents" },
-    "entries": { "method": "GET", "protocol": "http", "url": "entries" }
+    "entries": { "method": "GET", "protocol": "http", "url": "entries" },
+    "searchFeed": { "method": "GET", "protocol": "http", "url": "search/feeds" }
 }
 
 /*

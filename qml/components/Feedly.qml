@@ -134,7 +134,26 @@ QtObject {
         }
         // DEBUG
         // console.log(JSON.stringify(retObj));
-     }
+    }
+
+    /*
+     * Revoke refresh token
+     */
+    function revokeRefreshToken() {
+        if (refreshToken) {
+            param = { "refresh_token": refreshToken, "client_id": feedlyClientId, "client_secret": feedlyClientSecret, "grant_type": "revoke_token" };
+            busy = true;
+            FeedlyAPI.call("authRefreshToken", param, revokeRefreshTokenDoneCB);
+        } else error(qsTr("No refreshToken found."));
+    }
+
+    function revokeRefreshTokenDoneCB(retObj) {
+        resetAuthorization();
+        busy = false;
+        if (retObj.status != 200) error(qsTr("Error revoking refreshToken"));
+        // DEBUG
+        // console.log(JSON.stringify(retObj));
+    }
 
     /*
      * Get subscriptions
