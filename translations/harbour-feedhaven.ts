@@ -240,32 +240,32 @@ feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="85"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="86"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="90"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="91"/>
         <source>Sign in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="90"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="91"/>
         <source>Sign out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="98"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="99"/>
         <source>Refresh feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="106"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="107"/>
         <source>Feeds list not available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="106"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="107"/>
         <source>Please sign in</source>
         <translation type="unfinished"></translation>
     </message>

@@ -41,8 +41,8 @@ Page {
                     verticalCenter: parent.verticalCenter
                 }
                 width: Theme.iconSizeSmall
-                height: height
-                fillMode: Image.PreserveAspectCrop
+                height: width
+                fillMode: Image.PreserveAspectFit
                 smooth: true
                 clip: true
                 source: (imgUrl ? imgUrl : _defaultSource)
