@@ -30,12 +30,36 @@ Page {
             width: feedsListView.width
             contentHeight: Theme.itemSizeSmall
 
+            Image {
+                id: feedVisual
+
+                readonly property string _defaultSource: "image://theme/icon-s-sailfish"
+
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.paddingLarge
+                    verticalCenter: parent.verticalCenter
+                }
+                width: Theme.iconSizeSmall
+                height: height
+                fillMode: Image.PreserveAspectCrop
+                smooth: true
+                clip: true
+                source: (imgUrl ? imgUrl : _defaultSource)
+
+                onStatusChanged: {
+                    if (status === Image.Error) source = _defaultSource;
+                }
+            }
+
             Label {
-                anchors.left: parent.left
-                anchors.right: unreadCountLabel.left
-                anchors.leftMargin: Theme.paddingLarge
-                anchors.rightMargin: Theme.paddingSmall
-                anchors.verticalCenter: parent.verticalCenter
+                anchors {
+                    left: feedVisual.right
+                    right: unreadCountLabel.left
+                    leftMargin: Theme.paddingSmall
+                    rightMargin: Theme.paddingSmall
+                    verticalCenter: parent.verticalCenter
+                }
                 truncationMode: TruncationMode.Fade
                 text: title
                 color: highlighted ? Theme.highlightColor : ((unreadCount > 0) ? Theme.primaryColor : Theme.secondaryColor)
@@ -43,9 +67,8 @@ Page {
 
             Label {
                 id: unreadCountLabel
-                anchors.right: parent.right
-                anchors.rightMargin: Theme.paddingLarge
-                anchors.verticalCenter: parent.verticalCenter
+
+                anchors { right: parent.right; rightMargin: Theme.paddingLarge; verticalCenter: parent.verticalCenter }
                 text: unreadCount
                 visible: (unreadCount > 0)
                 color: Theme.highlightColor
@@ -65,10 +88,10 @@ Page {
             }
 
             MenuItem {
-                text: (feedly.signedIn ? qsTr("Reset authorization") : qsTr("Sign in"))
+                text: (feedly.signedIn ? qsTr("Sign out") : qsTr("Sign in"))
                 onClicked: {
-                    feedly.resetAuthorization();
-                    pageStack.push(Qt.resolvedUrl("SignInPage.qml"));
+                    if (feedly.signedIn) feedly.revokeRefreshToken();
+                    else pageStack.push(Qt.resolvedUrl("SignInPage.qml"));
                 }
             }
 

@@ -95,6 +95,18 @@ QtObject {
     }
 
     /*
+     * Reset object's properties
+     */
+    function resetProperties() {
+        currentEntry = null;
+        continuation = "";
+        totalUnread = 0;
+        uniqueFeeds = 0;
+        if (feedsListModel) feedsListModel.clear();
+        if (articlesListModel) articlesListModel.clear();
+    }
+
+    /*
      * Get access and refresh tokens
      */
     function getAccessToken(authCode) {
@@ -179,11 +191,13 @@ QtObject {
                             tmpSubscriptions.push({ "id": tmpObj.id,
                                                     "title": tmpObj.title,
                                                     "category": tmpObj.categories[j].label.trim(),
+                                                    "imgUrl": ((typeof tmpObj.visualUrl !== "undefined") ? tmpObj.visualUrl : ""),
                                                     "unreadCount": 0 });
                         }
                     } else tmpSubscriptions.push({ "id": tmpObj.id,
                                                    "title": tmpObj.title,
                                                    "category": qsTr("Uncategorized"),
+                                                   "imgUrl": ((typeof tmpObj.visualUrl !== "undefined") ? tmpObj.visualUrl : ""),
                                                    "unreadCount": 0 });
                 }
                 // Sort subscriptions by category
@@ -198,6 +212,7 @@ QtObject {
                         feedsListModel.append({ "id": "user/" + userId + "/category/global.all",
                                                 "title": qsTr("All feeds"),
                                                 "category": "",
+                                                "imgUrl": "",
                                                 "unreadCount": 0 });
                     }
                     // Populate ListModel
@@ -448,15 +463,7 @@ QtObject {
 
     onSignedInChanged: {
         if (signedIn) getSubscriptions();
-        else {
-            // Do some cleanup
-            feedsListModel.clear();
-            articlesListModel.clear();
-            currentEntry = null;
-            continuation = "";
-            totalUnread = 0;
-            uniqueFeeds = 0;
-        }
+        else resetProperties();
     }
 
     onError: {
