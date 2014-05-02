@@ -56,8 +56,8 @@ Page {
                 anchors {
                     left: feedVisual.right
                     right: unreadCountLabel.left
-                    leftMargin: Theme.paddingSmall
-                    rightMargin: Theme.paddingSmall
+                    leftMargin: Theme.paddingMedium
+                    rightMargin: Theme.paddingMedium
                     verticalCenter: parent.verticalCenter
                 }
                 truncationMode: TruncationMode.Fade
