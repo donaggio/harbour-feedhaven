@@ -39,7 +39,14 @@ OTHER_FILES += qml/harbour-feedhaven.qml \
 CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-feedhaven-it.ts
 
-DEFINES += APP_VERSION=\"\\\"$$VERSION\\\"\"
+# Custom icons and images
+images.files = icons
+images.path = /usr/share/$${TARGET}
+INSTALLS += images
 
+# App version
+DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
+
+# Feedly API keys
 FEEDLY_API_CONFIG = feedly-api-config.pri
-exists($$FEEDLY_API_CONFIG) include($$FEEDLY_API_CONFIG)
+exists($${FEEDLY_API_CONFIG}) include($${FEEDLY_API_CONFIG})

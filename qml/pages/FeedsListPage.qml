@@ -33,7 +33,7 @@ Page {
             Image {
                 id: feedVisual
 
-                readonly property string _defaultSource: "image://theme/icon-s-sailfish"
+                readonly property string _defaultSource: "../../icons/icon-s-rss.png" // "image://theme/icon-s-sailfish"
 
                 anchors {
                     left: parent.left
