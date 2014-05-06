@@ -12,6 +12,12 @@ import Sailfish.Silica 1.0
 CoverBackground {
     id: cover
 
+    Image {
+        x: -Theme.paddingLarge
+        y: x
+        source: "../../icons/cover-background.png"
+    }
+
     Label {
         id: labelFeedTitle
 

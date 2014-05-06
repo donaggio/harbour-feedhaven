@@ -12,19 +12,14 @@ import Sailfish.Silica 1.0
 CoverBackground {
     id: cover
 
-    Label {
-        id: labelAppName
-
-        anchors { top: parent.top; left: parent.left; right: parent.right; topMargin: Theme.paddingMedium; leftMargin: Theme.paddingMedium; rightMargin: Theme.paddingMedium }
-        horizontalAlignment: Text.AlignHCenter
-        wrapMode: Text.NoWrap
-        truncationMode: TruncationMode.Fade
-        text: qsTr("Feed Haven")
+    Image {
+        x: -Theme.paddingLarge
+        y: x
+        source: "../../icons/cover-background.png"
     }
 
     Column {
-        anchors.top: labelAppName.bottom
-        anchors.topMargin: Theme.paddingMedium
+        anchors { top: parent.top; topMargin: Theme.paddingLarge }
         width: cover.width - (2 * Theme.paddingLarge)
         x: Theme.paddingLarge
         spacing: Theme.paddingSmall

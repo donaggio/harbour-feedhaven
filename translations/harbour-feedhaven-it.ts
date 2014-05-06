@@ -32,7 +32,7 @@
 <context>
     <name>ArticleContentCover</name>
     <message>
-        <location filename="../qml/cover/ArticleContentCover.qml" line="22"/>
+        <location filename="../qml/cover/ArticleContentCover.qml" line="28"/>
         <source>No article selected</source>
         <translation>Nessun articolo selezionato</translation>
     </message>
@@ -71,19 +71,19 @@
 <context>
     <name>ArticlesListCover</name>
     <message>
-        <location filename="../qml/cover/ArticlesListCover.qml" line="58"/>
+        <location filename="../qml/cover/ArticlesListCover.qml" line="64"/>
         <source>Unread
 articles</source>
         <translation>Articoli
 da leggere</translation>
     </message>
     <message>
-        <location filename="../qml/cover/ArticlesListCover.qml" line="70"/>
+        <location filename="../qml/cover/ArticlesListCover.qml" line="76"/>
         <source>Updating ...</source>
         <translation>Aggiorno ...</translation>
     </message>
     <message>
-        <location filename="../qml/cover/ArticlesListCover.qml" line="89"/>
+        <location filename="../qml/cover/ArticlesListCover.qml" line="95"/>
         <source>Not signed in</source>
         <translation>Non sei loggato</translation>
     </message>
@@ -141,30 +141,25 @@ da leggere</translation>
 <context>
     <name>DefaultCover</name>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="22"/>
-        <source>Feed Haven</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="63"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="58"/>
         <source>Unread
 articles</source>
         <translation>Articoli
 da leggere</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="97"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="92"/>
         <source>Subscribed
 feeds</source>
         <translation>Feed</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="110"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="105"/>
         <source>Updating ...</source>
         <translation>Aggiorno ...</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="129"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="124"/>
         <source>Not signed in</source>
         <translation>Non sei loggato</translation>
     </message>

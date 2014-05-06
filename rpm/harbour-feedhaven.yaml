@@ -3,7 +3,7 @@ Summary: Feedly unofficial client
 Version: 1.0.6
 Release: 1
 Group: Qt/Qt
-URL: http://example.org/
+URL: https://code.google.com/p/harbour-feedhaven/
 License: MIT
 Sources:
 - '%{name}-%{version}.tar.bz2'
