@@ -32,7 +32,8 @@ OTHER_FILES += qml/harbour-feedhaven.qml \
     qml/pages/ArticleInfoPage.qml \
     qml/cover/DefaultCover.qml \
     qml/cover/ArticlesListCover.qml \
-    qml/cover/ArticleContentCover.qml
+    qml/cover/ArticleContentCover.qml \
+    qml/pages/FeedSearchPage.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line

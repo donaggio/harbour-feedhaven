@@ -30,6 +30,7 @@ QtObject {
     property Item _statusIndicator: null
 
     signal error(string message)
+    signal searchFeedCompleted(var results)
 
     /*
      * Return URL to sign in into Feedly
@@ -431,6 +432,35 @@ QtObject {
                 if (allFeedsIdx >= 0) feedsListModel.setProperty(allFeedsIdx, "unreadCount", totalUnread);
             }
             busy = false;
+        }
+        // DEBUG
+        // console.log(JSON.stringify(retObj));
+    }
+
+    /*
+     * Search feed
+     */
+    function searchFeed(searchString) {
+        if (searchString) {
+            var param = { "q": searchString, "n": 20, "locale": "en_US" };
+            FeedlyAPI.call("searchFeed", param, searchFeedDoneCB, accessToken);
+        } else error(qsTr("No search string or URL given."));
+    }
+
+    function searchFeedDoneCB(retObj) {
+        if (checkResponse(retObj, searchFeedDoneCB)) {
+            var results = [];
+            if (Array.isArray(retObj.response.results)) {
+                for (var i = 0; i < retObj.response.results.length; i++) {
+                    var tmpObj = retObj.response.results[i];
+                    results.push({ "id": tmpObj.feedId,
+                                   "title": tmpObj.title,
+                                   "description": tmpObj.description,
+                                   "imgUrl": ((typeof tmpObj.visualUrl !== "undefined") ? tmpObj.visualUrl : ""),
+                                   "subscribers": tmpObj.subscribers });
+                }
+            }
+            searchFeedCompleted(results);
         }
         // DEBUG
         // console.log(JSON.stringify(retObj));

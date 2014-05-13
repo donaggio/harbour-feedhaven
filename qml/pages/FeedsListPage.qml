@@ -33,7 +33,7 @@ Page {
             Image {
                 id: feedVisual
 
-                readonly property string _defaultSource: "../../icons/icon-s-rss.png" // "image://theme/icon-s-sailfish"
+                readonly property string _defaultSource: "../../icons/icon-s-rss.png"
 
                 anchors {
                     left: parent.left
@@ -93,6 +93,12 @@ Page {
                     if (feedly.signedIn) feedly.revokeRefreshToken();
                     else pageStack.push(Qt.resolvedUrl("SignInPage.qml"));
                 }
+            }
+
+            MenuItem {
+                text: qsTr("Add feed")
+                visible: feedly.signedIn
+                onClicked: pageStack.push(Qt.resolvedUrl("FeedSearchPage.qml"))
             }
 
             MenuItem {

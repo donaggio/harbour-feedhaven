@@ -165,73 +165,101 @@ feeds</source>
     </message>
 </context>
 <context>
+    <name>FeedSearchPage</name>
+    <message>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="30"/>
+        <source>Search Feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="130"/>
+        <source>Add Feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="131"/>
+        <source>Subscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="40"/>
+        <source>Search or enter feed URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Feedly</name>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="123"/>
+        <location filename="../qml/components/Feedly.qml" line="124"/>
         <source>Neither authCode nor refreshToken found.</source>
         <translation>authCode o refreshToken non trovati.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="145"/>
+        <location filename="../qml/components/Feedly.qml" line="146"/>
         <source>Feedly authentication error</source>
         <translation>Errore di autenticazione</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="159"/>
+        <location filename="../qml/components/Feedly.qml" line="160"/>
         <source>No refreshToken found.</source>
         <translation>refreshToken non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="165"/>
+        <location filename="../qml/components/Feedly.qml" line="166"/>
         <source>Error revoking refreshToken</source>
         <translation>Errore scollegandosi da Feedly</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="177"/>
-        <location filename="../qml/components/Feedly.qml" line="240"/>
+        <location filename="../qml/components/Feedly.qml" line="178"/>
+        <location filename="../qml/components/Feedly.qml" line="241"/>
         <source>No accessToken found.</source>
         <translation>accessToken non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="199"/>
+        <location filename="../qml/components/Feedly.qml" line="200"/>
         <source>Uncategorized</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="213"/>
+        <location filename="../qml/components/Feedly.qml" line="214"/>
         <source>All feeds</source>
         <translation>Tutti i feed</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="279"/>
+        <location filename="../qml/components/Feedly.qml" line="280"/>
         <source>No subscriptionId found.</source>
         <translation>subscriptionId non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="309"/>
+        <location filename="../qml/components/Feedly.qml" line="310"/>
         <source>No title</source>
         <translation>Senza titolo</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="310"/>
+        <location filename="../qml/components/Feedly.qml" line="311"/>
         <source>Unknown</source>
         <translation>Sconosciuto</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="315"/>
+        <location filename="../qml/components/Feedly.qml" line="316"/>
         <source>No preview</source>
         <translation>Anteprima non disponibile</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="340"/>
-        <location filename="../qml/components/Feedly.qml" line="396"/>
+        <location filename="../qml/components/Feedly.qml" line="341"/>
+        <location filename="../qml/components/Feedly.qml" line="397"/>
         <source>No entryId found.</source>
         <translation>entryId non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="372"/>
+        <location filename="../qml/components/Feedly.qml" line="373"/>
         <source>No feedId found.</source>
         <translation>feedId non trovato.</translation>
+    </message>
+    <message>
+        <location filename="../qml/components/Feedly.qml" line="447"/>
+        <source>No search string or URL given.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -262,16 +290,21 @@ feeds</source>
     </message>
     <message>
         <location filename="../qml/pages/FeedsListPage.qml" line="99"/>
+        <source>Add feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedsListPage.qml" line="105"/>
         <source>Refresh feeds</source>
         <translation>Aggiorna i feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="107"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="113"/>
         <source>Feeds list not available</source>
         <translation>Nessun feed disponibile</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="107"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="113"/>
         <source>Please sign in</source>
         <translation>Effettuare l&apos;accesso</translation>
     </message>
