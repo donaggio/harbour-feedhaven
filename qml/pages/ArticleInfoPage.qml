@@ -8,6 +8,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "../components"
 
 Page {
     id: page
@@ -46,61 +47,22 @@ Page {
                 color: Theme.highlightColor
             }
 
-            Loader {
+            Field {
                 width: parent.width
-                sourceComponent: fieldComponent
-
-                onLoaded: {
-                    item.fieldName = qsTr("Via");
-                    item.fieldValue = page.streamTitle;
-                }
+                fieldName: qsTr("Via");
+                fieldValue: page.streamTitle;
             }
 
-            Loader {
+            Field {
                 width: parent.width
-                sourceComponent: fieldComponent
-
-                onLoaded: {
-                    item.fieldName = qsTr("Author");
-                    item.fieldValue = page.author;
-                }
+                fieldName: qsTr("Author");
+                fieldValue: page.author;
             }
 
-            Loader {
+            Field {
                 width: parent.width
-                sourceComponent: fieldComponent
-
-                onLoaded: {
-                    item.fieldName = qsTr("Published on");
-                    item.fieldValue = Qt.formatDateTime(page.updated);
-                }
-            }
-        }
-    }
-
-    Component {
-        id: fieldComponent
-
-        Item {
-            property alias fieldName: labelFieldName.text
-            property alias fieldValue: labelFieldValue.text
-
-            width: childrenRect.width
-            height: childrenRect.height
-
-            Label {
-                id: labelFieldName
-
-                anchors { top: parent.top; left: parent.left; right: parent.right }
-                truncationMode: TruncationMode.Fade
-            }
-
-            Label {
-                id: labelFieldValue
-
-                anchors { top: labelFieldName.bottom; left: parent.left; right: parent.right }
-                font.pixelSize: Theme.fontSizeSmall
-                wrapMode: Text.WordWrap
+                fieldName: qsTr("Published on");
+                fieldValue: Qt.formatDateTime(page.updated);
             }
         }
     }

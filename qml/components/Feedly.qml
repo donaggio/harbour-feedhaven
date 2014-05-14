@@ -31,6 +31,7 @@ QtObject {
 
     signal error(string message)
     signal searchFeedCompleted(var results)
+    signal getCategoriesCompleted(var categories)
 
     /*
      * Return URL to sign in into Feedly
@@ -154,7 +155,7 @@ QtObject {
      */
     function revokeRefreshToken() {
         if (refreshToken) {
-            param = { "refresh_token": refreshToken, "client_id": feedlyClientId, "client_secret": feedlyClientSecret, "grant_type": "revoke_token" };
+            var param = { "refresh_token": refreshToken, "client_id": feedlyClientId, "client_secret": feedlyClientSecret, "grant_type": "revoke_token" };
             busy = true;
             FeedlyAPI.call("authRefreshToken", param, revokeRefreshTokenDoneCB);
         } else error(qsTr("No refreshToken found."));
@@ -224,7 +225,7 @@ QtObject {
             }
             busy = false;
             if (feedsListModel.count > 0) {
-                feedly.getMarkersCounts();
+                getMarkersCounts();
             }
         }
         // DEBUG
@@ -467,6 +468,48 @@ QtObject {
     }
 
     /*
+     * Update subscription
+     */
+    function updateSubscription(subscriptionId, title, categories) {
+        if (accessToken) {
+            if (subscriptionId) {
+                busy = true;
+                var param = { "id": subscriptionId }
+                if (title) param.title = title;
+                if (Array.isArray(categories) && categories.length) param.categories = categories
+                FeedlyAPI.call("updateSubscription", param, updateSubscriptionDoneCB, accessToken);
+            } else error(qsTr("No subscriptionId found."))
+        } else error(qsTr("No accessToken found."));
+    }
+
+    function updateSubscriptionDoneCB(retObj) {
+        if (checkResponse(retObj, updateSubscriptionDoneCB)) {
+            busy = false;
+            getSubscriptions();
+        }
+    }
+
+    /*
+     * Get categories
+     */
+    function getCategories() {
+        if (accessToken) {
+            busy = true;
+            FeedlyAPI.call("categories", null, categoriesDoneCB, accessToken);
+        } else error(qsTr("No accessToken found."));
+    }
+
+    function categoriesDoneCB(retObj) {
+        if (checkResponse(retObj, categoriesDoneCB)) {
+            var categories;
+            if (Array.isArray(retObj.response)) categories = retObj.response;
+            else categories = [];
+            busy = false;
+            getCategoriesCompleted(categories);
+        }
+    }
+
+    /*
      * Load status indicator item when needed
      */
     function _createStatusIndicator() {
@@ -501,7 +544,7 @@ QtObject {
     }
 
     Component.onCompleted: {
-        FeedlyAPI.init();
+        FeedlyAPI.init(true);
         feedsListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         articlesListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         DB.getAuthTokens(feedly);

@@ -98,7 +98,7 @@ Page {
                         color: highlighted ? Theme.highlightColor : Theme.primaryColor
                     }
 
-                    onClicked: pageStack.push(addFeedDialog)
+                    onClicked: pageStack.push(Qt.resolvedUrl("../dialogs/AddFeedDialog.qml"), { "feedId": id, "title": title, "description": description, "imgUrl": imgUrl, "subscribers": subscribers })
                 }
 
             }
@@ -116,23 +116,6 @@ Page {
             resultsListModel.clear();
             for (var i = 0; i < results.length; i++) {
                 resultsListModel.append(results[i]);
-            }
-        }
-    }
-
-    Component {
-        id: addFeedDialog
-
-        Dialog {
-            anchors.fill: parent
-
-            DialogHeader {
-               title: qsTr("Add Feed")
-               acceptText: qsTr("Subscribe")
-            }
-
-            Column {
-
             }
         }
     }
