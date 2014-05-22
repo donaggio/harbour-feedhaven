@@ -18,64 +18,27 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="48"/>
         <source>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; is a native client for Feedly.com on-line news reader service.&lt;/p&gt;
+    &lt;p&gt;You can search for and add new feeds, manage your feeds and access their content: as soon as you&apos;ll read an article, it will be marked as read on Feedly.com as well.&lt;/p&gt;
+    &lt;p&gt;Feed unsubscribing is currently not supported, you need to log in to Feedly.com using a web browser to do it.&lt;/p&gt;
+    &lt;p&gt;Image thumbnails in article list are displayed in landscape mode only.&lt;/p&gt;
+    &lt;p&gt;This is an open source project released under the MIT license, source code is available &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/source/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; è un client nativo per l&apos;aggregatore di news Feedly.com.&lt;/p&gt;
+    &lt;p&gt;Con questa app potrai aggiungere nuovi feed, gestire i tuoi feed ed accedere al loro contenuto: non appena leggerai un articolo questo verrà segnato come letto anche su Feedly.com&lt;/p&gt;
+    &lt;p&gt;Cancellare un feed non è ancora supportato, per poterlo fare dovrai utilizzare la versione web di Feedly.com.&lt;/p&gt;
+    &lt;p&gt;Le immagini rappresentative degli articoli, se presenti, sono visualizzate nella pagina di ciascun feed solo tenendo il telefono in orizzontale.&lt;/p&gt;
+    &lt;p&gt;Questa app è rilasciata con la licenza open source MIT e il codice sorgente è disponibile &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/source/&quot;&gt;qui&lt;/a&gt;.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; is a native client for Feedly.com on-line news reader service.&lt;/p&gt;
     &lt;p&gt;You can access your subscribed feeds content: as soon as you&apos;ll read an article, it will be marked as read on Feedly.com as well.&lt;/p&gt;
     &lt;p&gt;Subscribing to new feeds is currently not supported, you need to log in to Feedly.com using a web browser in order to manage your feeds.&lt;/p&gt;
     &lt;p&gt;Image thumbnails in article list are displayed in landscape mode only.&lt;/p&gt;
     &lt;p&gt;This is an open source project released under the MIT license, source code is available &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/source/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; è un client nativo per l&apos;aggregatore di news Feedly.com.&lt;/p&gt;
+        <translation type="obsolete">&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; è un client nativo per l&apos;aggregatore di news Feedly.com.&lt;/p&gt;
     &lt;p&gt;Con questa app potrai accedere al contenuto di tutti i tuoi feed: non appena leggerai un articolo questo verrà segnato come letto anche su Feedly.com&lt;/p&gt;
     &lt;p&gt;Aggiungere nuovi feed non è ancora supportato, per gestire i tuoi feed dovrai utilizzare la versione web di Feedly.com.&lt;/p&gt;
     &lt;p&gt;Le immagini rappresentative degli articoli, se presenti, sono visualizzate nella pagina di ciascun feed solo tenendo il telefono in orizzontale.&lt;/p&gt;
     &lt;p&gt;Questa app è rilasciata con la licenza open source MIT e il codice sorgente è disponibile &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/source/&quot;&gt;qui&lt;/a&gt;.&lt;/p&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>AddFeedDialog</name>
-    <message>
-        <location filename="../qml/dialogs/AddFeedDialog.qml" line="48"/>
-        <source>Add Feed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/dialogs/AddFeedDialog.qml" line="49"/>
-        <source>Subscribe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/dialogs/AddFeedDialog.qml" line="57"/>
-        <location filename="../qml/dialogs/AddFeedDialog.qml" line="58"/>
-        <source>Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/dialogs/AddFeedDialog.qml" line="76"/>
-        <source>Additional Info</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/dialogs/AddFeedDialog.qml" line="81"/>
-        <source>Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/dialogs/AddFeedDialog.qml" line="82"/>
-        <source>No description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/dialogs/AddFeedDialog.qml" line="87"/>
-        <source>Subscribers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/dialogs/AddFeedDialog.qml" line="88"/>
-        <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/dialogs/AddFeedDialog.qml" line="66"/>
-        <source>Categories</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -214,105 +177,128 @@ feeds</source>
     </message>
 </context>
 <context>
+    <name>ErrorIndicator</name>
+    <message>
+        <location filename="../qml/components/ErrorIndicator.qml" line="15"/>
+        <source>Feedly connection error</source>
+        <translation>Errore di connessione con Feedly</translation>
+    </message>
+</context>
+<context>
     <name>FeedSearchPage</name>
     <message>
-        <location filename="../qml/pages/FeedSearchPage.qml" line="30"/>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="33"/>
         <source>Search Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerca un feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedSearchPage.qml" line="40"/>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="45"/>
         <source>Search or enter feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerca o inserisci un URL</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="150"/>
+        <source>Searching ...</source>
+        <translation>Sto cercando ...</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="162"/>
+        <source>No results</source>
+        <translation>Nessun risultato</translation>
     </message>
 </context>
 <context>
     <name>Feedly</name>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="125"/>
+        <location filename="../qml/components/Feedly.qml" line="126"/>
         <source>Neither authCode nor refreshToken found.</source>
         <translation>authCode o refreshToken non trovati.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="147"/>
+        <location filename="../qml/components/Feedly.qml" line="148"/>
         <source>Feedly authentication error</source>
         <translation>Errore di autenticazione</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="161"/>
+        <location filename="../qml/components/Feedly.qml" line="162"/>
         <source>No refreshToken found.</source>
         <translation>refreshToken non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="167"/>
+        <location filename="../qml/components/Feedly.qml" line="168"/>
         <source>Error revoking refreshToken</source>
         <translation>Errore scollegandosi da Feedly</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="179"/>
-        <location filename="../qml/components/Feedly.qml" line="242"/>
-        <location filename="../qml/components/Feedly.qml" line="482"/>
-        <location filename="../qml/components/Feedly.qml" line="499"/>
+        <location filename="../qml/components/Feedly.qml" line="180"/>
+        <location filename="../qml/components/Feedly.qml" line="241"/>
+        <location filename="../qml/components/Feedly.qml" line="481"/>
+        <location filename="../qml/components/Feedly.qml" line="500"/>
         <source>No accessToken found.</source>
         <translation>accessToken non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="201"/>
+        <location filename="../qml/components/Feedly.qml" line="196"/>
         <source>Uncategorized</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="215"/>
+        <location filename="../qml/components/Feedly.qml" line="213"/>
         <source>All feeds</source>
         <translation>Tutti i feed</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="281"/>
-        <location filename="../qml/components/Feedly.qml" line="481"/>
+        <location filename="../qml/components/Feedly.qml" line="280"/>
+        <location filename="../qml/components/Feedly.qml" line="480"/>
         <source>No subscriptionId found.</source>
         <translation>subscriptionId non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="311"/>
+        <location filename="../qml/components/Feedly.qml" line="310"/>
         <source>No title</source>
         <translation>Senza titolo</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="312"/>
+        <location filename="../qml/components/Feedly.qml" line="311"/>
         <source>Unknown</source>
         <translation>Sconosciuto</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="317"/>
+        <location filename="../qml/components/Feedly.qml" line="316"/>
         <source>No preview</source>
         <translation>Anteprima non disponibile</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="342"/>
-        <location filename="../qml/components/Feedly.qml" line="398"/>
+        <location filename="../qml/components/Feedly.qml" line="341"/>
+        <location filename="../qml/components/Feedly.qml" line="397"/>
         <source>No entryId found.</source>
         <translation>entryId non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="374"/>
+        <location filename="../qml/components/Feedly.qml" line="373"/>
         <source>No feedId found.</source>
         <translation>feedId non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="448"/>
+        <location filename="../qml/components/Feedly.qml" line="447"/>
         <source>No search string or URL given.</source>
-        <translation type="unfinished"></translation>
+        <translation>Stringa di ricerca non trovata.</translation>
     </message>
 </context>
 <context>
     <name>FeedsListPage</name>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="25"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="28"/>
         <source>Your feeds</source>
         <translation>I tuoi feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="88"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="123"/>
+        <source>Manage feed</source>
+        <translation>Gestisci questo feed</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedsListPage.qml" line="131"/>
         <source>About</source>
         <translation>Info</translation>
     </message>
@@ -321,32 +307,32 @@ feeds</source>
         <translation type="obsolete">Resetta l&apos;autorizzazione</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="93"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="136"/>
         <source>Sign in</source>
         <translation>Accedi</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="93"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="136"/>
         <source>Sign out</source>
         <translation>Scollegati</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="101"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="144"/>
         <source>Add feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi un feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="107"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="150"/>
         <source>Refresh feeds</source>
         <translation>Aggiorna i feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="115"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="158"/>
         <source>Feeds list not available</source>
         <translation>Nessun feed disponibile</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="115"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="158"/>
         <source>Please sign in</source>
         <translation>Effettuare l&apos;accesso</translation>
     </message>
@@ -356,12 +342,12 @@ feeds</source>
     <message>
         <location filename="../qml/dialogs/SelectCategoriesDialog.qml" line="36"/>
         <source>Choose categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli le categorie</translation>
     </message>
     <message>
         <location filename="../qml/dialogs/SelectCategoriesDialog.qml" line="37"/>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Accetto</translation>
     </message>
 </context>
 <context>
@@ -380,14 +366,72 @@ feeds</source>
 <context>
     <name>StatusIndicator</name>
     <message>
-        <location filename="../qml/components/StatusIndicator.qml" line="17"/>
         <source>Feedly connection error</source>
-        <translation>Errore di connessione con Feedly</translation>
+        <translation type="obsolete">Errore di connessione con Feedly</translation>
     </message>
     <message>
-        <location filename="../qml/components/StatusIndicator.qml" line="58"/>
+        <location filename="../qml/components/StatusIndicator.qml" line="34"/>
         <source>Updating ...</source>
         <translation>Aggiornamento ...</translation>
+    </message>
+</context>
+<context>
+    <name>UpdateFeedDialog</name>
+    <message>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="49"/>
+        <source>Add Feed</source>
+        <translation>Nuovo feed</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="49"/>
+        <source>Manage Feed</source>
+        <translation>Gestione feed</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="50"/>
+        <source>Subscribe</source>
+        <translation>Aggiungi</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="50"/>
+        <source>Update</source>
+        <translation>Aggiorna</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="58"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="59"/>
+        <source>Title</source>
+        <translation>Titolo</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="67"/>
+        <source>Categories</source>
+        <translation>Categorie</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="78"/>
+        <source>Additional Info</source>
+        <translation>Ulteriori informazioni</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="84"/>
+        <source>Description</source>
+        <translation>Descrizione</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="85"/>
+        <source>No description</source>
+        <translation>Non disponibile</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="91"/>
+        <source>Subscribers</source>
+        <translation>Lettori</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="92"/>
+        <source>None</source>
+        <translation>Nessuno</translation>
     </message>
 </context>
 </TS>

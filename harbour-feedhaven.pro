@@ -35,8 +35,9 @@ OTHER_FILES += qml/harbour-feedhaven.qml \
     qml/cover/ArticleContentCover.qml \
     qml/pages/FeedSearchPage.qml \
     qml/components/Field.qml \
-    qml/dialogs/AddFeedDialog.qml \
-    qml/dialogs/SelectCategoriesDialog.qml
+    qml/dialogs/SelectCategoriesDialog.qml \
+    qml/components/ErrorIndicator.qml \
+    qml/dialogs/UpdateFeedDialog.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
