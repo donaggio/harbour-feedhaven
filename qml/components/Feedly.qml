@@ -66,8 +66,6 @@ QtObject {
     function checkResponse(retObj, callback) {
         var retval = false;
 
-        // DEBUG
-        // console.log(JSON.stringify(retObj));
         switch(retObj.status) {
         case 200:
             retval = true;
@@ -77,6 +75,8 @@ QtObject {
             getAccessToken();
             break;
         default:
+            // DEBUG
+            // console.log(JSON.stringify(retObj));
             busy = false;
             error("");
             break;
@@ -317,8 +317,8 @@ QtObject {
                                                "content": tmpContent,
                                                "contentUrl": ((typeof tmpObj.alternate !== "undefined") ? tmpObj.alternate[0].href : ""),
                                                "gallery": tmpGallery,
-                                               "streamId": retObj.response.id,
-                                               "streamTitle": ((typeof retObj.response.title !== "undefined") ? retObj.response.title : "") });
+                                               "streamId": ((typeof tmpObj.origin !== "undefined") ? tmpObj.origin.streamId : retObj.response.id),
+                                               "streamTitle": ((typeof tmpObj.origin !== "undefined") ? tmpObj.origin.title : ((typeof retObj.response.title !== "undefined") ? retObj.response.title : "")) });
                 }
             }
             busy = false;
@@ -366,7 +366,15 @@ QtObject {
      */
     function markFeedAsRead(feedId, lastEntryId) {
         if (feedId) {
-            var param = { "action": "markAsRead", "type": "feeds", "feedIds": [feedId] };
+            var param = { "action": "markAsRead" };
+            if (feedId.indexOf("/category/global.all") >= 0) {
+                // "All feeds" actually is a category
+                param.type = "categories";
+                param.categoryIds = [feedId];
+            } else {
+                param.type = "feeds";
+                param.feedIds = [feedId];
+            }
             if (lastEntryId) param.lastReadEntryId = lastEntryId;
             else param.asOf = Date.now();
             FeedlyAPI.call("markers", param, markFeedAsReadDoneCB, accessToken);

@@ -26,7 +26,7 @@ CoverBackground {
         maximumLineCount: 3
         elide: Text.ElideRight
         color: Theme.highlightColor
-        text: pageStack.currentPage.title
+        text: (typeof pageStack.currentPage.title !== "undefined") ? pageStack.currentPage.title : ""
     }
 
     Item {

@@ -213,8 +213,8 @@ feeds</source>
     <message>
         <location filename="../qml/components/Feedly.qml" line="180"/>
         <location filename="../qml/components/Feedly.qml" line="241"/>
-        <location filename="../qml/components/Feedly.qml" line="481"/>
-        <location filename="../qml/components/Feedly.qml" line="500"/>
+        <location filename="../qml/components/Feedly.qml" line="489"/>
+        <location filename="../qml/components/Feedly.qml" line="508"/>
         <source>No accessToken found.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -230,7 +230,7 @@ feeds</source>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="280"/>
-        <location filename="../qml/components/Feedly.qml" line="480"/>
+        <location filename="../qml/components/Feedly.qml" line="488"/>
         <source>No subscriptionId found.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -251,17 +251,17 @@ feeds</source>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="341"/>
-        <location filename="../qml/components/Feedly.qml" line="397"/>
+        <location filename="../qml/components/Feedly.qml" line="405"/>
         <source>No entryId found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="373"/>
+        <location filename="../qml/components/Feedly.qml" line="381"/>
         <source>No feedId found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="447"/>
+        <location filename="../qml/components/Feedly.qml" line="455"/>
         <source>No search string or URL given.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -330,12 +330,12 @@ feeds</source>
 <context>
     <name>SignInPage</name>
     <message>
-        <location filename="../qml/pages/SignInPage.qml" line="22"/>
+        <location filename="../qml/pages/SignInPage.qml" line="24"/>
         <source>Sign in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SignInPage.qml" line="30"/>
+        <location filename="../qml/pages/SignInPage.qml" line="32"/>
         <source>Authentication error</source>
         <translation type="unfinished"></translation>
     </message>
