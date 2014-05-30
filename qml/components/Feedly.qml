@@ -283,7 +283,6 @@ QtObject {
     function streamContentDoneCB(retObj) {
         if (checkResponse(retObj, streamContentDoneCB)) {
             var stripHtmlTags = new RegExp("<[^>]*>", "gi");
-            var stripImgTag = new RegExp("<img[^>]*>", "gi");
             var normalizeSpaces = new RegExp("\\s+", "g");
             if (!retObj.callParams.continuation) articlesListModel.clear();
             continuation = ((typeof retObj.response.continuation != "undefined") ? retObj.response.continuation : "");
@@ -295,17 +294,8 @@ QtObject {
                     // Extract date part
                     var tmpUpdDate = new Date(tmpUpd.getFullYear(), tmpUpd.getMonth(), tmpUpd.getDate());
                     // Create article summary
-                    var tmpSummary = ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ""));
+                    var tmpSummary = ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ""));
                     if (tmpSummary) tmpSummary = tmpSummary.replace(stripHtmlTags, " ").replace(normalizeSpaces, " ").trim().substr(0, 320);
-                    // Clean article content and extract image urls
-                    var tmpContent = ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ""))
-                    var findImgUrls = new RegExp("<img[^>]+src\s*=\s*(?:\"|')(.+?)(?:\"|')", "gi");
-                    var tmpGallery = [];
-                    var tmpMatch;
-                    while ((tmpMatch = findImgUrls.exec(tmpContent)) !== null) {
-                        if(tmpMatch[1]) tmpGallery.push({ "imgUrl": tmpMatch[1] });
-                    }
-                    if (tmpContent) tmpContent = tmpContent.replace(stripImgTag, " ").replace(normalizeSpaces, " ").trim();
                     articlesListModel.append({ "id": tmpObj.id,
                                                "title": ((typeof tmpObj.title !== "undefined") ? tmpObj.title : qsTr("No title")),
                                                "author": ((typeof tmpObj.author !== "undefined") ? tmpObj.author : qsTr("Unknown")),
@@ -314,9 +304,8 @@ QtObject {
                                                "imgUrl": (((typeof tmpObj.visual !== "undefined") && tmpObj.visual.url && tmpObj.visual.url !== "none") ? tmpObj.visual.url : ""),
                                                "unread": tmpObj.unread,
                                                "summary": (tmpSummary ? tmpSummary : qsTr("No preview")),
-                                               "content": tmpContent,
+                                               "content": ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : "")),
                                                "contentUrl": ((typeof tmpObj.alternate !== "undefined") ? tmpObj.alternate[0].href : ""),
-                                               "gallery": tmpGallery,
                                                "streamId": ((typeof tmpObj.origin !== "undefined") ? tmpObj.origin.streamId : retObj.response.id),
                                                "streamTitle": ((typeof tmpObj.origin !== "undefined") ? tmpObj.origin.title : ((typeof retObj.response.title !== "undefined") ? retObj.response.title : "")) });
                 }

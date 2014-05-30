@@ -58,7 +58,7 @@
 <context>
     <name>ArticlePage</name>
     <message>
-        <location filename="../qml/pages/ArticlePage.qml" line="136"/>
+        <location filename="../qml/pages/ArticlePage.qml" line="150"/>
         <source>Open original link</source>
         <translation type="unfinished"></translation>
     </message>
@@ -213,8 +213,8 @@ feeds</source>
     <message>
         <location filename="../qml/components/Feedly.qml" line="180"/>
         <location filename="../qml/components/Feedly.qml" line="241"/>
-        <location filename="../qml/components/Feedly.qml" line="489"/>
-        <location filename="../qml/components/Feedly.qml" line="508"/>
+        <location filename="../qml/components/Feedly.qml" line="478"/>
+        <location filename="../qml/components/Feedly.qml" line="497"/>
         <source>No accessToken found.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -230,38 +230,38 @@ feeds</source>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="280"/>
-        <location filename="../qml/components/Feedly.qml" line="488"/>
+        <location filename="../qml/components/Feedly.qml" line="477"/>
         <source>No subscriptionId found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="310"/>
+        <location filename="../qml/components/Feedly.qml" line="300"/>
         <source>No title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="311"/>
+        <location filename="../qml/components/Feedly.qml" line="301"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="316"/>
+        <location filename="../qml/components/Feedly.qml" line="306"/>
         <source>No preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="341"/>
-        <location filename="../qml/components/Feedly.qml" line="405"/>
+        <location filename="../qml/components/Feedly.qml" line="330"/>
+        <location filename="../qml/components/Feedly.qml" line="394"/>
         <source>No entryId found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="381"/>
+        <location filename="../qml/components/Feedly.qml" line="370"/>
         <source>No feedId found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="455"/>
+        <location filename="../qml/components/Feedly.qml" line="444"/>
         <source>No search string or URL given.</source>
         <translation type="unfinished"></translation>
     </message>

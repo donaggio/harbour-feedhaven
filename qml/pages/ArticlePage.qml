@@ -13,17 +13,31 @@ Page {
     id: page
 
     property string title: ""
+    property string originalContent: ""
     property string content: ""
     property string contentUrl: ""
-    property ListModel galleryModel
+    property ListModel galleryModel: ListModel {}
     readonly property string pageType: "articleContent"
 
     function update() {
         if (feedly.currentEntry !== null) {
             title = feedly.currentEntry.title;
-            content = feedly.currentEntry.content;
+            originalContent = feedly.currentEntry.content;
+            // Clean article content and extract image urls
+            var tmpContent = feedly.currentEntry.content;
+            galleryModel.clear();
+            if (tmpContent) {
+                var findImgUrls = new RegExp("<img[^>]+src\s*=\s*(?:\"|')(.+?)(?:\"|')", "gi");
+                var tmpMatch;
+                while ((tmpMatch = findImgUrls.exec(tmpContent)) !== null) {
+                    if(tmpMatch[1]) galleryModel.append({ "imgUrl": tmpMatch[1] });
+                }
+                var stripImgTag = new RegExp("<img[^>]*>", "gi");
+                var normalizeSpaces = new RegExp("\\s+", "g");
+                tmpContent = tmpContent.replace(stripImgTag, " ").replace(normalizeSpaces, " ").trim();
+            }
+            content = tmpContent;
             contentUrl = feedly.currentEntry.contentUrl;
-            galleryModel = feedly.currentEntry.gallery;
             var articleInfoProp = { "title": feedly.currentEntry.title,
                                     "author": feedly.currentEntry.author,
                                     "updated": new Date(feedly.currentEntry.updated),
