@@ -563,7 +563,8 @@ QtObject {
     }
 
     Component.onCompleted: {
-        FeedlyAPI.init();
+        var useTest = (feedlyClientId === "sandbox");
+        FeedlyAPI.init(useTest);
         feedsListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         articlesListModel = Qt.createQmlObject('import QtQuick 2.0; ListModel { }', feedly);
         DB.getAuthTokens(feedly);

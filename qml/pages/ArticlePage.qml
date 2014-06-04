@@ -43,6 +43,13 @@ Page {
                                     "updated": new Date(feedly.currentEntry.updated),
                                     "streamTitle": feedly.currentEntry.streamTitle };
             pageContainer.pushAttached(Qt.resolvedUrl("ArticleInfoPage.qml"), articleInfoProp);
+        } else {
+            title = "";
+            originalContent = "";
+            content = "";
+            contentUrl = "";
+            galleryModel.clear();
+            pageContainer.popAttached();
         }
     }
 
@@ -53,7 +60,6 @@ Page {
 
         anchors.fill: parent
         contentHeight: articleContainer.height
-        visible: (feedly.currentEntry !== null)
 
         Column {
             id: articleContainer
@@ -111,7 +117,7 @@ Page {
 
                     onPaintedHeightChanged: {
                         if (paintedHeight > height) fillMode = Image.PreserveAspectFit;
-                        if ((paintedWidth > 0) && (paintedHeight <= Theme.iconSizeSmall)) removeFromModel();
+                        if ((paintedHeight > 0) && (paintedHeight <= Theme.iconSizeSmall)) removeFromModel();
                     }
                 }
             }
@@ -155,14 +161,94 @@ Page {
         VerticalScrollDecorator { flickable: articleView }
     }
 
+    Item {
+        id: articleImageContainer
+
+        anchors.fill: parent
+        visible: false
+
+        Image {
+            id: articleImage
+
+            anchors.fill: parent
+
+            clip: true
+            smooth: true
+            fillMode: Image.PreserveAspectFit
+            source: ((galleryModel.count && (typeof galleryModel.get(0).imgUrl !== "undefined")) ? galleryModel.get(0).imgUrl : "")
+
+            function _adjustImageAspect() {
+                // Reset image parameters
+                scale = 1;
+                fillMode = Image.PreserveAspectFit;
+                // Compute aspect ratio
+                var imgRatio = (paintedWidth / sourceSize.width);
+                if (imgRatio < 1) {
+                    // Image is bigger than the viewport
+                    articleImagePinchArea.pinch.maximumScale = (1 + 1 - imgRatio);
+                } else {
+                    // Image is smaller than the viewport
+                    articleImagePinchArea.pinch.maximumScale = 1;
+                    fillMode = Image.Pad;
+                }
+            }
+
+            BusyIndicator {
+                anchors.centerIn: parent
+
+                size: BusyIndicatorSize.Large
+                running: (parent.status === Image.Loading)
+                visible: running
+            }
+
+            PinchArea {
+                id: articleImagePinchArea
+
+                anchors.fill: parent
+
+                enabled: ((parent.source) && (parent.status === Image.Ready) && (pinch.maximumScale > pinch.minimumScale))
+                pinch.target: parent
+                pinch.minimumScale: 1
+                pinch.maximumScale: 1
+            }
+
+            Connections {
+                target: page
+                onOrientationChanged: { if (articleImage.status === Image.Ready) articleImage._adjustImageAspect(); }
+            }
+
+            onScaleChanged: { page.showNavigationIndicator = (scale === 1) }
+
+            onStatusChanged: {
+                if (status === Image.Ready) _adjustImageAspect();
+            }
+        }
+    }
+
     Connections {
         target: feedly
 
-        onCurrentEntryChanged: update();
+        onCurrentEntryChanged: page.update();
     }
 
     onStatusChanged: {
         if (status === PageStatus.Active) update();
     }
 
+    states: [
+        State {
+            name: "oneImageOnly"
+            when: ((content === "") && (galleryModel.count === 1))
+
+            PropertyChanges {
+                target: articleView
+                visible: false
+            }
+
+            PropertyChanges {
+                target: articleImageContainer
+                visible: true
+            }
+        }
+    ]
 }

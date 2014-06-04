@@ -80,7 +80,6 @@ Page {
 
                         anchors {
                             left: parent.left
-                            leftMargin: Theme.paddingLarge
                             verticalCenter: parent.verticalCenter
                         }
                         width: Theme.iconSizeSmall

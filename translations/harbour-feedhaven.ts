@@ -58,7 +58,7 @@
 <context>
     <name>ArticlePage</name>
     <message>
-        <location filename="../qml/pages/ArticlePage.qml" line="150"/>
+        <location filename="../qml/pages/ArticlePage.qml" line="156"/>
         <source>Open original link</source>
         <translation type="unfinished"></translation>
     </message>
@@ -178,12 +178,12 @@ feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedSearchPage.qml" line="150"/>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="149"/>
         <source>Searching ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedSearchPage.qml" line="162"/>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="161"/>
         <source>No results</source>
         <translation type="unfinished"></translation>
     </message>
