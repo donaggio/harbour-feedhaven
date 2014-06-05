@@ -20,7 +20,8 @@
     &lt;p&gt;You can search for and add new feeds, manage your feeds and access their content: as soon as you&apos;ll read an article, it will be marked as read on Feedly.com as well.&lt;/p&gt;
     &lt;p&gt;Feed unsubscribing is currently not supported, you need to log in to Feedly.com using a web browser to do it.&lt;/p&gt;
     &lt;p&gt;Image thumbnails in article list are displayed in landscape mode only.&lt;/p&gt;
-    &lt;p&gt;This is an open source project released under the MIT license, source code is available &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/source/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</source>
+    &lt;p&gt;This is an open source project released under the MIT license, source code is available &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/source/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;Launcher icon artwork courtesy by Nikita Balobanov.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -161,66 +161,81 @@ Page {
         VerticalScrollDecorator { flickable: articleView }
     }
 
-    Item {
+    SilicaFlickable {
         id: articleImageContainer
 
         anchors.fill: parent
         visible: false
+        contentWidth: parent.width
+        contentHeight: parent.height
 
-        Image {
-            id: articleImage
+        PinchArea {
+            id: articleImagePinchArea
 
-            anchors.fill: parent
+            width: Math.max(articleImageContainer.contentWidth, articleImageContainer.width)
+            height: Math.max(articleImageContainer.contentHeight, articleImageContainer.height)
 
-            clip: true
-            smooth: true
-            fillMode: Image.PreserveAspectFit
-            source: ((galleryModel.count && (typeof galleryModel.get(0).imgUrl !== "undefined")) ? galleryModel.get(0).imgUrl : "")
+            onPinchStarted: {
+                articleImageContainer.interactive = false;
+            }
 
-            function _adjustImageAspect() {
-                // Reset image parameters
-                scale = 1;
-                fillMode = Image.PreserveAspectFit;
-                // Compute aspect ratio
-                var imgRatio = (paintedWidth / sourceSize.width);
-                if (imgRatio < 1) {
-                    // Image is bigger than the viewport
-                    articleImagePinchArea.pinch.maximumScale = (1 + 1 - imgRatio);
-                } else {
-                    // Image is smaller than the viewport
-                    articleImagePinchArea.pinch.maximumScale = 1;
-                    fillMode = Image.Pad;
+            onPinchUpdated: {
+                // Adjust content position due to drag
+                articleImageContainer.contentX += (pinch.previousCenter.x - pinch.center.x);
+                articleImageContainer.contentY += (pinch.previousCenter.y - pinch.center.y);
+                // Resize content
+                var scale = (1.0 + pinch.scale - pinch.previousScale);
+                var updatedWidth = (articleImageContainer.contentWidth * scale);
+                var updatedHeight = (articleImageContainer.contentHeight * scale);
+                if (((updatedWidth >= articleImageContainer.width) && (updatedWidth <= articleImage.sourceSize.width)) || ((updatedHeight >= articleImageContainer.height) && (updatedHeight <= articleImage.sourceSize.height)))
+                    articleImageContainer.resizeContent(updatedWidth, updatedHeight, pinch.center);
+            }
+
+            onPinchFinished: {
+                // Move its content within bounds.
+                articleImageContainer.returnToBounds()
+                articleImageContainer.interactive = true;
+            }
+
+            Image {
+                id: articleImage
+
+                width: articleImageContainer.contentWidth
+                height: articleImageContainer.contentHeight
+                clip: true
+                smooth: true
+                fillMode: Image.PreserveAspectFit
+                source: ((galleryModel.count && (typeof galleryModel.get(0).imgUrl !== "undefined")) ? galleryModel.get(0).imgUrl : "")
+
+                function _adjustImageAspect() {
+                    // Reset image parameters
+                    articleImageContainer.contentWidth = articleImageContainer.parent.width;
+                    articleImageContainer.contentHeight = articleImageContainer.parent.height;
+                    fillMode = Image.PreserveAspectFit;
+                    // Compute aspect ratio
+                    var imgRatio = (paintedWidth / sourceSize.width);
+                    if (imgRatio >= 1) {
+                        articleImagePinchArea.enabled = false;
+                        fillMode = Image.Pad;
+                    }
                 }
-            }
 
-            BusyIndicator {
-                anchors.centerIn: parent
+                BusyIndicator {
+                    anchors.centerIn: parent
 
-                size: BusyIndicatorSize.Large
-                running: (parent.status === Image.Loading)
-                visible: running
-            }
+                    size: BusyIndicatorSize.Large
+                    running: (parent.status === Image.Loading)
+                    visible: running
+                }
 
-            PinchArea {
-                id: articleImagePinchArea
+                Connections {
+                    target: page
+                    onOrientationChanged: { if (articleImage.status === Image.Ready) articleImage._adjustImageAspect(); }
+                }
 
-                anchors.fill: parent
-
-                enabled: ((parent.source) && (parent.status === Image.Ready) && (pinch.maximumScale > pinch.minimumScale))
-                pinch.target: parent
-                pinch.minimumScale: 1
-                pinch.maximumScale: 1
-            }
-
-            Connections {
-                target: page
-                onOrientationChanged: { if (articleImage.status === Image.Ready) articleImage._adjustImageAspect(); }
-            }
-
-            onScaleChanged: { page.showNavigationIndicator = (scale === 1) }
-
-            onStatusChanged: {
-                if (status === Image.Ready) _adjustImageAspect();
+                onStatusChanged: {
+                    if (status === Image.Ready) _adjustImageAspect();
+                }
             }
         }
     }
@@ -248,6 +263,13 @@ Page {
             PropertyChanges {
                 target: articleImageContainer
                 visible: true
+            }
+
+            PropertyChanges {
+                target: page
+                showNavigationIndicator: ((articleImageContainer.contentWidth === articleImageContainer.parent.width) && (articleImageContainer.contentHeight === articleImageContainer.parent.height))
+                backNavigation: page.showNavigationIndicator
+                forwardNavigation: page.showNavigationIndicator
             }
         }
     ]

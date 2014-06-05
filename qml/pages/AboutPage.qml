@@ -49,7 +49,8 @@ Page {
     <p>You can search for and add new feeds, manage your feeds and access their content: as soon as you'll read an article, it will be marked as read on Feedly.com as well.</p>
     <p>Feed unsubscribing is currently not supported, you need to log in to Feedly.com using a web browser to do it.</p>
     <p>Image thumbnails in article list are displayed in landscape mode only.</p>
-    <p>This is an open source project released under the MIT license, source code is available <a href=\"https://code.google.com/p/harbour-feedhaven/source/\">here</a>.</p>")
+    <p>This is an open source project released under the MIT license, source code is available <a href=\"https://code.google.com/p/harbour-feedhaven/source/\">here</a>.</p>
+    <p>Launcher icon artwork courtesy by Nikita Balobanov.")
 
                 onLinkActivated: Qt.openUrlExternally(link)
             }

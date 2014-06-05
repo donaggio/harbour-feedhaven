@@ -21,8 +21,17 @@
     &lt;p&gt;You can search for and add new feeds, manage your feeds and access their content: as soon as you&apos;ll read an article, it will be marked as read on Feedly.com as well.&lt;/p&gt;
     &lt;p&gt;Feed unsubscribing is currently not supported, you need to log in to Feedly.com using a web browser to do it.&lt;/p&gt;
     &lt;p&gt;Image thumbnails in article list are displayed in landscape mode only.&lt;/p&gt;
+    &lt;p&gt;This is an open source project released under the MIT license, source code is available &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/source/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;Launcher icon artwork courtesy by Nikita Balobanov.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; is a native client for Feedly.com on-line news reader service.&lt;/p&gt;
+    &lt;p&gt;You can search for and add new feeds, manage your feeds and access their content: as soon as you&apos;ll read an article, it will be marked as read on Feedly.com as well.&lt;/p&gt;
+    &lt;p&gt;Feed unsubscribing is currently not supported, you need to log in to Feedly.com using a web browser to do it.&lt;/p&gt;
+    &lt;p&gt;Image thumbnails in article list are displayed in landscape mode only.&lt;/p&gt;
     &lt;p&gt;This is an open source project released under the MIT license, source code is available &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/source/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; è un client nativo per l&apos;aggregatore di news Feedly.com.&lt;/p&gt;
+        <translation type="obsolete">&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; è un client nativo per l&apos;aggregatore di news Feedly.com.&lt;/p&gt;
     &lt;p&gt;Con questa app potrai aggiungere nuovi feed, gestire i tuoi feed ed accedere al loro contenuto: non appena leggerai un articolo questo verrà segnato come letto anche su Feedly.com&lt;/p&gt;
     &lt;p&gt;Cancellare un feed non è ancora supportato, per poterlo fare dovrai utilizzare la versione web di Feedly.com.&lt;/p&gt;
     &lt;p&gt;Le immagini rappresentative degli articoli, se presenti, sono visualizzate nella pagina di ciascun feed solo tenendo il telefono in orizzontale.&lt;/p&gt;
