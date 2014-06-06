@@ -187,11 +187,16 @@ Page {
                 var scale = (1.0 + pinch.scale - pinch.previousScale);
                 var updatedWidth = (articleImageContainer.contentWidth * scale);
                 var updatedHeight = (articleImageContainer.contentHeight * scale);
-                if (((updatedWidth >= articleImageContainer.width) && (updatedWidth <= articleImage.sourceSize.width)) || ((updatedHeight >= articleImageContainer.height) && (updatedHeight <= articleImage.sourceSize.height)))
+                if (((articleImage.paintedWidth * scale) <= articleImage.sourceSize.width) || ((articleImage.paintedHeight * scale) <= articleImage.sourceSize.height))
                     articleImageContainer.resizeContent(updatedWidth, updatedHeight, pinch.center);
             }
 
             onPinchFinished: {
+                // Check if lower image size boundary has been crossed
+                if ((articleImageContainer.contentWidth < articleImageContainer.width) || (articleImageContainer.contentHeight < articleImageContainer.height)) {
+                    articleImageContainer.contentWidth = articleImageContainer.width;
+                    articleImageContainer.contentHeight = articleImageContainer.height;
+                }
                 // Move its content within bounds.
                 articleImageContainer.returnToBounds()
                 articleImageContainer.interactive = true;
@@ -208,15 +213,17 @@ Page {
                 source: ((galleryModel.count && (typeof galleryModel.get(0).imgUrl !== "undefined")) ? galleryModel.get(0).imgUrl : "")
 
                 function _adjustImageAspect() {
-                    // Reset image parameters
-                    articleImageContainer.contentWidth = articleImageContainer.parent.width;
-                    articleImageContainer.contentHeight = articleImageContainer.parent.height;
-                    fillMode = Image.PreserveAspectFit;
+                    // Reset image container size
+                    articleImageContainer.contentWidth = articleImageContainer.width;
+                    articleImageContainer.contentHeight = articleImageContainer.height;
                     // Compute aspect ratio
                     var imgRatio = (paintedWidth / sourceSize.width);
-                    if (imgRatio >= 1) {
-                        articleImagePinchArea.enabled = false;
+                    if (imgRatio < 1) {
+                        fillMode = Image.PreserveAspectFit;
+                        articleImagePinchArea.enabled = true;
+                    } else {
                         fillMode = Image.Pad;
+                        articleImagePinchArea.enabled = false;
                     }
                 }
 
@@ -237,6 +244,10 @@ Page {
                     if (status === Image.Ready) _adjustImageAspect();
                 }
             }
+        }
+
+        ScrollDecorator {
+            flickable: articleImageContainer
         }
     }
 
@@ -267,7 +278,7 @@ Page {
 
             PropertyChanges {
                 target: page
-                showNavigationIndicator: ((articleImageContainer.contentWidth === articleImageContainer.parent.width) && (articleImageContainer.contentHeight === articleImageContainer.parent.height))
+                showNavigationIndicator: ((articleImageContainer.contentWidth <= articleImageContainer.width) && (articleImageContainer.contentHeight <= articleImageContainer.height))
                 backNavigation: page.showNavigationIndicator
                 forwardNavigation: page.showNavigationIndicator
             }
