@@ -31,8 +31,6 @@ OTHER_FILES += qml/harbour-feedhaven.qml \
     feedly-api-config.pri \
     qml/pages/ArticleInfoPage.qml \
     qml/cover/DefaultCover.qml \
-    qml/cover/ArticlesListCover.qml \
-    qml/cover/ArticleContentCover.qml \
     qml/pages/FeedSearchPage.qml \
     qml/components/Field.qml \
     qml/dialogs/SelectCategoriesDialog.qml \

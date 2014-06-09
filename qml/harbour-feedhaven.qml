@@ -27,17 +27,4 @@ ApplicationWindow {
             feedly.acquireStatusIndicator(pageStack.currentPage);
         }
     }
-
-    states: [
-        State {
-            name: "articlesList"
-            when: pageStack.currentPage.pageType === "articlesList"
-            PropertyChanges { target: main; cover: Qt.resolvedUrl("cover/ArticlesListCover.qml"); }
-        },
-        State {
-            name: "articleContent"
-            when: ((pageStack.currentPage.pageType === "articleContent") || (pageStack.currentPage.pageType === "articleInfo"))
-            PropertyChanges { target: main; cover: Qt.resolvedUrl("cover/ArticleContentCover.qml"); }
-        }
-    ]
 }

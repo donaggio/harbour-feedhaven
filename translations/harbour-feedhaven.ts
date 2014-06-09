@@ -26,14 +26,6 @@
     </message>
 </context>
 <context>
-    <name>ArticleContentCover</name>
-    <message>
-        <location filename="../qml/cover/ArticleContentCover.qml" line="28"/>
-        <source>No article selected</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ArticleInfoPage</name>
     <message>
         <location filename="../qml/pages/ArticleInfoPage.qml" line="38"/>
@@ -61,25 +53,6 @@
     <message>
         <location filename="../qml/pages/ArticlePage.qml" line="156"/>
         <source>Open original link</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ArticlesListCover</name>
-    <message>
-        <location filename="../qml/cover/ArticlesListCover.qml" line="64"/>
-        <source>Unread
-articles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/cover/ArticlesListCover.qml" line="76"/>
-        <source>Updating ...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/cover/ArticlesListCover.qml" line="95"/>
-        <source>Not signed in</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -136,24 +109,30 @@ articles</source>
 <context>
     <name>DefaultCover</name>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="58"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="65"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="146"/>
         <source>Unread
 articles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="92"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="99"/>
         <source>Subscribed
 feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="105"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="165"/>
+        <source>No article selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/cover/DefaultCover.qml" line="188"/>
         <source>Updating ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="124"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="210"/>
         <source>Not signed in</source>
         <translation type="unfinished"></translation>
     </message>
