@@ -36,13 +36,18 @@ Page {
 
             width: feedsListView.width
             contentHeight: menuOpen ? feedsListView.contextMenu.height + Theme.itemSizeSmall : Theme.itemSizeSmall
-            enabled: (unreadCount > 0)
+            enabled: !busy && (unreadCount > 0)
+
+            function unsubscribe() {
+                remorseItem.execute(feedItem, qsTr("Unsubscribing"));
+            }
 
             Item {
                 id: feedDataContainer
 
                 anchors { top: parent.top; left: parent.left; leftMargin: Theme.paddingLarge; right: parent.right; rightMargin: Theme.paddingLarge }
                 height: Theme.itemSizeSmall
+                visible: !busy
 
                 Image {
                     id: feedVisual
@@ -88,10 +93,24 @@ Page {
                 }
             }
 
+            RemorseItem {
+                id: remorseItem
+
+                onTriggered: { feedly.unsubscribe(id); }
+            }
+
+            BusyIndicator {
+                anchors.centerIn: parent
+
+                visible: busy
+                size: BusyIndicatorSize.Small
+                running: (visible && Qt.application.active)
+            }
+
             onClicked: pageStack.push(Qt.resolvedUrl("ArticlesListPage.qml"), { "title": title, "streamId": id, "unreadCount": unreadCount })
 
             onPressAndHold: {
-                if (id.indexOf("/category/global.all") === -1) {
+                if (!busy && (id.indexOf("/category/") === -1)) {
                     if (!feedsListView.contextMenu) feedsListView.contextMenu = contextMenuComponent.createObject(feedsListView);
                     feedsListView.contextMenu.feedId = id;
                     feedsListView.contextMenu.feedTitle = title;
@@ -100,6 +119,7 @@ Page {
                     var tmpCategories = [];
                     for (var i = 0; i < categories.count; i++) tmpCategories.push({ "id": categories.get(i).id, "label": categories.get(i).label });
                     feedsListView.contextMenu.feedCategories = tmpCategories;
+                    feedsListView.contextMenu.visualParent = feedItem;
                     feedsListView.contextMenu.show(feedItem);
                 }
             }
@@ -114,6 +134,7 @@ Page {
             ContextMenu {
                 id: contextMenu
 
+                property Item visualParent
                 property string feedId
                 property string feedTitle
                 property string feedImgUrl
@@ -122,6 +143,11 @@ Page {
                 MenuItem {
                     text: qsTr("Manage feed")
                     onClicked: pageStack.push(Qt.resolvedUrl("../dialogs/UpdateFeedDialog.qml"), { "feedId": feedId, "title": feedTitle, "imgUrl": feedImgUrl, "categories": feedCategories })
+                }
+
+                MenuItem {
+                    text: qsTr("Unsubscribe")
+                    onClicked: visualParent.unsubscribe();
                 }
             }
         }

@@ -9,9 +9,7 @@ Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |-
   Feed Haven is a native client for Feedly.com on-line news reader service.
-  You can search for and add new feeds, manage your feeds and access their content: as soon as you'll read an article, it will be marked as read on Feedly.com as well.
-  Feed unsubscribing is currently not supported, you need to log in to Feedly.com using a web browser to do it.
-  Image thumbnails in article list are displayed in landscape mode only.
+  You can search for and subscribe to new feeds, manage your feeds and access their content: as soon as you'll read an article, it will be marked as read on Feedly.com as well.
 Configure: none
 QMakeOptions:
 - VERSION=%{version}

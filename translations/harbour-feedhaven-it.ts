@@ -18,12 +18,17 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="48"/>
         <source>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; is a native client for Feedly.com on-line news reader service.&lt;/p&gt;
-    &lt;p&gt;You can search for and add new feeds, manage your feeds and access their content: as soon as you&apos;ll read an article, it will be marked as read on Feedly.com as well.&lt;/p&gt;
-    &lt;p&gt;Feed unsubscribing is currently not supported, you need to log in to Feedly.com using a web browser to do it.&lt;/p&gt;
+    &lt;p&gt;You can search for and subscribe to new feeds, manage your feeds and access their content: as soon as you&apos;ll read an article, it will be marked as read on Feedly.com as well.&lt;/p&gt;
     &lt;p&gt;Image thumbnails in article list are displayed in landscape mode only.&lt;/p&gt;
     &lt;p&gt;This is an open source project released under the MIT license, source code is available &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/source/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-    &lt;p&gt;Launcher icon artwork courtesy by Nikita Balobanov.</source>
-        <translation type="unfinished"></translation>
+    &lt;p&gt;Issues or feature requests can be reported &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/issues/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;Launcher icon artwork courtesy by Nikita Balobanov.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; è un client nativo per l&apos;aggregatore di news Feedly.com.&lt;/p&gt;
+    &lt;p&gt;Con questa app potrai aggiungere nuovi feed, gestire i tuoi feed ed accedere al loro contenuto: non appena leggerai un articolo questo verrà segnato come letto anche su Feedly.com&lt;/p&gt;
+    &lt;p&gt;Le immagini rappresentative degli articoli, se presenti, sono visualizzate nella pagina di ciascun feed solo tenendo il telefono in orizzontale.&lt;/p&gt;
+    &lt;p&gt;Questa app è rilasciata con la licenza open source MIT e il codice sorgente è disponibile &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/source/&quot;&gt;qui&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;Eventuali problemi o nuove funzionalità possono essere segnalati &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/issues/&quot;&gt;qui&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;L&apos;icona è stata disegnata da Nikita Balobanov.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; is a native client for Feedly.com on-line news reader service.&lt;/p&gt;
@@ -108,49 +113,49 @@ da leggere</translation>
 <context>
     <name>ArticlesListPage</name>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="144"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="167"/>
         <source>Mark as read</source>
         <translation>Segna come già letto</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="144"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="167"/>
         <source>Keep unread</source>
         <translation>Mantieni da leggere</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="154"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="177"/>
         <source>Open original link</source>
         <translation>Apri link originale</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="163"/>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="183"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="186"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="206"/>
         <source>Mark all as read</source>
         <translation>Segna tutti come già letti</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="164"/>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="184"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="187"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="207"/>
         <source>Marking all articles as read</source>
         <translation>Segno tutti gli articoli come già letti</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="168"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="191"/>
         <source>Refresh feed</source>
         <translation>Aggiorna il feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="178"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="201"/>
         <source>More articles</source>
         <translation>Altri articoli</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="189"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="212"/>
         <source>Back to the top</source>
         <translation>Torna all&apos;inizio</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="196"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="219"/>
         <source>No unread articles in this feed</source>
         <translation>Nessun articolo trovato</translation>
     </message>
@@ -174,7 +179,7 @@ feeds</source>
     <message>
         <location filename="../qml/cover/DefaultCover.qml" line="165"/>
         <source>No article selected</source>
-        <translation type="unfinished">Nessun articolo selezionato</translation>
+        <translation>Nessun articolo selezionato</translation>
     </message>
     <message>
         <location filename="../qml/cover/DefaultCover.qml" line="188"/>
@@ -241,25 +246,23 @@ feeds</source>
         <translation>Errore scollegandosi da Feedly</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="180"/>
         <location filename="../qml/components/Feedly.qml" line="241"/>
-        <location filename="../qml/components/Feedly.qml" line="478"/>
-        <location filename="../qml/components/Feedly.qml" line="497"/>
         <source>No accessToken found.</source>
         <translation>accessToken non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="196"/>
+        <location filename="../qml/components/Feedly.qml" line="194"/>
         <source>Uncategorized</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="213"/>
+        <location filename="../qml/components/Feedly.qml" line="212"/>
         <source>All feeds</source>
         <translation>Tutti i feed</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="280"/>
+        <location filename="../qml/components/Feedly.qml" line="455"/>
         <location filename="../qml/components/Feedly.qml" line="477"/>
         <source>No subscriptionId found.</source>
         <translation>subscriptionId non trovato.</translation>
@@ -280,18 +283,17 @@ feeds</source>
         <translation>Anteprima non disponibile</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="330"/>
-        <location filename="../qml/components/Feedly.qml" line="394"/>
+        <location filename="../qml/components/Feedly.qml" line="368"/>
         <source>No entryId found.</source>
         <translation>entryId non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="370"/>
+        <location filename="../qml/components/Feedly.qml" line="338"/>
         <source>No feedId found.</source>
         <translation>feedId non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="444"/>
+        <location filename="../qml/components/Feedly.qml" line="423"/>
         <source>No search string or URL given.</source>
         <translation>Stringa di ricerca non trovata.</translation>
     </message>
@@ -304,12 +306,22 @@ feeds</source>
         <translation>I tuoi feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="123"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="42"/>
+        <source>Unsubscribing</source>
+        <translation>Sto per eliminare</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedsListPage.qml" line="144"/>
         <source>Manage feed</source>
         <translation>Gestisci questo feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="131"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="149"/>
+        <source>Unsubscribe</source>
+        <translation>Elimina</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedsListPage.qml" line="157"/>
         <source>About</source>
         <translation>Info</translation>
     </message>
@@ -318,32 +330,32 @@ feeds</source>
         <translation type="obsolete">Resetta l&apos;autorizzazione</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="136"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="162"/>
         <source>Sign in</source>
         <translation>Accedi</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="136"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="162"/>
         <source>Sign out</source>
         <translation>Scollegati</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="144"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="170"/>
         <source>Add feed</source>
         <translation>Aggiungi un feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="150"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="176"/>
         <source>Refresh feeds</source>
         <translation>Aggiorna i feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="158"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="184"/>
         <source>Feeds list not available</source>
         <translation>Nessun feed disponibile</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="158"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="184"/>
         <source>Please sign in</source>
         <translation>Effettuare l&apos;accesso</translation>
     </message>

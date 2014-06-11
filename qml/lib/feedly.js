@@ -23,6 +23,7 @@ var _apiCalls = {
     "entries": { "method": "GET", "protocol": "http", "url": "entries" },
     "searchFeed": { "method": "GET", "protocol": "http", "url": "search/feeds" },
     "updateSubscription": { "method": "POST", "protocol": "https", "url": "subscriptions"},
+    "unsubscribe": { "method": "DELETE", "protocol": "https", "url": "subscriptions"},
     "categories": { "method": "GET", "protocol": "http", "url": "categories" }
 }
 
@@ -45,8 +46,8 @@ function call(method, param, callback, accessToken) {
     var xhr = new XMLHttpRequest();
     var url = _apiCalls[method].protocol + "://" + _apiCallBaseUrl + _apiCalls[method].url;
 
-    if ((_apiCalls[method].method === "GET") && (param !== null)) {
-        if (typeof param === "object") {
+    if (((_apiCalls[method].method === "GET") || (_apiCalls[method].method === "DELETE")) && (param !== null)) {
+        if ((_apiCalls[method].method === "GET") && (typeof param === "object")) {
             var queryString = [];
             for (var p in param) {
                 if (param.hasOwnProperty(p)) {

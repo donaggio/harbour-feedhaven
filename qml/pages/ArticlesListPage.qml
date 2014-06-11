@@ -54,7 +54,30 @@ Page {
                     x: -(Theme.paddingLarge + (width / 2))
                     anchors.verticalCenter: articleTitle.verticalCenter
                     color: Theme.highlightColor
-                    visible: unread
+                    visible: (unread || unreadIndBusyAnimation.running)
+
+                    ParallelAnimation {
+                        id: unreadIndBusyAnimation
+
+                        running: (busy && Qt.application.active)
+
+                        SequentialAnimation {
+                            NumberAnimation { target: unreadIndicator; property: "brightness"; to: 0.4; duration: 500 }
+                            NumberAnimation { target: unreadIndicator; property: "brightness"; to: 1.0; duration: 500 }
+                        }
+
+                        SequentialAnimation {
+                            NumberAnimation { target: unreadIndicator; property: "falloffRadius"; to: 0.075; duration: 500 }
+                            NumberAnimation { target: unreadIndicator; property: "falloffRadius"; to: unreadIndicator.defaultFalloffRadius; duration: 500 }
+                        }
+
+                        onRunningChanged: {
+                            if (!running) {
+                                unreadIndicator.brightness = 1.0;
+                                unreadIndicator.falloffRadius = unreadIndicator.defaultFalloffRadius;
+                            }
+                        }
+                    }
                 }
 
                 Label {
@@ -185,7 +208,7 @@ Page {
             }
 
             MenuItem {
-                visible: (articlesListView.count > 10)
+                visible: ((typeof articlesListView.quickScroll === "undefined") && (articlesListView.count > 10))
                 text: qsTr("Back to the top")
                 onClicked: articlesListView.scrollToTop();
             }

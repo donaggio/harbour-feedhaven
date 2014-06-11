@@ -174,10 +174,8 @@ QtObject {
      * Get subscriptions
      */
     function getSubscriptions() {
-        if (accessToken) {
-            busy = true;
-            FeedlyAPI.call("subscriptions", null, subscriptionsDoneCB, accessToken);
-        } else error(qsTr("No accessToken found."));
+        busy = true;
+        FeedlyAPI.call("subscriptions", null, subscriptionsDoneCB, accessToken);
     }
 
     function subscriptionsDoneCB(retObj) {
@@ -196,7 +194,8 @@ QtObject {
                                                 "category": (tmpObj.categories.length ? tmpObj.categories[j].label.trim() : qsTr("Uncategorized")),
                                                 "categories": tmpObj.categories,
                                                 "imgUrl": ((typeof tmpObj.visualUrl !== "undefined") ? tmpObj.visualUrl : ""),
-                                                "unreadCount": 0 });
+                                                "unreadCount": 0,
+                                                "busy": false });
                         j++;
                     } while (j < tmpObj.categories.length);
                 }
@@ -214,7 +213,8 @@ QtObject {
                                                 "category": "",
                                                 "categories": [],
                                                 "imgUrl": "",
-                                                "unreadCount": 0 });
+                                                "unreadCount": 0,
+                                                "busy": false });
                     }
                     // Populate ListModel
                     for (i = 0; i < tmpSubscriptions.length; i++) {
@@ -307,44 +307,12 @@ QtObject {
                                                "content": ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : "")),
                                                "contentUrl": ((typeof tmpObj.alternate !== "undefined") ? tmpObj.alternate[0].href : ""),
                                                "streamId": ((typeof tmpObj.origin !== "undefined") ? tmpObj.origin.streamId : retObj.response.id),
-                                               "streamTitle": ((typeof tmpObj.origin !== "undefined") ? tmpObj.origin.title : ((typeof retObj.response.title !== "undefined") ? retObj.response.title : "")) });
+                                               "streamTitle": ((typeof tmpObj.origin !== "undefined") ? tmpObj.origin.title : ((typeof retObj.response.title !== "undefined") ? retObj.response.title : "")),
+                                               "busy": false });
                 }
             }
             busy = false;
             if (!retObj.callParams.continuation) getMarkersCounts();
-        }
-        // DEBUG
-        // console.log(JSON.stringify(retObj));
-    }
-
-    /*
-     * Get single entry's content
-     */
-    function getEntry(entryId) {
-        if (entryId) {
-            if ((currentEntry == null) || (currentEntry.id != entryId)) {
-                currentEntry = null;
-                busy = true;
-                FeedlyAPI.call("entries", entryId, entryDoneCB, accessToken);
-            }
-        } else error(qsTr("No entryId found."));
-    }
-
-    function entryDoneCB(retObj) {
-        if (checkResponse(retObj, entryDoneCB)) {
-            if (Array.isArray(retObj.response) && (retObj.response.length > 0)) {
-                var tmpObj = retObj.response[0];
-                var tmpContent = ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ""))
-                if (tmpContent) tmpContent = tmpContent.replace(new RegExp("<img[^>]*>", "gi"), " ").replace(new RegExp("\\s+", "g"), " ").trim();
-                currentEntry = new Object({ "id": tmpObj.id,
-                                            "title": tmpObj.title,
-                                            "author": tmpObj.author,
-                                            "updated": new Date(((typeof tmpObj.updated !== "undefined") ? tmpObj.updated : tmpObj.published)),
-                                            "imgUrl": (((typeof tmpObj.visual !== "undefined") && tmpObj.visual.url && tmpObj.visual.url !== "none") ? tmpObj.visual.url : ""),
-                                            "content": tmpContent,
-                                            "contentUrl": ((typeof tmpObj.alternate !== "undefined") ? tmpObj.alternate[0].href : "") });
-            }
-            busy = false;
         }
         // DEBUG
         // console.log(JSON.stringify(retObj));
@@ -389,33 +357,45 @@ QtObject {
      */
     function markEntryAsReadUnread(entryId, unread) {
         if (entryId) {
+            // Mark single article item as busy
+            if (articlesListModel.count > 0) {
+                for (var i = 0; i < articlesListModel.count; i++) {
+                    if (articlesListModel.get(i).id === entryId) articlesListModel.setProperty(i, "busy", true);
+                }
+            }
             var param = { "action": (unread ? "keepUnread" : "markAsRead"), "type": "entries", "entryIds": [entryId] };
             FeedlyAPI.call("markers", param, markEntryAsReadUnreadDoneCB, accessToken);
         } else error(qsTr("No entryId found."));
     }
 
     function markEntryAsReadUnreadDoneCB(retObj) {
-        if (checkResponse(retObj, markEntryAsReadUnreadDoneCB)) {
-            if (articlesListModel.count > 0) {
-                var entryId = retObj.callParams.entryIds[0];
-                var streamId = "";
-                for (var i = 0; i < articlesListModel.count; i++) {
-                    if (articlesListModel.get(i).id === entryId) {
-                        var markersChanged = false;
-                        if ((retObj.callParams.action === "markAsRead") && articlesListModel.get(i).unread) {
-                            articlesListModel.setProperty(i, "unread", false);
-                            markersChanged = true;
-                        } else if ((retObj.callParams.action === "keepUnread") && !articlesListModel.get(i).unread) {
-                            articlesListModel.setProperty(i, "unread", true);
-                            markersChanged = true;
-                        }
-                        if (markersChanged) streamId = articlesListModel.get(i).streamId;
-                    }
+        var entryId = retObj.callParams.entryIds[0];
+        var articleIdx = -1;
+        var streamId = "";
+        var i = 0;
+        if (entryId && (articlesListModel.count > 0)) {
+            for (i = 0; i < articlesListModel.count; i++) {
+                if (articlesListModel.get(i).id === entryId) {
+                    articlesListModel.setProperty(i, "busy", false);
+                    articleIdx = i;
+                    streamId = articlesListModel.get(i).streamId;
                 }
-                var allFeedsIdx = -1;
-                if (streamId) {
+            }
+        }
+        if (checkResponse(retObj, markEntryAsReadUnreadDoneCB)) {
+            if (articleIdx >= 0) {
+                var markersChanged = false;
+                if ((retObj.callParams.action === "markAsRead") && articlesListModel.get(articleIdx).unread) {
+                    articlesListModel.setProperty(articleIdx, "unread", false);
+                    markersChanged = true;
+                } else if ((retObj.callParams.action === "keepUnread") && !articlesListModel.get(articleIdx).unread) {
+                    articlesListModel.setProperty(articleIdx, "unread", true);
+                    markersChanged = true;
+                }
+                if (markersChanged) {
+                    var allFeedsIdx = -1;
                     for (var j = 0; j < feedsListModel.count; j++) {
-                        if (userId && (feedsListModel.get(j).id === ("user/" + userId + "/category/global.all"))) allFeedsIdx = j;
+                        if (feedsListModel.get(j).id.indexOf("/category/global.all") >= 0) allFeedsIdx = j;
                         if (feedsListModel.get(j).id === streamId) {
                             var tmpUnreadCount = feedsListModel.get(j).unreadCount;
                             if ((retObj.callParams.action === "markAsRead") && (tmpUnreadCount > 0)) tmpUnreadCount--;
@@ -428,7 +408,6 @@ QtObject {
                 else if (retObj.callParams.action === "keepUnread") totalUnread++;
                 if (allFeedsIdx >= 0) feedsListModel.setProperty(allFeedsIdx, "unreadCount", totalUnread);
             }
-            busy = false;
         }
         // DEBUG
         // console.log(JSON.stringify(retObj));
@@ -467,15 +446,13 @@ QtObject {
      * Update subscription
      */
     function updateSubscription(subscriptionId, title, categories) {
-        if (accessToken) {
-            if (subscriptionId) {
-                busy = true;
-                var param = { "id": subscriptionId }
-                if (title) param.title = title;
-                if (Array.isArray(categories) && categories.length) param.categories = categories
-                FeedlyAPI.call("updateSubscription", param, updateSubscriptionDoneCB, accessToken);
-            } else error(qsTr("No subscriptionId found."))
-        } else error(qsTr("No accessToken found."));
+        if (subscriptionId) {
+            busy = true;
+            var param = { "id": subscriptionId }
+            if (title) param.title = title;
+            if (Array.isArray(categories) && categories.length) param.categories = categories
+            FeedlyAPI.call("updateSubscription", param, updateSubscriptionDoneCB, accessToken);
+        } else error(qsTr("No subscriptionId found."))
     }
 
     function updateSubscriptionDoneCB(retObj) {
@@ -488,13 +465,45 @@ QtObject {
     }
 
     /*
+     * Unsubscribe
+     */
+    function unsubscribe(subscriptionId) {
+        if (subscriptionId) {
+            // Mark single feed item as busy
+            for (var j = 0; j < feedsListModel.count; j++) {
+                if (feedsListModel.get(j).id === subscriptionId) feedsListModel.setProperty(j, "busy", true);
+            }
+            FeedlyAPI.call("unsubscribe", subscriptionId, unsubscribeDoneCB, accessToken);
+        } else error(qsTr("No subscriptionId found."))
+    }
+
+    function unsubscribeDoneCB(retObj) {
+        var unreadCount = 0;
+        var j = 0;
+        if (retObj.callParams) {
+            for (j = 0; j < feedsListModel.count; j++) {
+                if (feedsListModel.get(j).id === retObj.callParams) {
+                    feedsListModel.setProperty(j, "busy", false);
+                    if (!unreadCount) unreadCount = feedsListModel.get(j).unreadCount;
+                }
+            }
+        }
+        if (checkResponse(retObj, unsubscribeDoneCB)) {
+            for (j = 0; j < feedsListModel.count; j++) {
+                if (feedsListModel.get(j).id.indexOf("/category/global.all") >= 0) {
+                    feedsListModel.setProperty(j, "unreadCount", (feedsListModel.get(j).unreadCount - unreadCount));
+                }
+                if (feedsListModel.get(j).id === retObj.callParams) feedsListModel.remove(j);
+            }
+        }
+    }
+
+    /*
      * Get categories
      */
     function getCategories() {
-        if (accessToken) {
-            busy = true;
-            FeedlyAPI.call("categories", null, categoriesDoneCB, accessToken);
-        } else error(qsTr("No accessToken found."));
+        busy = true;
+        FeedlyAPI.call("categories", null, categoriesDoneCB, accessToken);
     }
 
     function categoriesDoneCB(retObj) {

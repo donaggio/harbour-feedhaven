@@ -17,11 +17,11 @@
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="48"/>
         <source>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; is a native client for Feedly.com on-line news reader service.&lt;/p&gt;
-    &lt;p&gt;You can search for and add new feeds, manage your feeds and access their content: as soon as you&apos;ll read an article, it will be marked as read on Feedly.com as well.&lt;/p&gt;
-    &lt;p&gt;Feed unsubscribing is currently not supported, you need to log in to Feedly.com using a web browser to do it.&lt;/p&gt;
+    &lt;p&gt;You can search for and subscribe to new feeds, manage your feeds and access their content: as soon as you&apos;ll read an article, it will be marked as read on Feedly.com as well.&lt;/p&gt;
     &lt;p&gt;Image thumbnails in article list are displayed in landscape mode only.&lt;/p&gt;
     &lt;p&gt;This is an open source project released under the MIT license, source code is available &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/source/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-    &lt;p&gt;Launcher icon artwork courtesy by Nikita Balobanov.</source>
+    &lt;p&gt;Issues or feature requests can be reported &lt;a href=&quot;https://code.google.com/p/harbour-feedhaven/issues/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;Launcher icon artwork courtesy by Nikita Balobanov.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -59,49 +59,49 @@
 <context>
     <name>ArticlesListPage</name>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="144"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="167"/>
         <source>Mark as read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="144"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="167"/>
         <source>Keep unread</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="154"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="177"/>
         <source>Open original link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="163"/>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="183"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="186"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="206"/>
         <source>Mark all as read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="164"/>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="184"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="187"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="207"/>
         <source>Marking all articles as read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="168"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="191"/>
         <source>Refresh feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="178"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="201"/>
         <source>More articles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="189"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="212"/>
         <source>Back to the top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="196"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="219"/>
         <source>No unread articles in this feed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -191,25 +191,23 @@ feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="180"/>
         <location filename="../qml/components/Feedly.qml" line="241"/>
-        <location filename="../qml/components/Feedly.qml" line="478"/>
-        <location filename="../qml/components/Feedly.qml" line="497"/>
         <source>No accessToken found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="196"/>
+        <location filename="../qml/components/Feedly.qml" line="194"/>
         <source>Uncategorized</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="213"/>
+        <location filename="../qml/components/Feedly.qml" line="212"/>
         <source>All feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="280"/>
+        <location filename="../qml/components/Feedly.qml" line="455"/>
         <location filename="../qml/components/Feedly.qml" line="477"/>
         <source>No subscriptionId found.</source>
         <translation type="unfinished"></translation>
@@ -230,18 +228,17 @@ feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="330"/>
-        <location filename="../qml/components/Feedly.qml" line="394"/>
+        <location filename="../qml/components/Feedly.qml" line="368"/>
         <source>No entryId found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="370"/>
+        <location filename="../qml/components/Feedly.qml" line="338"/>
         <source>No feedId found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="444"/>
+        <location filename="../qml/components/Feedly.qml" line="423"/>
         <source>No search string or URL given.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -254,42 +251,52 @@ feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="123"/>
-        <source>Manage feed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="131"/>
-        <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="136"/>
-        <source>Sign in</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="136"/>
-        <source>Sign out</source>
+        <location filename="../qml/pages/FeedsListPage.qml" line="42"/>
+        <source>Unsubscribing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/FeedsListPage.qml" line="144"/>
+        <source>Manage feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedsListPage.qml" line="149"/>
+        <source>Unsubscribe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedsListPage.qml" line="157"/>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedsListPage.qml" line="162"/>
+        <source>Sign in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedsListPage.qml" line="162"/>
+        <source>Sign out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedsListPage.qml" line="170"/>
         <source>Add feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="150"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="176"/>
         <source>Refresh feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="158"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="184"/>
         <source>Feeds list not available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="158"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="184"/>
         <source>Please sign in</source>
         <translation type="unfinished"></translation>
     </message>
