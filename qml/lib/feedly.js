@@ -79,7 +79,10 @@ function call(method, param, callback, accessToken) {
             delete xhr;
         }
     }
-    xhr.ontimeout = function() { console.log("API call timeout"); }
+    xhr.ontimeout = function() {
+        // Timeout is not implemented yet in this version of the XMLHttplRequest object
+        console.log("API call timeout");
+    }
     if ((_apiCalls[method].method === "POST") && (param !== null) && (typeof param === "object")) {
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(param));

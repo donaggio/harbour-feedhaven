@@ -103,7 +103,7 @@ Page {
                 anchors.centerIn: parent
 
                 visible: busy
-                size: BusyIndicatorSize.Small
+                size: BusyIndicatorSize.Medium
                 running: (visible && Qt.application.active)
             }
 

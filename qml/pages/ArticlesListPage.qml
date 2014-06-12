@@ -62,11 +62,15 @@ Page {
                         running: (busy && Qt.application.active)
 
                         SequentialAnimation {
+                            loops: Animation.Infinite
+
                             NumberAnimation { target: unreadIndicator; property: "brightness"; to: 0.4; duration: 500 }
                             NumberAnimation { target: unreadIndicator; property: "brightness"; to: 1.0; duration: 500 }
                         }
 
                         SequentialAnimation {
+                            loops: Animation.Infinite
+
                             NumberAnimation { target: unreadIndicator; property: "falloffRadius"; to: 0.075; duration: 500 }
                             NumberAnimation { target: unreadIndicator; property: "falloffRadius"; to: unreadIndicator.defaultFalloffRadius; duration: 500 }
                         }

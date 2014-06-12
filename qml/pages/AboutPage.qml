@@ -12,6 +12,8 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
+    readonly property string pageType: "about"
+
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
     SilicaFlickable {

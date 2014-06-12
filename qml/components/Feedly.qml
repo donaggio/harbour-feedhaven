@@ -137,7 +137,6 @@ QtObject {
             signedIn = true;
             DB.saveAuthTokens(feedly);
             if (pendingRequest !== null) {
-                busy = true;
                 FeedlyAPI.call(pendingRequest.method, pendingRequest.param, pendingRequest.callback);
                 pendingRequest = null;
             } else busy = false;
