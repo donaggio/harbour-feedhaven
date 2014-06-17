@@ -128,6 +128,7 @@ Page {
                 readonly property string _linkStyle: "<style>a:link { color: " + Theme.highlightColor + "; }</style>"
 
                 width: parent.width
+                clip: true
                 horizontalAlignment: Text.AlignJustify
                 font.pixelSize: Theme.fontSizeSmall
                 wrapMode: Text.WordWrap

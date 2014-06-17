@@ -58,7 +58,11 @@ function call(method, param, callback, accessToken) {
         } else url += ("/" + encodeURIComponent(param));
     }
 
+    // Timeout is not implemented yet in this version of the XMLHttplRequest object
     xhr.timeout = 10000;
+    xhr.ontimeout = function() {
+        console.log("API call timeout");
+    }
     xhr.open(_apiCalls[method].method, url, true);
     if (accessToken) xhr.setRequestHeader("Authorization", "OAuth " + accessToken);
     xhr.onreadystatechange = function() {
@@ -78,10 +82,6 @@ function call(method, param, callback, accessToken) {
             callback(retObj);
             delete xhr;
         }
-    }
-    xhr.ontimeout = function() {
-        // Timeout is not implemented yet in this version of the XMLHttplRequest object
-        console.log("API call timeout");
     }
     if ((_apiCalls[method].method === "POST") && (param !== null) && (typeof param === "object")) {
         xhr.setRequestHeader("Content-Type", "application/json");

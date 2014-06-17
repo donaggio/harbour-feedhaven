@@ -88,7 +88,7 @@
 <context>
     <name>ArticlePage</name>
     <message>
-        <location filename="../qml/pages/ArticlePage.qml" line="156"/>
+        <location filename="../qml/pages/ArticlePage.qml" line="157"/>
         <source>Open original link</source>
         <translation>Apri link originale</translation>
     </message>
@@ -113,49 +113,49 @@ da leggere</translation>
 <context>
     <name>ArticlesListPage</name>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="171"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="172"/>
         <source>Mark as read</source>
         <translation>Segna come già letto</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="171"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="172"/>
         <source>Keep unread</source>
         <translation>Mantieni da leggere</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="181"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="182"/>
         <source>Open original link</source>
         <translation>Apri link originale</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="190"/>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="210"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="191"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="211"/>
         <source>Mark all as read</source>
         <translation>Segna tutti come già letti</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="191"/>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="211"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="192"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="212"/>
         <source>Marking all articles as read</source>
         <translation>Segno tutti gli articoli come già letti</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="195"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="196"/>
         <source>Refresh feed</source>
         <translation>Aggiorna il feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="205"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="206"/>
         <source>More articles</source>
         <translation>Altri articoli</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="216"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="217"/>
         <source>Back to the top</source>
         <translation>Torna all&apos;inizio</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="223"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="224"/>
         <source>No unread articles in this feed</source>
         <translation>Nessun articolo trovato</translation>
     </message>

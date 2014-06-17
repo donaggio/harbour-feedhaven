@@ -64,15 +64,15 @@ Page {
                         SequentialAnimation {
                             loops: Animation.Infinite
 
-                            NumberAnimation { target: unreadIndicator; property: "brightness"; to: 0.4; duration: 500 }
-                            NumberAnimation { target: unreadIndicator; property: "brightness"; to: 1.0; duration: 500 }
+                            NumberAnimation { target: unreadIndicator; property: "brightness"; to: 0.4; duration: 750 }
+                            NumberAnimation { target: unreadIndicator; property: "brightness"; to: 1.0; duration: 750 }
                         }
 
                         SequentialAnimation {
                             loops: Animation.Infinite
 
-                            NumberAnimation { target: unreadIndicator; property: "falloffRadius"; to: 0.075; duration: 500 }
-                            NumberAnimation { target: unreadIndicator; property: "falloffRadius"; to: unreadIndicator.defaultFalloffRadius; duration: 500 }
+                            NumberAnimation { target: unreadIndicator; property: "falloffRadius"; to: 0.075; duration: 750 }
+                            NumberAnimation { target: unreadIndicator; property: "falloffRadius"; to: unreadIndicator.defaultFalloffRadius; duration: 750 }
                         }
 
                         onRunningChanged: {
@@ -98,6 +98,7 @@ Page {
                     id: articleSummary
 
                     anchors { top: articleTitle.bottom; left: parent.left; right: parent.right; }
+                    clip: true
                     font.pixelSize: Theme.fontSizeExtraSmall
                     elide: Text.ElideRight
                     maximumLineCount: 3
