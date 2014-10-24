@@ -4,18 +4,18 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="33"/>
+        <location filename="../qml/pages/AboutPage.qml" line="28"/>
         <source>About Feed Haven</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="42"/>
+        <location filename="../qml/pages/AboutPage.qml" line="45"/>
         <source>Version %1
 (C) 2014 by Luca Donaggio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="50"/>
+        <location filename="../qml/pages/AboutPage.qml" line="53"/>
         <source>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; is a native client for Feedly.com on-line news reader service.&lt;/p&gt;
     &lt;p&gt;You can search for and subscribe to new feeds, manage your feeds and access their content: as soon as you&apos;ll read an article, it will be marked as read on Feedly.com as well.&lt;/p&gt;
     &lt;p&gt;Image thumbnails in article list are displayed in landscape mode only.&lt;/p&gt;
@@ -28,22 +28,22 @@
 <context>
     <name>ArticleInfoPage</name>
     <message>
-        <location filename="../qml/pages/ArticleInfoPage.qml" line="38"/>
+        <location filename="../qml/pages/ArticleInfoPage.qml" line="33"/>
         <source>Article Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticleInfoPage.qml" line="52"/>
+        <location filename="../qml/pages/ArticleInfoPage.qml" line="55"/>
         <source>Via</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticleInfoPage.qml" line="58"/>
+        <location filename="../qml/pages/ArticleInfoPage.qml" line="61"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticleInfoPage.qml" line="64"/>
+        <location filename="../qml/pages/ArticleInfoPage.qml" line="67"/>
         <source>Published on</source>
         <translation type="unfinished"></translation>
     </message>
@@ -51,7 +51,7 @@
 <context>
     <name>ArticlePage</name>
     <message>
-        <location filename="../qml/pages/ArticlePage.qml" line="157"/>
+        <location filename="../qml/pages/ArticlePage.qml" line="162"/>
         <source>Open original link</source>
         <translation type="unfinished"></translation>
     </message>
@@ -59,49 +59,59 @@
 <context>
     <name>ArticlesListPage</name>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="172"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="174"/>
         <source>Mark as read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="172"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="174"/>
         <source>Keep unread</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="182"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="190"/>
         <source>Open original link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="191"/>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="211"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="199"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="219"/>
         <source>Mark all as read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="192"/>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="212"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="200"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="220"/>
         <source>Marking all articles as read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="196"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="184"/>
+        <source>Mark older as read</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="185"/>
+        <source>Marking older articles as read</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="204"/>
         <source>Refresh feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="206"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="214"/>
         <source>More articles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="217"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="225"/>
         <source>Back to the top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="224"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="232"/>
         <source>No unread articles in this feed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -148,22 +158,22 @@ feeds</source>
 <context>
     <name>FeedSearchPage</name>
     <message>
-        <location filename="../qml/pages/FeedSearchPage.qml" line="33"/>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="28"/>
         <source>Search Feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedSearchPage.qml" line="45"/>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="48"/>
         <source>Search or enter feed URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedSearchPage.qml" line="149"/>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="152"/>
         <source>Searching ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedSearchPage.qml" line="161"/>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="164"/>
         <source>No results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -207,8 +217,8 @@ feeds</source>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="279"/>
-        <location filename="../qml/components/Feedly.qml" line="454"/>
-        <location filename="../qml/components/Feedly.qml" line="476"/>
+        <location filename="../qml/components/Feedly.qml" line="456"/>
+        <location filename="../qml/components/Feedly.qml" line="478"/>
         <source>No subscriptionId found.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -228,7 +238,7 @@ feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="367"/>
+        <location filename="../qml/components/Feedly.qml" line="369"/>
         <source>No entryId found.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -238,7 +248,7 @@ feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="422"/>
+        <location filename="../qml/components/Feedly.qml" line="424"/>
         <source>No search string or URL given.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -304,12 +314,12 @@ feeds</source>
 <context>
     <name>SelectCategoriesDialog</name>
     <message>
-        <location filename="../qml/dialogs/SelectCategoriesDialog.qml" line="36"/>
+        <location filename="../qml/dialogs/SelectCategoriesDialog.qml" line="31"/>
         <source>Choose categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/SelectCategoriesDialog.qml" line="37"/>
+        <location filename="../qml/dialogs/SelectCategoriesDialog.qml" line="32"/>
         <source>Accept</source>
         <translation type="unfinished"></translation>
     </message>
@@ -338,58 +348,58 @@ feeds</source>
 <context>
     <name>UpdateFeedDialog</name>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="49"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="44"/>
         <source>Add Feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="49"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="44"/>
         <source>Manage Feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="50"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="45"/>
         <source>Subscribe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="50"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="45"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="58"/>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="59"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="61"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="62"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="67"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="70"/>
         <source>Categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="78"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="81"/>
         <source>Additional Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="84"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="87"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="85"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="88"/>
         <source>No description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="91"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="94"/>
         <source>Subscribers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="92"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="95"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>

@@ -340,8 +340,10 @@ QtObject {
     function markFeedAsReadDoneCB(retObj) {
         if (checkResponse(retObj, markFeedAsReadDoneCB)) {
             if (articlesListModel.count > 0) {
+                var lastModelIndex = ((typeof retObj.callParams.lastReadEntryId !== "undefined") ? -1 : 0);
                 for (var i = 0; i < articlesListModel.count; i++) {
-                    articlesListModel.setProperty(i, "unread", false);
+                    if ((lastModelIndex === -1) && (articlesListModel.get(i).id === retObj.callParams.lastReadEntryId)) lastModelIndex = i;
+                    if ((lastModelIndex >= 0) && (i >= lastModelIndex)) articlesListModel.setProperty(i, "unread", false);
                 }
             }
             busy = false;

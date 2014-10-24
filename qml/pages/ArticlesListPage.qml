@@ -148,6 +148,7 @@ Page {
 
             onPressAndHold: {
                 if (!articlesListView.contextMenu) articlesListView.contextMenu = contextMenuComponent.createObject(articlesListView);
+                articlesListView.contextMenu.modelIndex = index;
                 articlesListView.contextMenu.articleId = id;
                 articlesListView.contextMenu.articleUnread = unread;
                 articlesListView.contextMenu.articleUrl = contentUrl;
@@ -164,6 +165,7 @@ Page {
             ContextMenu {
                 id: contextMenu
 
+                property int modelIndex
                 property string articleId
                 property bool articleUnread
                 property string articleUrl
@@ -178,6 +180,12 @@ Page {
                 }
 
                 MenuItem {
+                    visible: (articlesListView.count && page.unreadCount && (contextMenu.modelIndex < (articlesListView.count - 1)))
+                    text: qsTr("Mark older as read")
+                    onClicked: remorsePopup.execute(qsTr("Marking older articles as read"), function() { feedly.markFeedAsRead(streamId, contextMenu.articleId); })
+                }
+
+                MenuItem {
                     visible: (contextMenu.articleUrl ? true : false)
                     text: qsTr("Open original link")
                     onClicked: Qt.openUrlExternally(contextMenu.articleUrl)
@@ -189,7 +197,7 @@ Page {
             MenuItem {
                 visible: (articlesListView.count > 0)
                 text: qsTr("Mark all as read")
-                onClicked: remorsePopup.execute(qsTr("Marking all articles as read"))
+                onClicked: remorsePopup.execute(qsTr("Marking all articles as read"), function() { feedly.markFeedAsRead(streamId, articlesListView.model.get(0).id); })
             }
 
             MenuItem {
@@ -209,7 +217,7 @@ Page {
 
             MenuItem {
                 text: qsTr("Mark all as read")
-                onClicked: remorsePopup.execute(qsTr("Marking all articles as read"))
+                onClicked: remorsePopup.execute(qsTr("Marking all articles as read"), function() { feedly.markFeedAsRead(streamId, articlesListView.model.get(0).id); })
             }
 
             MenuItem {
@@ -229,8 +237,6 @@ Page {
 
     RemorsePopup {
         id: remorsePopup
-
-        onTriggered: feedly.markFeedAsRead(streamId, articlesListView.model.get(0).id)
     }
 
     Component.onCompleted: {

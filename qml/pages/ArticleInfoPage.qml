@@ -25,18 +25,21 @@ Page {
         id: articleView
 
         anchors.fill: parent
-        contentHeight: articleContainer.height
+        contentHeight: header.height + articleContainer.height
+
+        PageHeader {
+            id: header
+
+            title: qsTr("Article Info")
+        }
 
         Column {
             id: articleContainer
 
+            anchors.top: header.bottom
             width: page.width - (2 * Theme.paddingLarge)
             x: Theme.paddingLarge
             spacing: Theme.paddingLarge
-
-            PageHeader {
-                title: qsTr("Article Info")
-            }
 
             Label {
                 id: articleTitle

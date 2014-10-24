@@ -36,19 +36,22 @@ Dialog {
         id: feedView
 
         anchors.fill: parent
-        contentHeight: feedContainer.height
+        contentHeight: header.height + feedContainer.height
+
+        DialogHeader {
+            id: header
+
+            title: dialog.addFeed ? qsTr("Add Feed") : qsTr("Manage Feed")
+            acceptText: dialog.addFeed ? qsTr("Subscribe") : qsTr("Update")
+        }
 
         Column {
             id: feedContainer
 
-            width: dialog.width - (2 * Theme.paddingLarge)
+            anchors.top: header.bottom
+            width: parent.width - (2 * Theme.paddingLarge)
             x: Theme.paddingLarge
             spacing: Theme.paddingLarge
-
-            DialogHeader {
-                title: dialog.addFeed ? qsTr("Add Feed") : qsTr("Manage Feed")
-                acceptText: dialog.addFeed ? qsTr("Subscribe") : qsTr("Update")
-            }
 
             TextField {
                 id: titleTextField

@@ -59,23 +59,28 @@ Page {
         id: articleView
 
         anchors.fill: parent
-        contentHeight: articleContainer.height
+        contentHeight: header.height + articleContainer.height
+
+        PageHeader {
+            id: header
+
+            title: page.title
+        }
 
         Column {
             id: articleContainer
 
-            width: parent.width - (2 * Theme.paddingLarge)
-            x: Theme.paddingLarge
+            anchors.top: header.bottom
+            width: parent.width
+            clip: true
             spacing: Theme.paddingSmall
-
-            PageHeader {
-                title: page.title
-            }
 
             SlideshowView {
                 id: articleGalleryView
-                width: parent.width
+
+                width: parent.width - (2 * Theme.paddingLarge)
                 height: (Theme.itemSizeExtraLarge * 2)
+                anchors.horizontalCenter: parent.horizontalCenter
                 itemWidth: width
                 itemHeight: height
                 clip: true
@@ -127,11 +132,11 @@ Page {
 
                 readonly property string _linkStyle: "<style>a:link { color: " + Theme.highlightColor + "; }</style>"
 
-                width: parent.width
-                clip: true
+                width: parent.width - (2 * Theme.paddingLarge)
+                anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment: Text.AlignJustify
                 font.pixelSize: Theme.fontSizeSmall
-                wrapMode: Text.WordWrap
+                wrapMode: Text.Wrap
                 textFormat: Text.RichText
                 text: _linkStyle + page.content;
 

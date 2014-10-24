@@ -20,18 +20,21 @@ Page {
         id: searchFeedFlicakble
 
         anchors.fill: parent
-        contentHeight: searchContainer.height
+        contentHeight: header.height + searchContainer.height
+
+        PageHeader {
+            id: header
+
+            title: qsTr("Search Feed")
+        }
 
         Column {
             id: searchContainer
 
+            anchors.top: header.bottom
             width: parent.width - (2 * Theme.paddingLarge)
             x: Theme.paddingLarge
             spacing: Theme.paddingLarge
-
-            PageHeader {
-                title: qsTr("Search Feed")
-            }
 
             SearchField {
                 id: searchFeedString

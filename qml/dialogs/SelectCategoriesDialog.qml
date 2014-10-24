@@ -23,19 +23,22 @@ Dialog {
         id: categoriesView
 
         anchors.fill: parent
-        contentHeight: categoriesContainer.height
+        contentHeight: header.height + categoriesContainer.height
+
+        DialogHeader {
+           id: header
+
+           title: qsTr("Choose categories")
+           acceptText: qsTr("Accept")
+        }
 
         Column {
             id: categoriesContainer
 
+            anchors.top: header.bottom
             width: dialog.width - (2 * Theme.paddingLarge)
             x: Theme.paddingLarge
             spacing: Theme.paddingLarge
-
-            DialogHeader {
-               title: qsTr("Choose categories")
-               acceptText: qsTr("Accept")
-            }
 
             Repeater {
                 model: ListModel {

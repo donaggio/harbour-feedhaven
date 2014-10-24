@@ -20,18 +20,21 @@ Page {
         id: aboutFlickable
 
         anchors.fill: parent
-        contentHeight: aboutContainer.height
+        contentHeight: header.height + aboutContainer.height
+
+        PageHeader {
+            id: header
+
+            title: qsTr("About Feed Haven")
+        }
 
         Column {
             id: aboutContainer
 
+            anchors.top: header.bottom
             width: (parent.width - (2 * Theme.paddingLarge))
             x: Theme.paddingLarge
             spacing: Theme.paddingLarge
-
-            PageHeader {
-                title: qsTr("About Feed Haven")
-            }
 
             Label {
                 width: parent.width
