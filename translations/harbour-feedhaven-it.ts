@@ -113,59 +113,77 @@ da leggere</translation>
 <context>
     <name>ArticlesListPage</name>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="174"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="176"/>
         <source>Mark as read</source>
         <translation>Segna come già letto</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="174"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="176"/>
         <source>Keep unread</source>
         <translation>Mantieni da leggere</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="190"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="186"/>
+        <source>Mark this and below as read</source>
+        <translation>Segna da qui in poi come già letti</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="187"/>
+        <source>Marking articles as read</source>
+        <translation>Segno gli articoli come già letti</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="191"/>
+        <source>Save for later</source>
+        <translation>Leggi in seguito</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="191"/>
+        <source>Forget</source>
+        <translation>Elimina</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="197"/>
         <source>Open original link</source>
         <translation>Apri link originale</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="199"/>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="219"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="206"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="227"/>
         <source>Mark all as read</source>
         <translation>Segna tutti come già letti</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="200"/>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="220"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="207"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="228"/>
         <source>Marking all articles as read</source>
         <translation>Segno tutti gli articoli come già letti</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="184"/>
         <source>Mark older as read</source>
-        <translation>Segna più vecchi come già letti</translation>
+        <translation type="obsolete">Segna più vecchi come già letti</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="185"/>
         <source>Marking older articles as read</source>
-        <translation>Segno gli articoli più vecchi come già letti</translation>
+        <translation type="obsolete">Segno gli articoli più vecchi come già letti</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="204"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="211"/>
         <source>Refresh feed</source>
         <translation>Aggiorna il feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="214"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="221"/>
         <source>More articles</source>
         <translation>Altri articoli</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="225"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="233"/>
         <source>Back to the top</source>
         <translation>Torna all&apos;inizio</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="232"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="240"/>
         <source>No unread articles in this feed</source>
         <translation>Nessun articolo trovato</translation>
     </message>
@@ -185,6 +203,12 @@ da leggere</translation>
         <source>Subscribed
 feeds</source>
         <translation>Feed</translation>
+    </message>
+    <message>
+        <location filename="../qml/cover/DefaultCover.qml" line="146"/>
+        <source>Saved
+articles</source>
+        <translation>Articoli salvati</translation>
     </message>
     <message>
         <location filename="../qml/cover/DefaultCover.qml" line="165"/>
@@ -256,7 +280,7 @@ feeds</source>
         <translation>Errore scollegandosi da Feedly</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="240"/>
+        <location filename="../qml/components/Feedly.qml" line="250"/>
         <source>No accessToken found.</source>
         <translation>accessToken non trovato.</translation>
     </message>
@@ -266,44 +290,54 @@ feeds</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="211"/>
+        <location filename="../qml/components/Feedly.qml" line="212"/>
+        <source>Saved for later</source>
+        <translation>Articoli salvati</translation>
+    </message>
+    <message>
+        <location filename="../qml/components/Feedly.qml" line="220"/>
         <source>All feeds</source>
         <translation>Tutti i feed</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="279"/>
-        <location filename="../qml/components/Feedly.qml" line="456"/>
-        <location filename="../qml/components/Feedly.qml" line="478"/>
+        <location filename="../qml/components/Feedly.qml" line="289"/>
+        <location filename="../qml/components/Feedly.qml" line="471"/>
+        <location filename="../qml/components/Feedly.qml" line="493"/>
         <source>No subscriptionId found.</source>
         <translation>subscriptionId non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="299"/>
+        <location filename="../qml/components/Feedly.qml" line="309"/>
         <source>No title</source>
         <translation>Senza titolo</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="300"/>
+        <location filename="../qml/components/Feedly.qml" line="310"/>
         <source>Unknown</source>
         <translation>Sconosciuto</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="305"/>
+        <location filename="../qml/components/Feedly.qml" line="315"/>
         <source>No preview</source>
         <translation>Anteprima non disponibile</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="369"/>
+        <location filename="../qml/components/Feedly.qml" line="382"/>
         <source>No entryId found.</source>
         <translation>entryId non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="337"/>
+        <location filename="../qml/components/Feedly.qml" line="347"/>
         <source>No feedId found.</source>
         <translation>feedId non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="424"/>
+        <location filename="../qml/components/Feedly.qml" line="383"/>
+        <source>Unknown marker action.</source>
+        <translation>Azione sconosciuta</translation>
+    </message>
+    <message>
+        <location filename="../qml/components/Feedly.qml" line="438"/>
         <source>No search string or URL given.</source>
         <translation>Stringa di ricerca non trovata.</translation>
     </message>
@@ -321,17 +355,17 @@ feeds</source>
         <translation>Sto per eliminare</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="144"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="148"/>
         <source>Manage feed</source>
         <translation>Gestisci questo feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="149"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="153"/>
         <source>Unsubscribe</source>
         <translation>Elimina</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="157"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="161"/>
         <source>About</source>
         <translation>Info</translation>
     </message>
@@ -340,32 +374,32 @@ feeds</source>
         <translation type="obsolete">Resetta l&apos;autorizzazione</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="162"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="166"/>
         <source>Sign in</source>
         <translation>Accedi</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="162"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="166"/>
         <source>Sign out</source>
         <translation>Scollegati</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="170"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="174"/>
         <source>Add feed</source>
         <translation>Aggiungi un feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="176"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="180"/>
         <source>Refresh feeds</source>
         <translation>Aggiorna i feed</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="184"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="188"/>
         <source>Feeds list not available</source>
         <translation>Nessun feed disponibile</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="184"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="188"/>
         <source>Please sign in</source>
         <translation>Effettuare l&apos;accesso</translation>
     </message>
@@ -411,58 +445,68 @@ feeds</source>
 <context>
     <name>UpdateFeedDialog</name>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="44"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="45"/>
         <source>Add Feed</source>
         <translation>Nuovo feed</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="44"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="45"/>
         <source>Manage Feed</source>
         <translation>Gestione feed</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="45"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="46"/>
         <source>Subscribe</source>
         <translation>Aggiungi</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="45"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="46"/>
         <source>Update</source>
         <translation>Aggiorna</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="61"/>
         <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="62"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="63"/>
         <source>Title</source>
         <translation>Titolo</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="70"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="71"/>
         <source>Categories</source>
         <translation>Categorie</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="81"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="82"/>
         <source>Additional Info</source>
         <translation>Ulteriori informazioni</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="87"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="88"/>
         <source>Description</source>
         <translation>Descrizione</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="88"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="89"/>
         <source>No description</source>
         <translation>Non disponibile</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="94"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="95"/>
+        <source>Language</source>
+        <translation>Linguaggio</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="96"/>
+        <source>Unknown</source>
+        <translation>Sconosciuto</translation>
+    </message>
+    <message>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="102"/>
         <source>Subscribers</source>
         <translation>Lettori</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="95"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="103"/>
         <source>None</source>
         <translation>Nessuno</translation>
     </message>

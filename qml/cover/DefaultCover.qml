@@ -136,14 +136,14 @@ CoverBackground {
                 horizontalAlignment: Text.AlignRight
                 wrapMode: Text.NoWrap
                 font.pixelSize: Theme.fontSizeExtraLarge
-                text: (typeof pageStack.currentPage.unreadCount !== "undefined") ? pageStack.currentPage.unreadCount : ""
+                text: ((typeof pageStack.currentPage._isTag !== "undefined") ? (pageStack.currentPage._isTag ? feedly.articlesListModel.count : pageStack.currentPage.unreadCount) : "0") // (typeof pageStack.currentPage.unreadCount !== "undefined") ? pageStack.currentPage.unreadCount : "0"
             }
 
             Label {
                 anchors.verticalCenter: parent.verticalCenter
 
                 font.pixelSize: Theme.fontSizeTiny
-                text: qsTr("Unread\narticles")
+                text: ((typeof pageStack.currentPage._isTag !== "undefined") && pageStack.currentPage._isTag) ? qsTr("Saved\narticles") : qsTr("Unread\narticles")
             }
         }
     }

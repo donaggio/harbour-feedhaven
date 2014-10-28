@@ -18,7 +18,6 @@ Rectangle {
     width: parent.width
     height: labelErrorMessage.height
     color: Theme.highlightBackgroundColor
-    opacity: 0.6
     visible: false
 
     /*
@@ -26,7 +25,7 @@ Rectangle {
      */
     function show(message) {
         labelErrorMessage.text = (message ? message : _defaultErrorMessage);
-        errorIndicator.opacity = 0.6;
+        errorIndicator.opacity = 1;
         errorIndicator.visible = true;
         errorTimer.restart();
     }

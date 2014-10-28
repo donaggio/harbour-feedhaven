@@ -193,6 +193,7 @@ QtObject {
                                                 "category": (tmpObj.categories.length ? tmpObj.categories[j].label.trim() : qsTr("Uncategorized")),
                                                 "categories": tmpObj.categories,
                                                 "imgUrl": ((typeof tmpObj.visualUrl !== "undefined") ? tmpObj.visualUrl : ""),
+                                                "lang": ((typeof tmpObj.language !== "undefined") ? tmpObj.language : ""),
                                                 "unreadCount": 0,
                                                 "busy": false });
                         j++;
@@ -207,11 +208,20 @@ QtObject {
                 if (tmpSubscriptions.length) {
                     // Add "All feeds" fake subscription
                     if (userId) {
+                        feedsListModel.append({ "id": "user/" + userId + "/tag/global.saved",
+                                                "title": qsTr("Saved for later"),
+                                                "category": "",
+                                                "categories": [],
+                                                "imgUrl": "",
+                                                "lang": "",
+                                                "unreadCount": 0,
+                                                "busy": false });
                         feedsListModel.append({ "id": "user/" + userId + "/category/global.all",
                                                 "title": qsTr("All feeds"),
                                                 "category": "",
                                                 "categories": [],
                                                 "imgUrl": "",
+                                                "lang": "",
                                                 "unreadCount": 0,
                                                 "busy": false });
                     }
@@ -354,22 +364,26 @@ QtObject {
     }
 
     /*
-     * Mark entry as read
+     * Mark entry
+     * Possible actions are: markAsRead, keepUnread, markAsSaved, markAsUnsaved
      */
-    function markEntryAsReadUnread(entryId, unread) {
-        if (entryId) {
-            // Mark single article item as busy
-            if (articlesListModel.count > 0) {
-                for (var i = 0; i < articlesListModel.count; i++) {
-                    if (articlesListModel.get(i).id === entryId) articlesListModel.setProperty(i, "busy", true);
+    function markEntry(entryId, action) {
+        var actions = ["markAsRead", "keepUnread", "markAsSaved", "markAsUnsaved"];
+        if (actions.indexOf(action) >= 0) {
+            if (entryId) {
+                // Mark single article item as busy
+                if (articlesListModel.count > 0) {
+                    for (var i = 0; i < articlesListModel.count; i++) {
+                        if (articlesListModel.get(i).id === entryId) articlesListModel.setProperty(i, "busy", true);
+                    }
                 }
-            }
-            var param = { "action": (unread ? "keepUnread" : "markAsRead"), "type": "entries", "entryIds": [entryId] };
-            FeedlyAPI.call("markers", param, markEntryAsReadUnreadDoneCB, accessToken);
-        } else error(qsTr("No entryId found."));
+                var param = { "action": action, "type": "entries", "entryIds": [entryId] };
+                FeedlyAPI.call("markers", param, markEntryDoneCB, accessToken);
+            } else error(qsTr("No entryId found."));
+        } else error(qsTr("Unknown marker action."));
     }
 
-    function markEntryAsReadUnreadDoneCB(retObj) {
+    function markEntryDoneCB(retObj) {
         var entryId = retObj.callParams.entryIds[0];
         var articleIdx = -1;
         var streamId = "";
@@ -383,17 +397,17 @@ QtObject {
                 }
             }
         }
-        if (checkResponse(retObj, markEntryAsReadUnreadDoneCB)) {
+        if (checkResponse(retObj, markEntryDoneCB)) {
             if (articleIdx >= 0) {
-                var markersChanged = false;
+                var unreadCountChanged = false;
                 if ((retObj.callParams.action === "markAsRead") && articlesListModel.get(articleIdx).unread) {
                     articlesListModel.setProperty(articleIdx, "unread", false);
-                    markersChanged = true;
+                    unreadCountChanged = true;
                 } else if ((retObj.callParams.action === "keepUnread") && !articlesListModel.get(articleIdx).unread) {
                     articlesListModel.setProperty(articleIdx, "unread", true);
-                    markersChanged = true;
+                    unreadCountChanged = true;
                 }
-                if (markersChanged) {
+                if (unreadCountChanged) {
                     var allFeedsIdx = -1;
                     for (var j = 0; j < feedsListModel.count; j++) {
                         if (feedsListModel.get(j).id.indexOf("/category/global.all") >= 0) allFeedsIdx = j;
@@ -404,10 +418,10 @@ QtObject {
                             feedsListModel.setProperty(j, "unreadCount", tmpUnreadCount);
                         }
                     }
+                    if ((retObj.callParams.action === "markAsRead") && (totalUnread > 0)) totalUnread--;
+                    else if (retObj.callParams.action === "keepUnread") totalUnread++;
+                    if (allFeedsIdx >= 0) feedsListModel.setProperty(allFeedsIdx, "unreadCount", totalUnread);
                 }
-                if ((retObj.callParams.action === "markAsRead") && (totalUnread > 0)) totalUnread--;
-                else if (retObj.callParams.action === "keepUnread") totalUnread++;
-                if (allFeedsIdx >= 0) feedsListModel.setProperty(allFeedsIdx, "unreadCount", totalUnread);
             }
         }
         // DEBUG
@@ -434,6 +448,7 @@ QtObject {
                                    "title": tmpObj.title,
                                    "description": ((typeof tmpObj.description !== "undefined") ? tmpObj.description : ""),
                                    "imgUrl": ((typeof tmpObj.visualUrl !== "undefined") ? tmpObj.visualUrl : ""),
+                                   "lang": ((typeof tmpObj.language !== "undefined") ? tmpObj.language : ""),
                                    "subscribers": tmpObj.subscribers });
                 }
             }

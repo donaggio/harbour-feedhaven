@@ -109,7 +109,7 @@ Page {
                         color: highlighted ? Theme.highlightColor : Theme.primaryColor
                     }
 
-                    onClicked: pageStack.push(Qt.resolvedUrl("../dialogs/UpdateFeedDialog.qml"), { "feedId": id, "title": title, "description": description, "imgUrl": imgUrl, "subscribers": subscribers, "addFeed": true })
+                    onClicked: pageStack.push(Qt.resolvedUrl("../dialogs/UpdateFeedDialog.qml"), { "feedId": id, "title": title, "description": description, "imgUrl": imgUrl, "lang": lang, "subscribers": subscribers, "addFeed": true })
                 }
 
             }

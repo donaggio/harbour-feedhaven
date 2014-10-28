@@ -17,6 +17,7 @@ Dialog {
     property alias title: titleTextField.text
     property string description: ""
     property string imgUrl: ""
+    property string lang: ""
     property int subscribers: 0
     property var categories: []
     property bool addFeed: false
@@ -86,6 +87,13 @@ Dialog {
                 visible: addFeed
                 fieldName: qsTr("Description")
                 fieldValue: (dialog.description ? dialog.description : qsTr("No description"))
+            }
+
+            Field {
+                width: parent.width
+                visible: addFeed
+                fieldName: qsTr("Language")
+                fieldValue: (dialog.lang ? dialog.lang : qsTr("Unknown"))
             }
 
             Field {

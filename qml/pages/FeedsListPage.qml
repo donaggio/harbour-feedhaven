@@ -36,7 +36,7 @@ Page {
 
             width: feedsListView.width
             contentHeight: menuOpen ? feedsListView.contextMenu.height + Theme.itemSizeSmall : Theme.itemSizeSmall
-            enabled: !busy && (unreadCount > 0)
+            enabled: !busy
 
             function unsubscribe() {
                 remorseItem.execute(feedItem, qsTr("Unsubscribing"));
@@ -80,7 +80,7 @@ Page {
                     }
                     truncationMode: TruncationMode.Fade
                     text: title
-                    color: highlighted ? Theme.highlightColor : ((unreadCount > 0) ? Theme.primaryColor : Theme.secondaryColor)
+                    color: highlighted ? Theme.highlightColor : Theme.primaryColor
                 }
 
                 Label {
@@ -107,14 +107,17 @@ Page {
                 running: (visible && Qt.application.active)
             }
 
-            onClicked: pageStack.push(Qt.resolvedUrl("ArticlesListPage.qml"), { "title": title, "streamId": id, "unreadCount": unreadCount })
+            onClicked: {
+                if ((unreadCount > 0) || id.indexOf("/tag/")) pageStack.push(Qt.resolvedUrl("ArticlesListPage.qml"), { "title": title, "streamId": id, "unreadCount": unreadCount });
+            }
 
             onPressAndHold: {
-                if (!busy && (id.indexOf("/category/") === -1)) {
+                if (!busy && (id.indexOf("/category/") === -1) && (id.indexOf("/tag/") === -1)) {
                     if (!feedsListView.contextMenu) feedsListView.contextMenu = contextMenuComponent.createObject(feedsListView);
                     feedsListView.contextMenu.feedId = id;
                     feedsListView.contextMenu.feedTitle = title;
                     feedsListView.contextMenu.feedImgUrl = imgUrl;
+                    feedsListView.contextMenu.feedLang = lang;
                     // Convert categories from QQmlListModel back to an Array object
                     var tmpCategories = [];
                     for (var i = 0; i < categories.count; i++) tmpCategories.push({ "id": categories.get(i).id, "label": categories.get(i).label });
@@ -138,11 +141,12 @@ Page {
                 property string feedId
                 property string feedTitle
                 property string feedImgUrl
+                property string feedLang
                 property var feedCategories
 
                 MenuItem {
                     text: qsTr("Manage feed")
-                    onClicked: pageStack.push(Qt.resolvedUrl("../dialogs/UpdateFeedDialog.qml"), { "feedId": feedId, "title": feedTitle, "imgUrl": feedImgUrl, "categories": feedCategories })
+                    onClicked: pageStack.push(Qt.resolvedUrl("../dialogs/UpdateFeedDialog.qml"), { "feedId": feedId, "title": feedTitle, "imgUrl": feedImgUrl, "lang": feedLang, "categories": feedCategories })
                 }
 
                 MenuItem {
