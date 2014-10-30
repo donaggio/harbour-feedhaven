@@ -33,6 +33,7 @@ QtObject {
     signal error(string message)
     signal searchFeedCompleted(var results)
     signal getCategoriesCompleted(var categories)
+    signal entryUnsaved(int index)
 
     /*
      * Return URL to sign in into Feedly
@@ -317,7 +318,9 @@ QtObject {
                                                "contentUrl": ((typeof tmpObj.alternate !== "undefined") ? tmpObj.alternate[0].href : ""),
                                                "streamId": ((typeof tmpObj.origin !== "undefined") ? tmpObj.origin.streamId : retObj.response.id),
                                                "streamTitle": ((typeof tmpObj.origin !== "undefined") ? tmpObj.origin.title : ((typeof retObj.response.title !== "undefined") ? retObj.response.title : "")),
-                                               "busy": false });
+                                               "busy": false,
+                                               "tagging": false
+                                             });
                 }
             }
             busy = false;
@@ -371,10 +374,21 @@ QtObject {
         var actions = ["markAsRead", "keepUnread", "markAsSaved", "markAsUnsaved"];
         if (actions.indexOf(action) >= 0) {
             if (entryId) {
-                // Mark single article item as busy
+                // Set item indicator accordingly to action
                 if (articlesListModel.count > 0) {
                     for (var i = 0; i < articlesListModel.count; i++) {
-                        if (articlesListModel.get(i).id === entryId) articlesListModel.setProperty(i, "busy", true);
+                        if (articlesListModel.get(i).id === entryId) {
+                            switch (action) {
+                                case "markAsRead":
+                                case "keepUnread":
+                                    articlesListModel.setProperty(i, "busy", true);
+                                    break;
+                                case "markAsSaved":
+                                case "markAsUnsaved":
+                                    articlesListModel.setProperty(i, "tagging", true);
+                                    break;
+                            }
+                        }
                     }
                 }
                 var param = { "action": action, "type": "entries", "entryIds": [entryId] };
@@ -387,11 +401,19 @@ QtObject {
         var entryId = retObj.callParams.entryIds[0];
         var articleIdx = -1;
         var streamId = "";
-        var i = 0;
         if (entryId && (articlesListModel.count > 0)) {
-            for (i = 0; i < articlesListModel.count; i++) {
+            for (var i = 0; i < articlesListModel.count; i++) {
                 if (articlesListModel.get(i).id === entryId) {
-                    articlesListModel.setProperty(i, "busy", false);
+                    switch (retObj.callParams.action) {
+                        case "markAsRead":
+                        case "keepUnread":
+                            articlesListModel.setProperty(i, "busy", false);
+                            break;
+                        case "markAsSaved":
+                        case "markAsUnsaved":
+                            articlesListModel.setProperty(i, "tagging", false);
+                            break;
+                    }
                     articleIdx = i;
                     streamId = articlesListModel.get(i).streamId;
                 }
@@ -400,12 +422,24 @@ QtObject {
         if (checkResponse(retObj, markEntryDoneCB)) {
             if (articleIdx >= 0) {
                 var unreadCountChanged = false;
-                if ((retObj.callParams.action === "markAsRead") && articlesListModel.get(articleIdx).unread) {
-                    articlesListModel.setProperty(articleIdx, "unread", false);
-                    unreadCountChanged = true;
-                } else if ((retObj.callParams.action === "keepUnread") && !articlesListModel.get(articleIdx).unread) {
-                    articlesListModel.setProperty(articleIdx, "unread", true);
-                    unreadCountChanged = true;
+                switch (retObj.callParams.action) {
+                    case "markAsRead":
+                        if (articlesListModel.get(articleIdx).unread) {
+                            articlesListModel.setProperty(articleIdx, "unread", false);
+                            unreadCountChanged = true;
+                        }
+                        break;
+                    case "keepUnread":
+                        if (!articlesListModel.get(articleIdx).unread) {
+                            articlesListModel.setProperty(articleIdx, "unread", true);
+                            unreadCountChanged = true;
+                        }
+                        break;
+                    case "markAsSaved":
+                        break;
+                    case "markAsUnsaved":
+                        entryUnsaved(articleIdx);
+                        break;
                 }
                 if (unreadCountChanged) {
                     var allFeedsIdx = -1;

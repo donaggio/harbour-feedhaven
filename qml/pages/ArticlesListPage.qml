@@ -107,6 +107,15 @@ Page {
                     wrapMode: Text.WordWrap
                     text: summary
                     color: highlighted ? (unread ? Theme.highlightColor : Theme.secondaryHighlightColor) : (unread ? Theme.primaryColor : Theme.secondaryColor)
+                    visible: !taggingProgressBar.visible
+                }
+
+                ProgressBar {
+                    id: taggingProgressBar
+
+                    anchors { top: articleTitle.bottom; left: parent.left; right: parent.right; }
+                    visible: (tagging && Qt.application.active)
+                    indeterminate: true
                 }
             }
 
@@ -245,6 +254,14 @@ Page {
 
     RemorsePopup {
         id: remorsePopup
+    }
+
+    Connections {
+        target: feedly
+
+        onEntryUnsaved: {
+            if (articlesListView.count && (index < articlesListView.count)) articlesListView.model.remove(index);
+        }
     }
 
     Component.onCompleted: {

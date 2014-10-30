@@ -222,9 +222,8 @@ Page {
                     // Reset image container size
                     articleImageContainer.contentWidth = articleImageContainer.width;
                     articleImageContainer.contentHeight = articleImageContainer.height;
-                    // Compute aspect ratio
-                    var imgRatio = (paintedWidth / sourceSize.width);
-                    if (imgRatio < 1) {
+                    // Eventually scale image to make it fully visible and enable zooming
+                    if ((sourceSize.width > width) || (sourceSize.height > height)) {
                         fillMode = Image.PreserveAspectFit;
                         articleImagePinchArea.enabled = true;
                     } else {

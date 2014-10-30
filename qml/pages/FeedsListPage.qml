@@ -108,7 +108,7 @@ Page {
             }
 
             onClicked: {
-                if ((unreadCount > 0) || id.indexOf("/tag/")) pageStack.push(Qt.resolvedUrl("ArticlesListPage.qml"), { "title": title, "streamId": id, "unreadCount": unreadCount });
+                if ((unreadCount > 0) || (id.indexOf("/tag/") > 0)) pageStack.push(Qt.resolvedUrl("ArticlesListPage.qml"), { "title": title, "streamId": id, "unreadCount": unreadCount });
             }
 
             onPressAndHold: {
