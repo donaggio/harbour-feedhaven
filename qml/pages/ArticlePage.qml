@@ -13,6 +13,7 @@ Page {
     id: page
 
     property string title: ""
+    property string articleId: ""
     property string originalContent: ""
     property string content: ""
     property string contentUrl: ""
@@ -21,28 +22,31 @@ Page {
 
     function update() {
         if (feedly.currentEntry !== null) {
-            title = feedly.currentEntry.title;
-            originalContent = feedly.currentEntry.content;
-            // Clean article content and extract image urls
-            var tmpContent = feedly.currentEntry.content;
-            galleryModel.clear();
-            if (tmpContent) {
-                var findImgUrls = new RegExp("<img[^>]+src\s*=\s*(?:\"|')(.+?)(?:\"|')", "gi");
-                var tmpMatch;
-                while ((tmpMatch = findImgUrls.exec(tmpContent)) !== null) {
-                    if(tmpMatch[1]) galleryModel.append({ "imgUrl": tmpMatch[1] });
+            if (articleId !== feedly.currentEntry.id) {
+                title = feedly.currentEntry.title;
+                articleId = feedly.currentEntry.id;
+                originalContent = feedly.currentEntry.content;
+                // Clean article content and extract image urls
+                var tmpContent = feedly.currentEntry.content;
+                galleryModel.clear();
+                if (tmpContent) {
+                    var findImgUrls = new RegExp("<img[^>]+src\s*=\s*(?:\"|')(.+?)(?:\"|')", "gi");
+                    var tmpMatch;
+                    while ((tmpMatch = findImgUrls.exec(tmpContent)) !== null) {
+                        if(tmpMatch[1]) galleryModel.append({ "imgUrl": tmpMatch[1] });
+                    }
+                    var stripImgTag = new RegExp("<img[^>]*>", "gi");
+                    var normalizeSpaces = new RegExp("\\s+", "g");
+                    tmpContent = tmpContent.replace(stripImgTag, " ").replace(normalizeSpaces, " ").trim();
                 }
-                var stripImgTag = new RegExp("<img[^>]*>", "gi");
-                var normalizeSpaces = new RegExp("\\s+", "g");
-                tmpContent = tmpContent.replace(stripImgTag, " ").replace(normalizeSpaces, " ").trim();
+                content = tmpContent;
+                contentUrl = feedly.currentEntry.contentUrl;
+                var articleInfoProp = { "title": feedly.currentEntry.title,
+                                        "author": feedly.currentEntry.author,
+                                        "updated": new Date(feedly.currentEntry.updated),
+                                        "streamTitle": feedly.currentEntry.streamTitle };
+                pageContainer.pushAttached(Qt.resolvedUrl("ArticleInfoPage.qml"), articleInfoProp);
             }
-            content = tmpContent;
-            contentUrl = feedly.currentEntry.contentUrl;
-            var articleInfoProp = { "title": feedly.currentEntry.title,
-                                    "author": feedly.currentEntry.author,
-                                    "updated": new Date(feedly.currentEntry.updated),
-                                    "streamTitle": feedly.currentEntry.streamTitle };
-            pageContainer.pushAttached(Qt.resolvedUrl("ArticleInfoPage.qml"), articleInfoProp);
         } else {
             title = "";
             originalContent = "";
