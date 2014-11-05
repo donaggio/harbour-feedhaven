@@ -7,6 +7,7 @@
 */
 
 import QtQuick 2.0
+import QtWebKit 3.0
 import Sailfish.Silica 1.0
 
 Page {
@@ -158,17 +159,49 @@ Page {
         }
 
         PullDownMenu {
-            property bool showMenu: (page.contentUrl !== "")
+            property bool showMenu: ((page.originalContent !== "") || (page.contentUrl !== ""))
 
             visible: showMenu
 
             MenuItem {
+                visible: (page.originalContent !== "")
+                text: qsTr("Switch to original layout")
+                onClicked: page.state = "originalContent";
+            }
+
+            MenuItem {
+                visible: (page.contentUrl !== "")
                 text: qsTr("Open original link")
                 onClicked: Qt.openUrlExternally(page.contentUrl);
             }
         }
 
         VerticalScrollDecorator { flickable: articleView }
+    }
+
+    SilicaWebView {
+        id: originalArticleContainer
+
+        anchors.fill: parent
+        visible: false
+
+        header: PageHeader { title: page.title }
+
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Back to default layout")
+                onClicked: page.state = ""
+            }
+        }
+
+        onNavigationRequested: {
+            if (request.navigationType !== WebView.OtherNavigation) request.action = WebView.IgnoreRequest;
+            if (request.navigationType === WebView.LinkClickedNavigation) Qt.openUrlExternally(request.url);
+        }
+
+        onVisibleChanged: {
+            if (visible) loadHtml(originalContent, contentUrl);
+        }
     }
 
     SilicaFlickable {
@@ -271,6 +304,25 @@ Page {
     }
 
     states: [
+        State {
+            name: "originalContent"
+
+            PropertyChanges {
+                target: articleView
+                visible: false
+            }
+
+            PropertyChanges {
+                target: articleImageContainer
+                visible: false
+            }
+
+            PropertyChanges {
+                target: originalArticleContainer
+                visible: true
+            }
+
+        },
         State {
             name: "oneImageOnly"
             when: ((content === "") && (galleryModel.count === 1))
