@@ -27,8 +27,11 @@ Page {
                 title = feedly.currentEntry.title;
                 articleId = feedly.currentEntry.id;
                 originalContent = feedly.currentEntry.content;
+                // Remove target attributes from <a> tags as they don't work with the WebView
+                var stripTargetAttr = new RegExp("(<a[^>]+?)target\s*=\s*(?:\"|')[^\"']*(?:\"|')", "gi");
+                originalContent = originalContent.replace(stripTargetAttr, "$1");
                 // Clean article content and extract image urls
-                var tmpContent = feedly.currentEntry.content;
+                var tmpContent = originalContent; // feedly.currentEntry.content;
                 galleryModel.clear();
                 if (tmpContent) {
                     var findImgUrls = new RegExp("<img[^>]+src\s*=\s*(?:\"|')(.+?)(?:\"|')", "gi");
@@ -50,6 +53,7 @@ Page {
             }
         } else {
             title = "";
+            articleId = "";
             originalContent = "";
             content = "";
             contentUrl = "";
