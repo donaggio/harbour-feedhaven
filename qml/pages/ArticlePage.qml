@@ -199,8 +199,9 @@ Page {
         }
 
         onNavigationRequested: {
-            if (request.navigationType !== WebView.OtherNavigation) request.action = WebView.IgnoreRequest;
-            if (request.navigationType === WebView.LinkClickedNavigation) Qt.openUrlExternally(request.url);
+            var extUrl = /^\w+:/i;
+            if (!extUrl.test(request.url) || (request.navigationType !== WebView.OtherNavigation)) request.action = WebView.IgnoreRequest;
+            if (extUrl.test(request.url) && (request.navigationType === WebView.LinkClickedNavigation)) Qt.openUrlExternally(request.url);
         }
 
         onVisibleChanged: {
