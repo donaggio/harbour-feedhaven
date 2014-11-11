@@ -68,19 +68,19 @@ QtObject {
         var retval = false;
 
         switch(retObj.status) {
-        case 200:
-            retval = true;
-            break;
-        case 401:
-            pendingRequest = new Object({ "method": retObj.callMethod, "param": retObj.callParams, "callback": callback });
-            getAccessToken();
-            break;
-        default:
-            // DEBUG
-            // console.log(JSON.stringify(retObj));
-            busy = false;
-            error("");
-            break;
+            case 200:
+                retval = true;
+                break;
+            case 401:
+                pendingRequest = new Object({ "method": retObj.callMethod, "param": retObj.callParams, "callback": callback });
+                getAccessToken();
+                break;
+            default:
+                // DEBUG
+                // console.log(JSON.stringify(retObj));
+                busy = false;
+                error("");
+                break;
         }
 
         return retval;
@@ -102,6 +102,8 @@ QtObject {
      * Reset object's properties
      */
     function resetProperties() {
+        busy = false; // Experimental
+        pendingRequest = null;
         currentEntry = null;
         continuation = "";
         totalUnread = 0;

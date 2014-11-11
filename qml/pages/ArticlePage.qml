@@ -108,10 +108,10 @@ Page {
                     clip: true
                     source: ((typeof model.imgUrl !== "undefined") ? model.imgUrl : "")
 
-                    function removeFromModel() {
+                    function removeFromModel(modelIndex) {
                         if (!_removed) {
                             _removed = true;
-                            parent.model.remove(index);
+                            parent.model.remove(modelIndex);
                         }
                     }
 
@@ -122,16 +122,16 @@ Page {
                         visible: running
                     }
 
-                    onStatusChanged: { if (status === Image.Error) removeFromModel(); }
+                    onStatusChanged: { if (status === Image.Error) removeFromModel(index); }
 
                     onPaintedWidthChanged: {
                         if (paintedWidth > width) fillMode = Image.PreserveAspectFit;
-                        if ((paintedWidth > 0) && (paintedWidth <= Theme.iconSizeSmall)) removeFromModel();
+                        if ((paintedWidth > 0) && (paintedWidth <= Theme.iconSizeSmall)) removeFromModel(index);
                     }
 
                     onPaintedHeightChanged: {
                         if (paintedHeight > height) fillMode = Image.PreserveAspectFit;
-                        if ((paintedHeight > 0) && (paintedHeight <= Theme.iconSizeSmall)) removeFromModel();
+                        if ((paintedHeight > 0) && (paintedHeight <= Theme.iconSizeSmall)) removeFromModel(index);
                     }
                 }
             }
