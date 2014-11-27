@@ -18,6 +18,7 @@ Page {
     readonly property string pageType: "articlesList"
 
     property bool _isTag: (streamId.indexOf("/tag/") > 0)
+    property bool _isCategory: (streamId.indexOf("/category/") > 0)
 
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
@@ -97,13 +98,25 @@ Page {
                 }
 
                 Label {
+                    id: articleStreamTitle
+
+                    anchors { top: articleTitle.bottom; left: parent.left; right: parent.right }
+                    font.pixelSize: Theme.fontSizeExtraSmall
+                    truncationMode: TruncationMode.Fade
+                    horizontalAlignment: Text.AlignRight
+                    text: streamTitle
+                    color: highlighted ? Theme.highlightColor : Theme.primaryColor
+                    visible: (_isTag || _isCategory)
+                }
+
+                Label {
                     id: articleSummary
 
-                    anchors { top: articleTitle.bottom; left: parent.left; right: parent.right; }
+                    anchors { top: (articleStreamTitle.visible ? articleStreamTitle.bottom : articleTitle.bottom); left: parent.left; right: parent.right; }
                     clip: true
                     font.pixelSize: Theme.fontSizeExtraSmall
                     elide: Text.ElideRight
-                    maximumLineCount: 3
+                    maximumLineCount: (articleStreamTitle.visible ? 2 : 3)
                     wrapMode: Text.WordWrap
                     text: summary
                     color: highlighted ? (unread ? Theme.highlightColor : Theme.secondaryHighlightColor) : (unread ? Theme.primaryColor : Theme.secondaryColor)
@@ -113,7 +126,7 @@ Page {
                 ProgressBar {
                     id: taggingProgressBar
 
-                    anchors { top: articleTitle.bottom; left: parent.left; right: parent.right; }
+                    anchors { top: (articleStreamTitle.visible ? articleStreamTitle.bottom : articleTitle.bottom); left: parent.left; right: parent.right; }
                     visible: (tagging && Qt.application.active)
                     indeterminate: true
                 }
