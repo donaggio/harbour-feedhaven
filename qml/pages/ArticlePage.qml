@@ -28,13 +28,13 @@ Page {
                 articleId = feedly.currentEntry.id;
                 originalContent = feedly.currentEntry.content;
                 // Remove target attributes from <a> tags as they don't work with the WebView
-                var stripTargetAttr = new RegExp("(<a[^>]+?)target\s*=\s*(?:\"|')[^\"']*(?:\"|')", "gi");
+                var stripTargetAttr = new RegExp("(<a[^>]+?)target\\s*=\\s*(?:\"|')[^\"']*(?:\"|')", "gi");
                 originalContent = originalContent.replace(stripTargetAttr, "$1");
                 // Clean article content and extract image urls
                 var tmpContent = originalContent; // feedly.currentEntry.content;
                 galleryModel.clear();
                 if (tmpContent) {
-                    var findImgUrls = new RegExp("<img[^>]+src\s*=\s*(?:\"|')(.+?)(?:\"|')", "gi");
+                    var findImgUrls = new RegExp("<img[^>]+src\\s*=\\s*(?:\"|')(.+?)(?:\"|')", "gi");
                     var tmpMatch;
                     while ((tmpMatch = findImgUrls.exec(tmpContent)) !== null) {
                         if(tmpMatch[1]) galleryModel.append({ "imgUrl": tmpMatch[1] });
@@ -330,7 +330,7 @@ Page {
         },
         State {
             name: "oneImageOnly"
-            when: ((content === "") && (galleryModel.count === 1))
+            when: (((content === "") || (content.replace(/<.+>/gi,"").trim() === "")) && (galleryModel.count === 1))
 
             PropertyChanges {
                 target: articleView

@@ -108,11 +108,11 @@ Page {
             }
 
             onClicked: {
-                if ((unreadCount > 0) || (id.indexOf("/tag/") > 0)) pageStack.push(Qt.resolvedUrl("ArticlesListPage.qml"), { "title": title, "streamId": id, "unreadCount": unreadCount });
+                if ((unreadCount > 0) || feedly.streamIsTag(id)) pageStack.push(Qt.resolvedUrl("ArticlesListPage.qml"), { "title": title, "streamId": id, "unreadCount": unreadCount });
             }
 
             onPressAndHold: {
-                if (!busy && (id.indexOf("/category/") === -1) && (id.indexOf("/tag/") === -1)) {
+                if (!busy && !feedly.streamIsCategory(id) && !feedly.streamIsTag(id)) {
                     if (!feedsListView.contextMenu) feedsListView.contextMenu = contextMenuComponent.createObject(feedsListView);
                     feedsListView.contextMenu.feedId = id;
                     feedsListView.contextMenu.feedTitle = title;

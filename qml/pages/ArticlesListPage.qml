@@ -17,9 +17,6 @@ Page {
     property int unreadCount
     readonly property string pageType: "articlesList"
 
-    property bool _isTag: (streamId.indexOf("/tag/") > 0)
-    property bool _isCategory: (streamId.indexOf("/category/") > 0)
-
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
     SilicaListView {
@@ -106,7 +103,7 @@ Page {
                     horizontalAlignment: Text.AlignRight
                     text: streamTitle
                     color: highlighted ? Theme.highlightColor : Theme.primaryColor
-                    visible: (_isTag || _isCategory)
+                    visible: (feedly.streamIsTag(page.streamId) || feedly.streamIsCategory(page.streamId))
                 }
 
                 Label {
@@ -204,14 +201,14 @@ Page {
                 }
 
                 MenuItem {
-                    visible: (!_isTag && articlesListView.count && page.unreadCount && (contextMenu.modelIndex < (articlesListView.count - 1)))
+                    visible: (!feedly.streamIsTag(page.streamId) && articlesListView.count && page.unreadCount && (contextMenu.modelIndex < (articlesListView.count - 1)))
                     text: qsTr("Mark this and below as read")
                     onClicked: remorsePopup.execute(qsTr("Marking articles as read"), function() { feedly.markFeedAsRead(streamId, contextMenu.articleId); })
                 }
 
                 MenuItem {
-                    text: (_isTag ? qsTr("Forget") : qsTr("Save for later"))
-                    onClicked: feedly.markEntry(contextMenu.articleId, (_isTag ? "markAsUnsaved" : "markAsSaved"));
+                    text: (feedly.streamIsTag(page.streamId) ? qsTr("Forget") : qsTr("Save for later"))
+                    onClicked: feedly.markEntry(contextMenu.articleId, (feedly.streamIsTag(page.streamId) ? "markAsUnsaved" : "markAsSaved"));
                 }
 
                 MenuItem {
@@ -224,7 +221,7 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                visible: (!_isTag && (articlesListView.count > 0))
+                visible: (!feedly.streamIsTag(page.streamId) && (articlesListView.count > 0))
                 text: qsTr("Mark all as read")
                 onClicked: remorsePopup.execute(qsTr("Marking all articles as read"), function() { feedly.markFeedAsRead(streamId, articlesListView.model.get(0).id); })
             }
@@ -245,7 +242,7 @@ Page {
             }
 
             MenuItem {
-                visible: !_isTag
+                visible: !feedly.streamIsTag(page.streamId)
                 text: qsTr("Mark all as read")
                 onClicked: remorsePopup.execute(qsTr("Marking all articles as read"), function() { feedly.markFeedAsRead(streamId, articlesListView.model.get(0).id); })
             }
