@@ -41,6 +41,8 @@ Dialog {
             spacing: Theme.paddingLarge
 
             Repeater {
+                id: categoriesList
+
                 model: ListModel {
                     id: categoriesListModel
                 }
@@ -69,6 +71,26 @@ Dialog {
                             if (tmpIndex >= 0) dialog._selectedCategories.splice(tmpIndex, 1);
                         }
                     }
+                }
+            }
+
+            TextField {
+                id: newCategoryLabel
+
+                width: parent.width
+                textMargin: 0
+                font.pixelSize: Theme.fontSizeSmall
+                placeholderText: qsTr("Add new category")
+                label: qsTr("Plain characters, digits and spaces only")
+                inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
+                validator: RegExpValidator { regExp: /[A-Za-z0-9 ]{3,}/ }
+                EnterKey.enabled: acceptableInput
+                EnterKey.iconSource: "image://theme/icon-m-add"
+                EnterKey.onClicked: {
+                    focus = false;
+                    text = '';
+                    categoriesListModel.append({ "id": feedly.createCategoryId(text), "label": text });
+                    categoriesList.itemAt(categoriesList.count - 1).checked = true;
                 }
             }
         }

@@ -42,6 +42,7 @@ Page {
                     var stripImgTag = new RegExp("<img[^>]*>", "gi");
                     var normalizeSpaces = new RegExp("\\s+", "g");
                     tmpContent = tmpContent.replace(stripImgTag, " ").replace(normalizeSpaces, " ").trim();
+                    if (!tmpContent.replace(/<[^>]+>/gi,"").trim()) tmpContent = "";
                 }
                 content = tmpContent;
                 contentUrl = feedly.currentEntry.contentUrl;
@@ -330,7 +331,7 @@ Page {
         },
         State {
             name: "oneImageOnly"
-            when: (((content === "") || (content.replace(/<.+>/gi,"").trim() === "")) && (galleryModel.count === 1))
+            when: ((content === "") && (galleryModel.count === 1))
 
             PropertyChanges {
                 target: articleView

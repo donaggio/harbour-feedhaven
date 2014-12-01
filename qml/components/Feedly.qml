@@ -583,6 +583,13 @@ QtObject {
     }
 
     /*
+     * Create new categoryId from its label
+     */
+    function createCategoryId(label) {
+        return "user/" + userId + "/category/" + label.toLowerCase().replace(/\s/gi, "_");
+    }
+
+    /*
      * Load status indicator item when needed
      */
     function _createStatusIndicator() {
