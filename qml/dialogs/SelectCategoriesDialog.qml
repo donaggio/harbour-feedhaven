@@ -81,9 +81,10 @@ Dialog {
                 textMargin: 0
                 font.pixelSize: Theme.fontSizeSmall
                 placeholderText: qsTr("Add new category")
-                label: qsTr("Plain characters, digits and spaces only")
-                inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
-                validator: RegExpValidator { regExp: /[A-Za-z0-9 ]{3,}/ }
+                label: acceptableInput ? qsTr("Add") : qsTr("Min. 3 plain chars or digits")
+                inputMethodHints: Qt.ImhNoPredictiveText
+                validator: RegExpValidator { regExp: /[a-z0-9]{3}[a-z0-9 ]*/i }
+                errorHighlight: ((text != "") ? !acceptableInput : false)
                 EnterKey.enabled: acceptableInput
                 EnterKey.iconSource: "image://theme/icon-m-add"
                 EnterKey.onClicked: {

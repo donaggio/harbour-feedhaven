@@ -586,7 +586,7 @@ QtObject {
      * Create new categoryId from its label
      */
     function createCategoryId(label) {
-        return "user/" + userId + "/category/" + label.toLowerCase().replace(/\s/gi, "_");
+        return "user/" + userId + "/category/" + label.trim().toLowerCase().replace(/\s/gi, "_");
     }
 
     /*

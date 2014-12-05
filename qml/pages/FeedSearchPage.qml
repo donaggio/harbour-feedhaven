@@ -39,7 +39,6 @@ Page {
             SearchField {
                 id: searchFeedString
 
-                readonly property int _minTextLength: 3
                 property int _prevTextLength: 0
 
                 width: parent.width
@@ -47,7 +46,9 @@ Page {
                 font.pixelSize: Theme.fontSizeSmall
                 placeholderText: qsTr("Search or enter feed URL")
                 inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
-                EnterKey.enabled: (text.length >= _minTextLength)
+                validator: RegExpValidator { regExp: /.{3,}/ }
+                errorHighlight: ((text != "") ? !acceptableInput : false)
+                EnterKey.enabled: acceptableInput
                 EnterKey.iconSource: "image://theme/icon-m-search"
                 EnterKey.onClicked: {
                     focus = false;
