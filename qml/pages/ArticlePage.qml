@@ -37,7 +37,7 @@ Page {
                     var findImgUrls = new RegExp("<img[^>]+src\\s*=\\s*(?:\"|')(.+?)(?:\"|')", "gi");
                     var tmpMatch;
                     while ((tmpMatch = findImgUrls.exec(tmpContent)) !== null) {
-                        if(tmpMatch[1]) galleryModel.append({ "imgUrl": tmpMatch[1] });
+                        if(tmpMatch[1]) galleryModel.append({ "imgUrl": tmpMatch[1], "removeLater": false });
                     }
                     var stripImgTag = new RegExp("<img[^>]*>", "gi");
                     var normalizeSpaces = new RegExp("\\s+", "g");
@@ -97,48 +97,78 @@ Page {
                 visible: (count > 0)
 
                 model: page.galleryModel
-                delegate: Image {
-                    id: articleVisual
+                delegate: Item {
+                    id: articleVisualWrapper
 
-                    property bool _removed: false
+                    property var _removeTimer
 
                     width: articleGalleryView.width
                     height: articleGalleryView.height
-                    fillMode: Image.Pad
-                    smooth: true
-                    clip: true
-                    source: ((typeof model.imgUrl !== "undefined") ? model.imgUrl : "")
 
-                    function removeFromModel(modelIndex) {
-                        if (!_removed) {
-                            _removed = true;
-                            parent.model.remove(modelIndex);
+                    function markForLaterRemoval() {
+                        PathView.view.model.setProperty(index, "removeLater", true);
+                        if (PathView.isCurrentItem && !_removeTimer) _removeTimer = articleVisualRemoveTimer.createObject(articleVisualWrapper);
+                    }
+
+                    Image {
+                        id: articleVisual
+
+                        anchors.fill: parent
+                        visible: !model.removeLater
+                        fillMode: Image.Pad
+                        smooth: true
+                        clip: true
+                        source: ((typeof model.imgUrl !== "undefined") ? model.imgUrl : "")
+
+                        MouseArea {
+                            anchors.fill: parent
+
+                            enabled: (parent.status === Image.Ready)
+                            onClicked: { page.state = "oneImageOnly" }
+                        }
+
+                        onStatusChanged: {
+                            switch (status) {
+                                case Image.Error:
+                                    articleVisualWrapper.markForLaterRemoval();
+                                    break;
+                                case Image.Ready:
+                                    if (((implicitWidth > 0) && (implicitWidth <= Theme.iconSizeSmall)) ||
+                                        ((implicitHeight > 0) && (implicitHeight <= Theme.iconSizeSmall))
+                                       ) articleVisualWrapper.markForLaterRemoval();
+                                    else if ((implicitWidth > width) || (implicitHeight > height)) fillMode = Image.PreserveAspectFit;
+                                    break;
+                            }
                         }
                     }
 
                     BusyIndicator {
+                        id: articleVisualWaiting
+
                         anchors.centerIn: parent
                         size: BusyIndicatorSize.Medium
-                        running: (parent.status === Image.Loading)
-                        visible: running
+                        running: ((articleVisual.status === Image.Loading) || !articleVisual.visible)
+                        visible: (running && articleVisualWrapper.PathView.onPath)
                     }
 
-                    MouseArea {
-                        anchors.fill: parent
+                    Component {
+                        id: articleVisualRemoveTimer
 
-                        onClicked: { page.state = "oneImageOnly" }
+                        Timer {
+                            interval: 1000
+                            running: true
+                            repeat: false
+
+                            onTriggered: {
+                                if ((index >= 0) && (index < articleVisualWrapper.PathView.view.count) && (typeof articleVisualWrapper.PathView.view.model.get(index) !== "undefined")) articleVisualWrapper.PathView.view.model.remove(index);
+                            }
+                        }
                     }
 
-                    onStatusChanged: { if (status === Image.Error) removeFromModel(index); }
-
-                    onPaintedWidthChanged: {
-                        if (paintedWidth > width) fillMode = Image.PreserveAspectFit;
-                        if ((paintedWidth > 0) && (paintedWidth <= Theme.iconSizeSmall)) removeFromModel(index);
-                    }
-
-                    onPaintedHeightChanged: {
-                        if (paintedHeight > height) fillMode = Image.PreserveAspectFit;
-                        if ((paintedHeight > 0) && (paintedHeight <= Theme.iconSizeSmall)) removeFromModel(index);
+                    PathView.onIsCurrentItemChanged: {
+                        if (PathView.isCurrentItem && model.removeLater) {
+                            if (!_removeTimer) _removeTimer = articleVisualRemoveTimer.createObject(articleVisualWrapper);
+                        }
                     }
                 }
             }
@@ -278,7 +308,7 @@ Page {
                 clip: true
                 smooth: true
                 fillMode: Image.PreserveAspectFit
-                source: ((galleryModel.count && (typeof galleryModel.get(articleGalleryView.currentIndex).imgUrl !== "undefined")) ? galleryModel.get(articleGalleryView.currentIndex).imgUrl : "")
+                source: ((articleImageContainer.visible && galleryModel.count && (typeof galleryModel.get(articleGalleryView.currentIndex) !== "undefined")) ? galleryModel.get(articleGalleryView.currentIndex).imgUrl : "")
 
                 function _adjustImageAspect() {
                     // Reset image container size
@@ -304,8 +334,8 @@ Page {
 
                 MouseArea {
                     anchors.fill: parent
-                    enabled: (page.content && galleryModel.count)
 
+                    enabled: (page.content && galleryModel.count)
                     onClicked: { page.state = "" }
                 }
 
@@ -390,9 +420,8 @@ Page {
 
     transitions: [
         Transition {
-            PropertyAnimation {
+            FadeAnimation {
                 targets: [articleView, originalArticleContainer, articleImageContainer]
-                property: "opacity"
             }
         }
     ]
