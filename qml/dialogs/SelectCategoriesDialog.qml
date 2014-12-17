@@ -88,10 +88,10 @@ Dialog {
                 EnterKey.enabled: acceptableInput
                 EnterKey.iconSource: "image://theme/icon-m-add"
                 EnterKey.onClicked: {
-                    focus = false;
-                    text = '';
                     categoriesListModel.append({ "id": feedly.createCategoryId(text), "label": text });
                     categoriesList.itemAt(categoriesList.count - 1).checked = true;
+                    text = '';
+                    focus = false;
                 }
             }
         }
