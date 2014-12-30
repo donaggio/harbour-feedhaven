@@ -34,6 +34,7 @@ QtObject {
     signal searchFeedCompleted(var results)
     signal getCategoriesCompleted(var categories)
     signal entryUnsaved(int index)
+    signal markersCountRefreshed()
 
     /*
      * Return URL to sign in into Feedly
@@ -290,6 +291,7 @@ QtObject {
                 }
             }
             busy = false;
+            markersCountRefreshed();
         }
         // DEBUG
         // console.log(JSON.stringify(retObj));

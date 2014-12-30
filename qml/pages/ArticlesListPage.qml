@@ -269,6 +269,15 @@ Page {
     Connections {
         target: feedly
 
+        onMarkersCountRefreshed: {
+            for (var j = 0; j < feedly.feedsListModel.count; j++) {
+                if (feedly.feedsListModel.get(j).id === page.streamId) {
+                    page.unreadCount = feedly.feedsListModel.get(j).unreadCount;
+                    break;
+                }
+            }
+        }
+
         onEntryUnsaved: {
             if (articlesListView.count && (index < articlesListView.count)) articlesListView.model.remove(index);
         }
