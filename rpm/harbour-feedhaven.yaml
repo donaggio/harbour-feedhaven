@@ -1,9 +1,9 @@
 Name: harbour-feedhaven
 Summary: Feedly unofficial client
-Version: 1.0.11
+Version: 1.0.12
 Release: 1
 Group: Qt/Qt
-URL: https://code.google.com/p/harbour-feedhaven/
+URL: https://github.com/donaggio/harbour-feedhaven
 License: MIT
 Sources:
 - '%{name}-%{version}.tar.bz2'

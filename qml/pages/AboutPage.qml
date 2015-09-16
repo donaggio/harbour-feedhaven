@@ -53,8 +53,8 @@ Page {
                 text: qsTr("<p><i>Feed Haven</i> is a native client for Feedly.com on-line news reader service.</p>
     <p>You can search for and subscribe to new feeds, manage your feeds and access their content: as soon as you'll read an article, it will be marked as read on Feedly.com as well.</p>
     <p>Image thumbnails in article list are displayed in landscape mode only.</p>
-    <p>This is an open source project released under the MIT license, source code is available <a href=\"https://code.google.com/p/harbour-feedhaven/source/\">here</a>.</p>
-    <p>Issues or feature requests can be reported <a href=\"https://code.google.com/p/harbour-feedhaven/issues/\">here</a>.</p>
+    <p>This is an open source project released under the MIT license, source code is available <a href=\"https://github.com/donaggio/harbour-feedhaven\">here</a>.</p>
+    <p>Issues or feature requests can be reported <a href=\"https://github.com/donaggio/harbour-feedhaven/issues\">here</a>.</p>
     <p>Launcher icon artwork courtesy by Nikita Balobanov.</p>")
 
                 onLinkActivated: Qt.openUrlExternally(link)
