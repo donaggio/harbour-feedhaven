@@ -1,0 +1,62 @@
+/*
+  Copyright (C) 2015 Luca Donaggio
+  Contact: Luca Donaggio <donaggio@gmail.com>
+  All rights reserved.
+
+  You may use this file under the terms of MIT license
+*/
+
+import QtQuick 2.0
+import Sailfish.Silica 1.0
+
+Page {
+    id: page
+
+    property string title: ""
+    property string contentUrl: ""
+    readonly property string pageType: "shareArticle"
+
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
+
+    SilicaFlickable {
+        id: shareOptionsView
+
+        anchors.fill: parent
+        contentHeight: header.height + optionsContainer.height
+
+        PageHeader {
+            id: header
+
+            title: qsTr("Share Article")
+        }
+
+        Column {
+            id: optionsContainer
+
+            anchors.top: header.bottom
+            width: page.width
+            spacing: Theme.paddingMedium
+
+            BackgroundItem {
+                width: parent.width
+                onClicked: {
+                    var mailUrl = "mailto:?subject=" + page.title + "&body=" + page.contentUrl + "\n\n\nShared through Feed Haven for SailfishOS";
+                    Qt.openUrlExternally(mailUrl);
+                    pageStack.navigateBack();
+                }
+
+                Label {
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        left: parent.left
+                        leftMargin: Theme.paddingLarge
+                        right: parent.right
+                        rightMargin: Theme.paddingLarge
+                    }
+                    text: qsTr("Email")
+                    color: parent.highlighted ? Theme.highlightColor : Theme.primaryColor
+                }
+            }
+        }
+    }
+}

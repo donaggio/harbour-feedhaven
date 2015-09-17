@@ -222,6 +222,11 @@ Page {
                 text: qsTr("Open original link")
                 onClicked: Qt.openUrlExternally(page.contentUrl);
             }
+
+            MenuItem {
+                text: qsTr("Share")
+                onClicked: pageStack.push(Qt.resolvedUrl("ShareArticlePage.qml"), { "title": page.title, "contentUrl": page.contentUrl });
+            }
         }
 
         VerticalScrollDecorator { flickable: articleView }
@@ -335,7 +340,7 @@ Page {
                 MouseArea {
                     anchors.fill: parent
 
-                    enabled: (page.content && galleryModel.count)
+                    enabled: (page.content || (galleryModel.count > 1))
                     onClicked: { page.state = "" }
                 }
 

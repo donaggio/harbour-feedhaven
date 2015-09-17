@@ -58,7 +58,7 @@ function call(method, param, callback, accessToken) {
         } else url += ("/" + encodeURIComponent(param));
     }
 
-    // Timeout is not implemented yet in this version of the XMLHttplRequest object
+    // Timeout is not implemented yet in this version of the XMLHttpRequest object
     xhr.timeout = 10000;
     xhr.ontimeout = function() {
         console.log("API call timeout");
