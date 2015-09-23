@@ -340,7 +340,6 @@ Page {
                 MouseArea {
                     anchors.fill: parent
 
-                    enabled: (page.content || (galleryModel.count > 1))
                     onClicked: { page.state = "" }
                 }
 
