@@ -14,6 +14,7 @@ Page {
 
     property string title: ""
     property string contentUrl: ""
+    readonly property string bodySig: qsTr("Shared via Feed Haven for SailfishOS")
     readonly property string pageType: "shareArticle"
 
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
@@ -40,8 +41,7 @@ Page {
             BackgroundItem {
                 width: parent.width
                 onClicked: {
-                    var mailUrl = "mailto:?subject=" + page.title + "&body=" + page.contentUrl + "\n\n\nShared through Feed Haven for SailfishOS";
-                    Qt.openUrlExternally(mailUrl);
+                    sharing.email(page.title, page.contentUrl + "\n\n\n" + page.bodySig);
                     pageStack.navigateBack();
                 }
 

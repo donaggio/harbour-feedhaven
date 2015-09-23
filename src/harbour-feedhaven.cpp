@@ -27,8 +27,10 @@
 #include <QGuiApplication>
 #include <QQuickView>
 #include <QQmlContext>
+
 #include <sailfishapp.h>
 
+#include "sharing.h"
 
 int main(int argc, char *argv[])
 {
@@ -45,6 +47,7 @@ int main(int argc, char *argv[])
 
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view(SailfishApp::createView());
+    Sharing sharingInst;
 
 //    app->setOrganizationName("Cthulhu Scrolls");
 //    app->setOrganizationDomain("cthulhuscrolls.com");
@@ -53,6 +56,7 @@ int main(int argc, char *argv[])
 
     view->rootContext()->setContextProperty(QString("feedlyClientId"), QVariant(FEEDLY_CLIENT_ID));
     view->rootContext()->setContextProperty(QString("feedlyClientSecret"), QVariant(FEEDLY_CLIENT_SECRET));
+    view->rootContext()->setContextProperty("sharing", &sharingInst);
     view->setSource(SailfishApp::pathTo(QString("qml/harbour-feedhaven.qml")));
     view->show();
     return app->exec();

@@ -12,7 +12,13 @@ TARGET = harbour-feedhaven
 
 CONFIG += sailfishapp
 
-SOURCES += src/harbour-feedhaven.cpp
+QT += dbus
+
+SOURCES += src/harbour-feedhaven.cpp \
+    src/sharing.cpp
+
+HEADERS += \
+    src/sharing.h
 
 OTHER_FILES += qml/harbour-feedhaven.qml \
     rpm/harbour-feedhaven.spec \
