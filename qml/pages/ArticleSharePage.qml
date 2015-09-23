@@ -15,7 +15,7 @@ Page {
     property string title: ""
     property string contentUrl: ""
     readonly property string bodySig: qsTr("Shared via Feed Haven for SailfishOS")
-    readonly property string pageType: "shareArticle"
+    readonly property string pageType: "articleShare"
 
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
 

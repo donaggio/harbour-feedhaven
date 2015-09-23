@@ -360,7 +360,7 @@ CoverBackground {
 
         State {
             name: "articleContent"
-            when: ((pageStack.currentPage.pageType === "articleContent") || (pageStack.currentPage.pageType === "articleInfo"))
+            when: ((pageStack.currentPage.pageType === "articleContent") || (pageStack.currentPage.pageType === "articleInfo") || (pageStack.currentPage.pageType === "articleShare"))
 
             PropertyChanges {
                 target: allFeedsInfoContainer
