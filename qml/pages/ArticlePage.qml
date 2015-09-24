@@ -225,7 +225,7 @@ Page {
 
             MenuItem {
                 text: qsTr("Share")
-                onClicked: pageStack.push(Qt.resolvedUrl("ShareArticlePage.qml"), { "title": page.title, "contentUrl": page.contentUrl });
+                onClicked: pageStack.push(Qt.resolvedUrl("ArticleSharePage.qml"), { "title": page.title, "contentUrl": page.contentUrl });
             }
         }
 
