@@ -44,7 +44,7 @@ Page {
             Item {
                 id: articleText
 
-                anchors { top: parent.top; left: parent.left; right: articleVisual.left; leftMargin: Theme.paddingLarge; rightMargin: (articleVisual.width ? Theme.paddingSmall : 0) }
+                anchors { top: parent.top; left: parent.left; right: parent.right; leftMargin: Theme.paddingLarge; rightMargin: (articleVisual.visible ? Theme.paddingSmall : 0) }
 
                 GlassItem {
                     id: unreadIndicator
@@ -133,7 +133,7 @@ Page {
                 id: articleVisual
 
                 anchors { top: parent.top; right: parent.right; rightMargin: Theme.paddingLarge }
-                width: 0
+                width: height
                 height: parent.height
                 sourceSize.width: parent.height * 2
                 sourceSize.height: parent.height * 2
@@ -141,21 +141,12 @@ Page {
                 smooth: true
                 clip: true
                 source: imgUrl
+                visible: false
+                opacity: 0
 
-                Behavior on width {
-                    NumberAnimation { duration: 500 }
+                onStatusChanged: {
+                    if ((status === Image.Ready) && page.isLandscape) articleItem.state = "showArticleVisual"
                 }
-
-                Connections {
-                    target: page
-
-                    onIsLandscapeChanged: {
-                        if (page.isLandscape && (articleVisual.status === Image.Ready)) articleVisual.width = height;
-                        else articleVisual.width = 0;
-                    }
-                }
-
-                onStatusChanged: { if (page.isLandscape && (status === Image.Ready)) width = height; }
             }
 
             onClicked: {
@@ -175,6 +166,36 @@ Page {
                 articlesListView.contextMenu.articleUrl = contentUrl;
                 articlesListView.contextMenu.show(articleItem)
             }
+
+            states: [
+                State {
+                    name: "showArticleVisual"
+                    when: (articleVisual.status === Image.Ready) && page.isLandscape
+
+                    AnchorChanges {
+                        target: articleText
+
+                        anchors.right: articleVisual.left
+                    }
+
+                    PropertyChanges {
+                        target: articleVisual
+
+                        visible: true
+                        opacity: 1
+                    }
+                }
+
+            ]
+
+            transitions: [
+                Transition {
+                    AnchorAnimation {}
+
+                    FadeAnimation {}
+                }
+
+            ]
         }
 
         section.property: "sectionLabel"
