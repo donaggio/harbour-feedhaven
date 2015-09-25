@@ -84,6 +84,11 @@ Page {
             width: parent.width
             clip: true
             spacing: Theme.paddingSmall
+            move: Transition {
+                NumberAnimation {
+                    properties: "x,y"
+                }
+            }
 
             SlideshowView {
                 id: articleGalleryView
@@ -124,7 +129,7 @@ Page {
                             anchors.fill: parent
 
                             enabled: (parent.status === Image.Ready)
-                            onClicked: { page.state = "oneImageOnly" }
+                            onClicked: { page.state = "zoomedImage" }
                         }
 
                         onStatusChanged: {
@@ -203,7 +208,7 @@ Page {
                         text = _linkStyle + page.content;
                     }
                 }
-            }
+            }            
         }
 
         PullDownMenu {
@@ -225,7 +230,7 @@ Page {
 
             MenuItem {
                 text: qsTr("Share")
-                onClicked: pageStack.push(Qt.resolvedUrl("ArticleSharePage.qml"), { "title": page.title, "contentUrl": page.contentUrl });
+                onClicked: pageStack.push(Qt.resolvedUrl("ArticleSharePage.qml"), { "title": (page.title ? page.title : qsTr("Untitled Article")), "contentUrl": page.contentUrl });
             }
         }
 
@@ -392,7 +397,7 @@ Page {
             }
         },
         State {
-            name: "oneImageOnly"
+            name: "zoomedImage"
             when: ((content === "") && (galleryModel.count === 1))
 
             PropertyChanges {
