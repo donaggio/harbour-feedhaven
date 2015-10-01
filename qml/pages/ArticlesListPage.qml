@@ -44,7 +44,7 @@ Page {
             Item {
                 id: articleText
 
-                anchors { top: parent.top; left: parent.left; right: parent.right; leftMargin: Theme.paddingLarge; rightMargin: (articleVisual.visible ? Theme.paddingSmall : 0) }
+                anchors { top: parent.top; left: parent.left; leftMargin: Theme.paddingLarge; right: parent.right; rightMargin: Theme.paddingLarge }
 
                 GlassItem {
                     id: unreadIndicator
@@ -176,6 +176,12 @@ Page {
                         target: articleText
 
                         anchors.right: articleVisual.left
+                    }
+
+                    PropertyChanges {
+                        target: articleText
+
+                        anchors.rightMargin: Theme.paddingSmall
                     }
 
                     PropertyChanges {
