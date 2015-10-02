@@ -149,6 +149,10 @@ Page {
                 }
             }
 
+            ListView.onAdd: AddAnimation { target: articleItem }
+
+            ListView.onRemove: RemoveAnimation { target: articleItem }
+
             onClicked: {
                 if (unread) {
                     feedly.markEntry(id, "markAsRead");

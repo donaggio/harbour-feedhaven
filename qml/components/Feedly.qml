@@ -205,10 +205,11 @@ QtObject {
                     uniqueFeeds++;
                     var tmpObj = retObj.response[i];
                     var j = 0;
+                    if (!tmpObj.categories.length) tmpObj.categories = [ { "id": "user/" + userId + "/category/global.uncategorized", "label": qsTr("Uncategorized")} ];
                     do {
                         tmpSubscriptions.push({ "id": tmpObj.id,
                                                 "title": tmpObj.title,
-                                                "category": (tmpObj.categories.length ? tmpObj.categories[j].label.trim() : qsTr("Uncategorized")),
+                                                "category": tmpObj.categories[j].label.trim(),
                                                 "categories": tmpObj.categories,
                                                 "imgUrl": ((typeof tmpObj.visualUrl !== "undefined") ? tmpObj.visualUrl : ""),
                                                 "lang": ((typeof tmpObj.language !== "undefined") ? tmpObj.language : ""),
@@ -224,7 +225,7 @@ QtObject {
                     return 0;
                 });
                 if (tmpSubscriptions.length) {
-                    // Add "All feeds" fake subscription
+                    // Add "Saved for later" and "All feeds" fake subscription
                     if (userId) {
                         feedsListModel.append({ "id": "user/" + userId + "/tag/global.saved",
                                                 "title": qsTr("Saved for later"),
@@ -244,8 +245,33 @@ QtObject {
                                                 "busy": false });
                     }
                     // Populate ListModel
+                    var currentCat = "";
+                    var currentCatId = "";
                     for (i = 0; i < tmpSubscriptions.length; i++) {
-                        feedsListModel.append(tmpSubscriptions[i]);
+                        tmpObj = tmpSubscriptions[i];
+                        if ((tmpObj.category !== currentCat) && (tmpObj.categories.length)) {
+                            currentCat = tmpObj.category;
+                            // Find current category ID
+                            currentCatId = "";
+                            for (j = 0; j < tmpObj.categories.length; j++) {
+                                if (tmpObj.categories[j].label.trim() === currentCat) {
+                                    currentCatId = tmpObj.categories[j].id
+                                    break;
+                                }
+                            }
+                            // Add catecory subscription
+                            if (currentCatId) {
+                                feedsListModel.append({ "id": currentCatId,
+                                                        "title": currentCat,
+                                                        "category": currentCat,
+                                                        "categories": [],
+                                                        "imgUrl": "",
+                                                        "lang": "",
+                                                        "unreadCount": 0,
+                                                        "busy": false });
+                            }
+                        }
+                        feedsListModel.append(tmpObj);
                     }
                 }
             }
@@ -312,6 +338,13 @@ QtObject {
         if (checkResponse(retObj, streamContentDoneCB)) {
             var stripHtmlTags = new RegExp("<[^>]*>", "gi");
             var normalizeSpaces = new RegExp("\\s+", "g");
+            var htmlEntitiesMap = [
+                        [ "&quot;", "\"" ],
+                        [ "&apos;", "'" ],
+                        [ "&amp;", "&" ],
+                        [ "&gt;", ">" ],
+                        [ "&lt;", "<"]
+                    ];
             if (!retObj.callParams.continuation) articlesListModel.clear();
             continuation = ((typeof retObj.response.continuation != "undefined") ? retObj.response.continuation : "");
             if (Array.isArray(retObj.response.items)) {
@@ -323,7 +356,11 @@ QtObject {
                     var tmpUpdDate = new Date(tmpUpd.getFullYear(), tmpUpd.getMonth(), tmpUpd.getDate());
                     // Create article summary
                     var tmpSummary = ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ""));
-                    if (tmpSummary) tmpSummary = tmpSummary.replace(stripHtmlTags, " ").replace(normalizeSpaces, " ").trim().substr(0, 320);
+                    if (tmpSummary) {
+                        tmpSummary = tmpSummary.replace(stripHtmlTags, " ")
+                        for (var j = 0; j < htmlEntitiesMap.length; j++) tmpSummary = tmpSummary.replace(new RegExp(htmlEntitiesMap[j][0], "g"), htmlEntitiesMap[j][1]);
+                        tmpSummary = tmpSummary.replace(normalizeSpaces, " ").trim().substr(0, 320);
+                    }
                     articlesListModel.append({ "id": tmpObj.id,
                                                "title": ((typeof tmpObj.title !== "undefined") ? tmpObj.title : qsTr("No title")),
                                                "author": ((typeof tmpObj.author !== "undefined") ? tmpObj.author : qsTr("Unknown")),
@@ -354,7 +391,7 @@ QtObject {
     function markFeedAsRead(feedId, lastEntryId) {
         if (feedId) {
             var param = { "action": "markAsRead" };
-            if (feedId.indexOf("/category/global.all") >= 0) {
+            if (feedId.indexOf("/category/") >= 0) {
                 // "All feeds" actually is a category
                 param.type = "categories";
                 param.categoryIds = [feedId];
@@ -460,19 +497,34 @@ QtObject {
                         break;
                 }
                 if (unreadCountChanged) {
-                    var allFeedsIdx = -1;
+                    var categories = [];
+                    var tmpUnreadCount = 0;
+                    if ((retObj.callParams.action === "markAsRead") && (totalUnread > 0)) totalUnread--;
+                    else if (retObj.callParams.action === "keepUnread") totalUnread++;
                     for (var j = 0; j < feedsListModel.count; j++) {
-                        if (feedsListModel.get(j).id.indexOf("/category/global.all") >= 0) allFeedsIdx = j;
+                        if (feedsListModel.get(j).id.indexOf("/category/global.all") >= 0) feedsListModel.setProperty(j, "unreadCount", totalUnread);
                         if (feedsListModel.get(j).id === streamId) {
-                            var tmpUnreadCount = feedsListModel.get(j).unreadCount;
+                            tmpUnreadCount = feedsListModel.get(j).unreadCount;
                             if ((retObj.callParams.action === "markAsRead") && (tmpUnreadCount > 0)) tmpUnreadCount--;
                             else if (retObj.callParams.action === "keepUnread") tmpUnreadCount++;
                             feedsListModel.setProperty(j, "unreadCount", tmpUnreadCount);
+                            if (!categories.length && feedsListModel.get(j).categories.count) {
+                                for (var k = 0; k < feedsListModel.get(j).categories.count; k++) {
+                                    categories.push(feedsListModel.get(j).categories.get(k).id);
+                                }
+                            }
                         }
                     }
-                    if ((retObj.callParams.action === "markAsRead") && (totalUnread > 0)) totalUnread--;
-                    else if (retObj.callParams.action === "keepUnread") totalUnread++;
-                    if (allFeedsIdx >= 0) feedsListModel.setProperty(allFeedsIdx, "unreadCount", totalUnread);
+                    if (categories.length) {
+                        for (j = 0; j < feedsListModel.count; j++) {
+                            if (categories.indexOf(feedsListModel.get(j).id) >= 0) {
+                                tmpUnreadCount = feedsListModel.get(j).unreadCount;
+                                if ((retObj.callParams.action === "markAsRead") && (tmpUnreadCount > 0)) tmpUnreadCount--;
+                                else if (retObj.callParams.action === "keepUnread") tmpUnreadCount++;
+                                feedsListModel.setProperty(j, "unreadCount", tmpUnreadCount);
+                            }
+                        }
+                    }
                 }
             }
         }

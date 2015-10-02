@@ -47,7 +47,7 @@ Page {
 
                 anchors { top: parent.top; left: parent.left; leftMargin: Theme.paddingLarge; right: parent.right; rightMargin: Theme.paddingLarge }
                 height: Theme.itemSizeSmall
-                visible: !busy
+                visible: (!feedly.streamIsCategory(id) || (id.indexOf("/global.all") >= 0)) && !busy
 
                 Image {
                     id: feedVisual
@@ -64,8 +64,12 @@ Page {
                     smooth: true
                     clip: true
                     source: (imgUrl ? imgUrl : _defaultSource)
+                    opacity: 0
+
+                    Behavior on opacity { FadeAnimator {} }
 
                     onStatusChanged: {
+                        if (status === Image.Ready) opacity = 1;
                         if (status === Image.Error) source = _defaultSource;
                     }
                 }
@@ -93,6 +97,54 @@ Page {
                 }
             }
 
+            Item {
+                id: categoryDataContainer
+
+                anchors { top: parent.top; left: parent.left; leftMargin: Theme.paddingLarge; right: parent.right; rightMargin: Theme.paddingLarge }
+                height: Theme.itemSizeSmall
+                visible: feedly.streamIsCategory(id) && (id.indexOf("/global.all") === -1) && !busy
+
+                Label {
+                    anchors {
+                        left: parent.left
+                        right: categoryActionVisual.left
+                        rightMargin: Theme.paddingMedium
+                        verticalCenter: parent.verticalCenter
+                    }
+                    truncationMode: TruncationMode.Fade
+                    horizontalAlignment: Text.AlignRight
+                    text: title
+                    color: highlighted ? Theme.highlightColor : Theme.primaryColor
+                }
+
+                Image {
+                    id: categoryActionVisual
+
+                    anchors {
+                        right: parent.right
+                        verticalCenter: parent.verticalCenter
+                    }
+                    width: Theme.iconSizeMedium
+                    height: width
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                    clip: true
+                    source: "image://theme/icon-m-right?" + (highlighted ? Theme.highlightColor : Theme.primaryColor)
+                }
+            }
+
+            Rectangle {
+                id: gradient
+
+                anchors.fill: parent
+                z: -1
+                visible: categoryDataContainer.visible
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: Theme.rgba(Theme.highlightBackgroundColor, 0.3) }
+                    GradientStop { position: 1.0; color: "transparent" }
+                }
+            }
+
             RemorseItem {
                 id: remorseItem
 
@@ -106,6 +158,10 @@ Page {
                 size: BusyIndicatorSize.Medium
                 running: (visible && Qt.application.active)
             }
+
+            ListView.onAdd: AddAnimation { target: feedItem }
+
+            ListView.onRemove: RemoveAnimation { target: feedItem }
 
             onClicked: {
                 if ((unreadCount > 0) || feedly.streamIsTag(id)) pageStack.push(Qt.resolvedUrl("ArticlesListPage.qml"), { "title": title, "streamId": id, "unreadCount": unreadCount });
@@ -128,8 +184,8 @@ Page {
             }
         }
 
-        section.property: "category"
-        section.delegate: SectionHeader { text: section }
+//        section.property: "category"
+//        section.delegate: SectionHeader { text: section }
 
         Component {
             id: contextMenuComponent
