@@ -52,7 +52,7 @@ Page {
                 Image {
                     id: feedVisual
 
-                    readonly property string _defaultSource: "../../icons/icon-s-rss.png"
+                    readonly property string _defaultSource: ((feedly.streamIsCategory(id) || feedly.streamIsTag(id)) ? "../../icons/icon-s-feedly.png" : "../../icons/icon-s-rss.png")
 
                     anchors {
                         left: parent.left
