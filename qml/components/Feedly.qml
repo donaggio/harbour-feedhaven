@@ -210,6 +210,7 @@ QtObject {
                         tmpSubscriptions.push({ "id": tmpObj.id,
                                                 "title": tmpObj.title,
                                                 "category": tmpObj.categories[j].label.trim(),
+                                                "categoryId": tmpObj.categories[j].id,
                                                 "categories": tmpObj.categories,
                                                 "imgUrl": ((typeof tmpObj.visualUrl !== "undefined") ? tmpObj.visualUrl : ""),
                                                 "lang": ((typeof tmpObj.language !== "undefined") ? tmpObj.language : ""),
@@ -230,6 +231,7 @@ QtObject {
                         feedsListModel.append({ "id": "user/" + userId + "/tag/global.saved",
                                                 "title": qsTr("Saved for later"),
                                                 "category": "",
+                                                "categoryId": "",
                                                 "categories": [],
                                                 "imgUrl": "",
                                                 "lang": "",
@@ -238,6 +240,7 @@ QtObject {
                         feedsListModel.append({ "id": "user/" + userId + "/category/global.all",
                                                 "title": qsTr("All feeds"),
                                                 "category": "",
+                                                "categoryId": "user/" + userId + "/category/global.all",
                                                 "categories": [],
                                                 "imgUrl": "",
                                                 "lang": "",
@@ -245,31 +248,21 @@ QtObject {
                                                 "busy": false });
                     }
                     // Populate ListModel
-                    var currentCat = "";
                     var currentCatId = "";
                     for (i = 0; i < tmpSubscriptions.length; i++) {
                         tmpObj = tmpSubscriptions[i];
-                        if ((tmpObj.category !== currentCat) && (tmpObj.categories.length)) {
-                            currentCat = tmpObj.category;
-                            // Find current category ID
-                            currentCatId = "";
-                            for (j = 0; j < tmpObj.categories.length; j++) {
-                                if (tmpObj.categories[j].label.trim() === currentCat) {
-                                    currentCatId = tmpObj.categories[j].id
-                                    break;
-                                }
-                            }
-                            // Add catecory subscription
-                            if (currentCatId) {
-                                feedsListModel.append({ "id": currentCatId,
-                                                        "title": currentCat,
-                                                        "category": currentCat,
-                                                        "categories": [],
-                                                        "imgUrl": "",
-                                                        "lang": "",
-                                                        "unreadCount": 0,
-                                                        "busy": false });
-                            }
+                        // Add category fake subscription
+                        if (tmpObj.categoryId && (tmpObj.categoryId !== currentCatId)) {
+                            currentCatId = tmpObj.categoryId;
+                            feedsListModel.append({ "id": currentCatId,
+                                                    "title": tmpObj.category,
+                                                    "category": tmpObj.category,
+                                                    "categoryId": currentCatId,
+                                                    "categories": [],
+                                                    "imgUrl": "",
+                                                    "lang": "",
+                                                    "unreadCount": 0,
+                                                    "busy": false });
                         }
                         feedsListModel.append(tmpObj);
                     }
@@ -572,7 +565,7 @@ QtObject {
             if (title) param.title = title;
             if (Array.isArray(categories) && categories.length) param.categories = categories
             FeedlyAPI.call("updateSubscription", param, updateSubscriptionDoneCB, accessToken);
-        } else error(qsTr("No subscriptionId found."))
+        } else error(qsTr("No subscriptionId found."));
     }
 
     function updateSubscriptionDoneCB(retObj) {
@@ -594,7 +587,7 @@ QtObject {
                 if (feedsListModel.get(j).id === subscriptionId) feedsListModel.setProperty(j, "busy", true);
             }
             FeedlyAPI.call("unsubscribe", subscriptionId, unsubscribeDoneCB, accessToken);
-        } else error(qsTr("No subscriptionId found."))
+        } else error(qsTr("No subscriptionId found."));
     }
 
     function unsubscribeDoneCB(retObj) {
@@ -641,6 +634,23 @@ QtObject {
      */
     function createCategoryId(label) {
         return "user/" + userId + "/category/" + label.trim().toLowerCase().replace(/\s/gi, "_");
+    }
+
+    /*
+     * Delete a category
+     */
+    function deleteCategory(categoryId) {
+        if (categoryId) {
+            busy = true;
+            FeedlyAPI.call("deleteCategory", categoryId, deleteCategoryDoneCB, accessToken);
+        } else error(qsTr("No categoryId found."));
+    }
+
+    function deleteCategoryDoneCB(retObj) {
+        if (checkResponse(retObj, deleteCategoryDoneCB)) {
+            busy = false;
+            getSubscriptions();
+        }
     }
 
     /*

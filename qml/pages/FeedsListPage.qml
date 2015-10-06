@@ -38,8 +38,8 @@ Page {
             contentHeight: menuOpen ? feedsListView.contextMenu.height + Theme.itemSizeSmall : Theme.itemSizeSmall
             enabled: !busy
 
-            function unsubscribe() {
-                remorseItem.execute(feedItem, qsTr("Unsubscribing"));
+            function deleteOrUnsubscribe() {
+                remorseItem.execute(feedItem, feedly.streamIsCategory(id) ? qsTr("Deleting") : qsTr("Unsubscribing"));
             }
 
             Item {
@@ -130,6 +130,7 @@ Page {
                     smooth: true
                     clip: true
                     source: "image://theme/icon-m-right?" + (highlighted ? Theme.highlightColor : Theme.primaryColor)
+                    visible: (unreadCount > 0)
                 }
             }
 
@@ -148,7 +149,10 @@ Page {
             RemorseItem {
                 id: remorseItem
 
-                onTriggered: { feedly.unsubscribe(id); }
+                onTriggered: {
+                    if (feedly.streamIsCategory(id)) feedly.deleteCategory(id);
+                    else feedly.unsubscribe(id);
+                }
             }
 
             BusyIndicator {
@@ -168,7 +172,7 @@ Page {
             }
 
             onPressAndHold: {
-                if (!busy && !feedly.streamIsCategory(id) && !feedly.streamIsTag(id)) {
+                if (!busy && (!feedly.streamIsCategory(id) || (id.indexOf("/global.") === -1)) && !feedly.streamIsTag(id)) {
                     if (!feedsListView.contextMenu) feedsListView.contextMenu = contextMenuComponent.createObject(feedsListView);
                     feedsListView.contextMenu.feedId = id;
                     feedsListView.contextMenu.feedTitle = title;
@@ -183,9 +187,6 @@ Page {
                 }
             }
         }
-
-//        section.property: "category"
-//        section.delegate: SectionHeader { text: section }
 
         Component {
             id: contextMenuComponent
@@ -202,12 +203,13 @@ Page {
 
                 MenuItem {
                     text: qsTr("Manage feed")
+                    visible: !feedly.streamIsCategory(feedId)
                     onClicked: pageStack.push(Qt.resolvedUrl("../dialogs/UpdateFeedDialog.qml"), { "feedId": feedId, "title": feedTitle, "imgUrl": feedImgUrl, "lang": feedLang, "categories": feedCategories })
                 }
 
                 MenuItem {
-                    text: qsTr("Unsubscribe")
-                    onClicked: visualParent.unsubscribe();
+                    text: feedly.streamIsCategory(feedId) ? qsTr("Delete category") : qsTr("Unsubscribe")
+                    onClicked: visualParent.deleteOrUnsubscribe();
                 }
             }
         }

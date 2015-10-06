@@ -17,8 +17,6 @@ Dialog {
 
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
-    anchors.fill: parent
-
     SilicaFlickable {
         id: categoriesView
 

@@ -31,33 +31,65 @@ Page {
         Column {
             id: aboutContainer
 
-            anchors.top: header.bottom
-            width: (parent.width - (2 * Theme.paddingLarge))
-            x: Theme.paddingLarge
-            spacing: Theme.paddingLarge
+            anchors { top: header.bottom; left: parent.left; leftMargin: Theme.paddingLarge; right: parent.right; rightMargin: Theme.paddingLarge }
+            spacing: Theme.paddingSmall
 
             Label {
                 width: parent.width
                 horizontalAlignment: Text.AlignRight
                 font.pixelSize: Theme.fontSizeSmall
-                font.italic: true
+                color: Theme.secondaryHighlightColor
                 wrapMode: Text.WordWrap
-                text: qsTr("Version %1\n(C) 2014 by Luca Donaggio").arg(Qt.application.version)
+                textFormat: Text.RichText
+                text: qsTr("Version %1<br/>&copy; 2015 by Luca Donaggio").arg(Qt.application.version)
             }
 
             Label {
                 width: parent.width
                 wrapMode: Text.WordWrap
                 textFormat: Text.StyledText
-                linkColor: Theme.highlightColor
                 text: qsTr("<p><i>Feed Haven</i> is a native client for Feedly.com on-line news reader service.</p>
-    <p>You can search for and subscribe to new feeds, manage your feeds and access their content: as soon as you'll read an article, it will be marked as read on Feedly.com as well.</p>
-    <p>Image thumbnails in article list are displayed in landscape mode only.</p>
-    <p>This is an open source project released under the MIT license, source code is available <a href=\"https://github.com/donaggio/harbour-feedhaven\">here</a>.</p>
-    <p>Issues or feature requests can be reported <a href=\"https://github.com/donaggio/harbour-feedhaven/issues\">here</a>.</p>
-    <p>Launcher icon artwork courtesy by Nikita Balobanov.</p>")
+    <p>You can search for and subscribe to new feeds, manage your feeds and access their content, save articles for later reference, add or remove custom categories and read articles by category.<br />
+    As soon as you'll read an article, it will be marked as read on Feedly.com as well.</p>
+    <p>Image thumbnails in article list are displayed in landscape mode only.</p>")
+            }
 
-                onLinkActivated: Qt.openUrlExternally(link)
+            SectionHeader {
+                text: qsTr("Sources & License")
+            }
+
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+
+                text: qsTr("This is an open source project released under the MIT license.\nYou can find its source code, as well as report any issues and feature requests, on this project's page at GitHub.")
+            }
+
+            Row {
+                anchors.horizontalCenter: parent.horizontalCenter
+                spacing: Theme.paddingSmall
+
+                Button {
+                    text: qsTr("Source code")
+                    onClicked: Qt.openUrlExternally("https://github.com/donaggio/harbour-feedhaven")
+                }
+
+                Button {
+                    text: qsTr("Report issues")
+                    onClicked: Qt.openUrlExternally("https://github.com/donaggio/harbour-feedhaven/issues")
+                }
+
+            }
+
+            SectionHeader {
+                text: qsTr("Credits")
+            }
+
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+
+                text: qsTr("Launcher icon artwork courtesy by Nikita Balobanov.")
             }
         }
 

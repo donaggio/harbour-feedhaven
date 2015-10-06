@@ -22,9 +22,10 @@ var _apiCalls = {
     "streamContent": { "method": "GET", "protocol": "http", "url": "streams/contents" },
     "entries": { "method": "GET", "protocol": "http", "url": "entries" },
     "searchFeed": { "method": "GET", "protocol": "http", "url": "search/feeds" },
-    "updateSubscription": { "method": "POST", "protocol": "https", "url": "subscriptions"},
-    "unsubscribe": { "method": "DELETE", "protocol": "https", "url": "subscriptions"},
-    "categories": { "method": "GET", "protocol": "http", "url": "categories" }
+    "updateSubscription": { "method": "POST", "protocol": "https", "url": "subscriptions" },
+    "unsubscribe": { "method": "DELETE", "protocol": "https", "url": "subscriptions" },
+    "categories": { "method": "GET", "protocol": "http", "url": "categories" },
+    "deleteCategory": { "method": "DELETE", "protocol": "https", "url": "categories" }
 }
 
 /*

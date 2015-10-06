@@ -24,7 +24,6 @@ Dialog {
 
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
 
-    anchors.fill: parent
     acceptDestination: {
         pageStack.find(function (page) {
             return (page.pageType === "feedsList");
