@@ -329,6 +329,7 @@ QtObject {
 
     function streamContentDoneCB(retObj) {
         if (checkResponse(retObj, streamContentDoneCB)) {
+            var stripNewlines = new RegExp("\\r?\\n|\\r", "g");
             var stripHtmlTags = new RegExp("<[^>]*>", "gi");
             var normalizeSpaces = new RegExp("\\s+", "g");
             var htmlEntitiesMap = [
@@ -347,15 +348,18 @@ QtObject {
                     var tmpUpd = new Date(((typeof tmpObj.updated !== "undefined") ? tmpObj.updated : tmpObj.published));
                     // Extract date part
                     var tmpUpdDate = new Date(tmpUpd.getFullYear(), tmpUpd.getMonth(), tmpUpd.getDate());
-                    // Create article summary
+                    // Create article's summary
                     var tmpSummary = ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ""));
                     if (tmpSummary) {
                         tmpSummary = tmpSummary.replace(stripHtmlTags, " ")
                         for (var j = 0; j < htmlEntitiesMap.length; j++) tmpSummary = tmpSummary.replace(new RegExp(htmlEntitiesMap[j][0], "g"), htmlEntitiesMap[j][1]);
                         tmpSummary = tmpSummary.replace(normalizeSpaces, " ").trim().substr(0, 320);
                     }
+                    // Remove line breaks from article's title
+                    var tmpTitle = ((typeof tmpObj.title !== "undefined") ? tmpObj.title : "");
+                    if (tmpTitle) tmpTitle = tmpTitle.replace(stripNewlines, " ").trim();
                     articlesListModel.append({ "id": tmpObj.id,
-                                               "title": ((typeof tmpObj.title !== "undefined") ? tmpObj.title : qsTr("No title")),
+                                               "title": (tmpTitle ? tmpTitle : qsTr("No title")),
                                                "author": ((typeof tmpObj.author !== "undefined") ? tmpObj.author : qsTr("Unknown")),
                                                "updated": tmpUpd,
                                                "sectionLabel": Format.formatDate(tmpUpd, Formatter.TimepointSectionRelative),

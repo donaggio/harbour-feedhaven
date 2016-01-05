@@ -1,6 +1,6 @@
 Name: harbour-feedhaven
 Summary: Feedly unofficial client
-Version: 1.0.13
+Version: 1.0.14
 Release: 1
 Group: Qt/Qt
 URL: https://github.com/donaggio/harbour-feedhaven
@@ -26,12 +26,8 @@ Requires:
 - qt5-plugin-imageformat-jpeg
 - qt5-qtsvg-plugin-imageformat-svg
 Files:
-- /usr/share/icons/hicolor/86x86/apps
-- /usr/share/applications
-- /usr/share/harbour-feedhaven
-- /usr/bin
 - '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
 - '%{_datadir}/applications/%{name}.desktop'
-- '%{_datadir}/%{name}/qml'
+- '%{_datadir}/%{name}'
 - '%{_bindir}'
 PkgBR: []

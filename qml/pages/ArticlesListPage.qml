@@ -89,6 +89,7 @@ Page {
 
                     anchors { top: parent.top; left: parent.left; right: parent.right }
                     font.pixelSize: Theme.fontSizeMedium
+                    maximumLineCount: 1
                     truncationMode: TruncationMode.Fade
                     text: title
                     color: highlighted ? Theme.highlightColor : Theme.primaryColor
@@ -99,6 +100,7 @@ Page {
 
                     anchors { top: articleTitle.bottom; left: parent.left; right: parent.right }
                     font.pixelSize: Theme.fontSizeExtraSmall
+                    maximumLineCount: 1
                     truncationMode: TruncationMode.Fade
                     horizontalAlignment: Text.AlignRight
                     text: streamTitle
@@ -134,19 +136,15 @@ Page {
 
                 anchors { top: parent.top; right: parent.right; rightMargin: Theme.paddingLarge }
                 width: height
-                height: parent.height
-                sourceSize.width: parent.height * 2
-                sourceSize.height: parent.height * 2
+                height: Theme.itemSizeExtraLarge
+                sourceSize.width: Theme.itemSizeExtraLarge * 2
+                sourceSize.height: Theme.itemSizeExtraLarge * 2
                 fillMode: Image.PreserveAspectCrop
                 smooth: true
                 clip: true
                 source: imgUrl
                 visible: false
                 opacity: 0
-
-                onStatusChanged: {
-                    if ((status === Image.Ready) && page.isLandscape) articleItem.state = "showArticleVisual"
-                }
             }
 
             ListView.onAdd: AddAnimation { target: articleItem }
