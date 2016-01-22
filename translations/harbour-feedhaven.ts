@@ -38,6 +38,11 @@ You can find its source code, as well as report any issues and feature requests,
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/pages/AboutPage.qml" line="99"/>
+        <source>Translations by %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/AboutPage.qml" line="73"/>
         <source>Source code</source>
         <translation type="unfinished"></translation>

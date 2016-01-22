@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="it" sourcelanguage="en">
+<TS version="2.0" language="it" sourcelanguage="en">
 <context>
     <name>AboutPage</name>
     <message>
@@ -40,6 +40,11 @@ You can find its source code, as well as report any issues and feature requests,
         <location filename="../qml/pages/AboutPage.qml" line="92"/>
         <source>Launcher icon artwork courtesy by Nikita Balobanov.</source>
         <translation>L&apos;icona è stata disegnata da Nikita Balobanov.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="99"/>
+        <source>Translations by %1.</source>
+        <translation>Traduzioni a cura di %1.</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="73"/>

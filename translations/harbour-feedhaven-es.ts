@@ -42,6 +42,11 @@ Puedes encontrar su código fuente, así como informar de cualquier error o soli
         <translation>El icono es obra de Nikita Balobanov.</translation>
     </message>
     <message>
+        <location filename="../qml/pages/AboutPage.qml" line="99"/>
+        <source>Translations by %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/AboutPage.qml" line="73"/>
         <source>Source code</source>
         <translation>Código fuente</translation>

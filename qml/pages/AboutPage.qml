@@ -96,7 +96,7 @@ Page {
                 width: parent.width
                 wrapMode: Text.WordWrap
 
-                text: qsTr("Translations by %s.", "Carmen F. B.")
+                text: qsTr("Translations by %1.").arg("Carmen F. B.")
             }
         }
 
