@@ -91,6 +91,13 @@ Page {
 
                 text: qsTr("Launcher icon artwork courtesy by Nikita Balobanov.")
             }
+
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+
+                text: qsTr("Translations by %s.", "Carmen F. B.")
+            }
         }
 
         VerticalScrollDecorator { flickable: aboutFlickable }
