@@ -47,7 +47,8 @@ OTHER_FILES += qml/harbour-feedhaven.qml \
 # to disable building translations every time, comment out the
 # following CONFIG line
 CONFIG += sailfishapp_i18n
-TRANSLATIONS += translations/harbour-feedhaven-it.ts
+TRANSLATIONS += translations/harbour-feedhaven-it.ts \
+    translations/harbour-feedhaven-es.ts
 
 # Custom icons and images
 images.files = icons
