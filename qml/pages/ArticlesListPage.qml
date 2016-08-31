@@ -44,14 +44,14 @@ Page {
             Item {
                 id: articleText
 
-                anchors { top: parent.top; left: parent.left; leftMargin: Theme.paddingLarge; right: parent.right; rightMargin: Theme.paddingLarge }
+                anchors { top: parent.top; left: parent.left; leftMargin: Theme.horizontalPageMargin; right: parent.right; rightMargin: Theme.horizontalPageMargin }
 
                 GlassItem {
                     id: unreadIndicator
 
                     width: Theme.itemSizeExtraSmall
                     height: width
-                    x: -(Theme.paddingLarge + (width / 2))
+                    x: -(Theme.horizontalPageMargin + (width / 2))
                     anchors.verticalCenter: articleTitle.verticalCenter
                     color: Theme.highlightColor
                     visible: (unread || unreadIndBusyAnimation.running)
@@ -134,7 +134,7 @@ Page {
             Image {
                 id: articleVisual
 
-                anchors { top: parent.top; right: parent.right; rightMargin: Theme.paddingLarge }
+                anchors { top: parent.top; right: parent.right; rightMargin: Theme.horizontalPageMargin }
                 width: height
                 height: Theme.itemSizeExtraLarge
                 sourceSize.width: Theme.itemSizeExtraLarge * 2

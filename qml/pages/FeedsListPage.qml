@@ -45,7 +45,7 @@ Page {
             Item {
                 id: feedDataContainer
 
-                anchors { top: parent.top; left: parent.left; leftMargin: Theme.paddingLarge; right: parent.right; rightMargin: Theme.paddingLarge }
+                anchors { top: parent.top; left: parent.left; leftMargin: Theme.horizontalPageMargin; right: parent.right; rightMargin: Theme.horizontalPageMargin }
                 height: Theme.itemSizeSmall
                 visible: (!feedly.streamIsCategory(id) || (id.indexOf("/global.all") >= 0)) && !busy
 
@@ -100,7 +100,7 @@ Page {
             Item {
                 id: categoryDataContainer
 
-                anchors { top: parent.top; left: parent.left; leftMargin: Theme.paddingLarge; right: parent.right; rightMargin: Theme.paddingLarge }
+                anchors { top: parent.top; left: parent.left; leftMargin: Theme.horizontalPageMargin; right: parent.right; rightMargin: Theme.horizontalPageMargin }
                 height: Theme.itemSizeSmall
                 visible: feedly.streamIsCategory(id) && (id.indexOf("/global.all") === -1) && !busy
 

@@ -9,11 +9,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="44"/>
-        <source>Version %1&lt;br/&gt;&amp;copy; 2015 by Luca Donaggio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../qml/pages/AboutPage.qml" line="51"/>
         <source>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; is a native client for Feedly.com on-line news reader service.&lt;/p&gt;
     &lt;p&gt;You can search for and subscribe to new feeds, manage your feeds and access their content, save articles for later reference, add or remove custom categories and read articles by category.&lt;br /&gt;
@@ -45,6 +40,11 @@ You can find its source code, as well as report any issues and feature requests,
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="73"/>
         <source>Source code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="44"/>
+        <source>Version %1&lt;br/&gt;&amp;copy; 2016 by Luca Donaggio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -200,36 +200,36 @@ You can find its source code, as well as report any issues and feature requests,
 <context>
     <name>DefaultCover</name>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="65"/>
-        <location filename="../qml/cover/DefaultCover.qml" line="146"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="66"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="147"/>
         <source>Unread
 articles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="99"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="100"/>
         <source>Subscribed
 feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="146"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="147"/>
         <source>Saved
 articles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="165"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="166"/>
         <source>No article selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="188"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="189"/>
         <source>Updating ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="210"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="211"/>
         <source>Not signed in</source>
         <translation type="unfinished"></translation>
     </message>
@@ -237,7 +237,7 @@ articles</source>
 <context>
     <name>ErrorIndicator</name>
     <message>
-        <location filename="../qml/components/ErrorIndicator.qml" line="15"/>
+        <location filename="../qml/components/ErrorIndicator.qml" line="14"/>
         <source>Feedly connection error</source>
         <translation type="unfinished"></translation>
     </message>

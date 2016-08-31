@@ -31,6 +31,7 @@ CoverBackground {
         width: cover.width - (2 * Theme.paddingLarge)
         x: Theme.paddingLarge
         spacing: Theme.paddingSmall
+        visible: true
 
         Item {
             width: parent.width
@@ -390,6 +391,46 @@ CoverBackground {
             PropertyChanges {
                 target: actionsAllFeedList
                 enabled: false
+            }
+
+            PropertyChanges {
+                target: actionsSingleFeedList
+                enabled: false
+            }
+        },
+
+        State {
+            name: "feedsList"
+            when: ((pageStack.currentPage.pageType !== "articleContent") && (pageStack.currentPage.pageType !== "articleInfo") && (pageStack.currentPage.pageType !== "articleShare") && (pageStack.currentPage.pageType !== "articlesList"))
+
+            PropertyChanges {
+                target: allFeedsInfoContainer
+                visible: true
+            }
+
+            PropertyChanges {
+                target: singleFeedInfoContainer
+                visible: false
+            }
+
+            PropertyChanges {
+                target: articleContentContainer
+                visible: false
+            }
+
+            PropertyChanges {
+                target: labelLoading
+                visible: false
+            }
+
+            PropertyChanges {
+                target: labelNotSignedIn
+                visible: false
+            }
+
+            PropertyChanges {
+                target: actionsAllFeedList
+                enabled: true
             }
 
             PropertyChanges {

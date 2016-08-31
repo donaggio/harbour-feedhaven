@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="en">
+<TS version="2.1" language="it" sourcelanguage="en">
 <context>
     <name>AboutPage</name>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="28"/>
         <source>About Feed Haven</source>
         <translation>Info su Feed Haven</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/AboutPage.qml" line="44"/>
-        <source>Version %1&lt;br/&gt;&amp;copy; 2015 by Luca Donaggio</source>
-        <translation>Versione %1&lt;br/&gt;&amp;copy; 2015 di Luca Donaggio</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="51"/>
@@ -50,6 +45,11 @@ You can find its source code, as well as report any issues and feature requests,
         <location filename="../qml/pages/AboutPage.qml" line="73"/>
         <source>Source code</source>
         <translation>Sorgenti</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="44"/>
+        <source>Version %1&lt;br/&gt;&amp;copy; 2016 by Luca Donaggio</source>
+        <translation>Versione %1&lt;br/&gt;&amp;copy; 2016 di Luca Donaggio</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="58"/>
@@ -204,37 +204,37 @@ You can find its source code, as well as report any issues and feature requests,
 <context>
     <name>DefaultCover</name>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="65"/>
-        <location filename="../qml/cover/DefaultCover.qml" line="146"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="66"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="147"/>
         <source>Unread
 articles</source>
         <translation>Articoli
 da leggere</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="99"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="100"/>
         <source>Subscribed
 feeds</source>
         <translation>Feed</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="146"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="147"/>
         <source>Saved
 articles</source>
         <translation>Articoli salvati</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="165"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="166"/>
         <source>No article selected</source>
         <translation>Nessun articolo selezionato</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="188"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="189"/>
         <source>Updating ...</source>
         <translation>Aggiorno ...</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="210"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="211"/>
         <source>Not signed in</source>
         <translation>Non sei loggato</translation>
     </message>
@@ -242,7 +242,7 @@ articles</source>
 <context>
     <name>ErrorIndicator</name>
     <message>
-        <location filename="../qml/components/ErrorIndicator.qml" line="15"/>
+        <location filename="../qml/components/ErrorIndicator.qml" line="14"/>
         <source>Feedly connection error</source>
         <translation>Errore di connessione con Feedly</translation>
     </message>

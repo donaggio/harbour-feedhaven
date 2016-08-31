@@ -34,8 +34,8 @@ Dialog {
             id: categoriesContainer
 
             anchors.top: header.bottom
-            width: dialog.width - (2 * Theme.paddingLarge)
-            x: Theme.paddingLarge
+            width: dialog.width - (2 * Theme.horizontalPageMargin)
+            x: Theme.horizontalPageMargin
             spacing: Theme.paddingLarge
 
             Repeater {

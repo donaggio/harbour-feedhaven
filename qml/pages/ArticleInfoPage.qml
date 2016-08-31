@@ -37,8 +37,8 @@ Page {
             id: articleContainer
 
             anchors.top: header.bottom
-            width: page.width - (2 * Theme.paddingLarge)
-            x: Theme.paddingLarge
+            width: page.width - (2 * Theme.horizontalPageMargin)
+            x: Theme.horizontalPageMargin
             spacing: Theme.paddingLarge
 
             Label {

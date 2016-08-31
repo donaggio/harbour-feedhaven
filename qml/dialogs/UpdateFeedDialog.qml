@@ -49,8 +49,8 @@ Dialog {
             id: feedContainer
 
             anchors.top: header.bottom
-            width: parent.width - (2 * Theme.paddingLarge)
-            x: Theme.paddingLarge
+            width: parent.width - (2 * Theme.horizontalPageMargin)
+            x: Theme.horizontalPageMargin
             spacing: Theme.paddingLarge
 
             TextField {

@@ -27,8 +27,8 @@ QtObject {
     property int uniqueFeeds: 0
     property QtObject feedsListModel: null
     property QtObject articlesListModel: null
+    property QtObject _errorIndicator: null
     property Item _statusIndicator: null
-    property Item _errorIndicator: null
 
     signal error(string message)
     signal searchFeedCompleted(var results)
@@ -690,13 +690,6 @@ QtObject {
      */
     function acquireStatusIndicator(container) {
         if (_createStatusIndicator()) _statusIndicator.parent = container;
-    }
-
-    /*
-     *
-     */
-    function acquireErrorIndicator(container) {
-        if (_createErrorIndicator()) _errorIndicator.parent = container;
     }
 
     onBusyChanged: {
