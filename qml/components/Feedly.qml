@@ -353,7 +353,7 @@ QtObject {
                     if (tmpSummary) {
                         tmpSummary = tmpSummary.replace(stripHtmlTags, " ")
                         for (var j = 0; j < htmlEntitiesMap.length; j++) tmpSummary = tmpSummary.replace(new RegExp(htmlEntitiesMap[j][0], "g"), htmlEntitiesMap[j][1]);
-                        tmpSummary = tmpSummary.replace(normalizeSpaces, " ").trim().substr(0, 320);
+                        tmpSummary = tmpSummary.replace(normalizeSpaces, " ").trim().substr(0, ((Screen.sizeCategory < Screen.Large) ? 320 : 640));
                     }
                     // Remove line breaks from article's title
                     var tmpTitle = ((typeof tmpObj.title !== "undefined") ? tmpObj.title : "");
