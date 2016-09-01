@@ -8,7 +8,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "../components"
 
 Page {
     id: page
@@ -37,35 +36,39 @@ Page {
             id: articleContainer
 
             anchors.top: header.bottom
-            width: page.width - (2 * Theme.horizontalPageMargin)
-            x: Theme.horizontalPageMargin
+            width: parent.width
             spacing: Theme.paddingLarge
 
             Label {
                 id: articleTitle
 
-                width: parent.width
+                anchors {
+                    left: parent.left
+                    leftMargin: Theme.horizontalPageMargin
+                    right: parent.right
+                    rightMargin: Theme.horizontalPageMargin
+                }
                 wrapMode: Text.WordWrap
                 text: page.title
                 color: Theme.highlightColor
             }
 
-            Field {
+            DetailItem {
                 width: parent.width
-                fieldName: qsTr("Via");
-                fieldValue: page.streamTitle;
+                label: qsTr("Via")
+                value: page.streamTitle
             }
 
-            Field {
+            DetailItem {
                 width: parent.width
-                fieldName: qsTr("Author");
-                fieldValue: page.author;
+                label: qsTr("Author");
+                value: page.author;
             }
 
-            Field {
+            DetailItem {
                 width: parent.width
-                fieldName: qsTr("Published on");
-                fieldValue: Qt.formatDateTime(page.updated);
+                label: qsTr("Published on");
+                value: Qt.formatDateTime(page.updated);
             }
         }
     }
