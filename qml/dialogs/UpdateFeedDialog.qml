@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2014 Luca Donaggio
+  Copyright (C) 2016 Luca Donaggio
   Contact: Luca Donaggio <donaggio@gmail.com>
   All rights reserved.
 
@@ -8,7 +8,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "../components"
 
 Dialog {
     id: dialog
@@ -49,15 +48,14 @@ Dialog {
             id: feedContainer
 
             anchors.top: header.bottom
-            width: parent.width - (2 * Theme.paddingLarge)
-            x: Theme.paddingLarge
+            width: parent.width
             spacing: Theme.paddingLarge
 
             TextField {
                 id: titleTextField
 
                 width: parent.width
-                textMargin: 0
+                textMargin: Theme.horizontalPageMargin
                 label: qsTr("Title")
                 placeholderText: qsTr("Title")
                 text: dialog.title
@@ -81,25 +79,25 @@ Dialog {
                 text: qsTr("Additional Info")
             }
 
-            Field {
+            DetailItem {
                 width: parent.width
                 visible: addFeed
-                fieldName: qsTr("Description")
-                fieldValue: (dialog.description ? dialog.description : qsTr("No description"))
+                label: qsTr("Description")
+                value: (dialog.description ? dialog.description : qsTr("No description"))
             }
 
-            Field {
+            DetailItem {
                 width: parent.width
                 visible: addFeed
-                fieldName: qsTr("Language")
-                fieldValue: (dialog.lang ? dialog.lang : qsTr("Unknown"))
+                label: qsTr("Language")
+                value: (dialog.lang ? dialog.lang : qsTr("Unknown"))
             }
 
-            Field {
+            DetailItem {
                 width: parent.width
                 visible: addFeed
-                fieldName: qsTr("Subscribers")
-                fieldValue: (dialog.subscribers ? dialog.subscribers : qsTr("None"))
+                label: qsTr("Subscribers")
+                value: (dialog.subscribers ? dialog.subscribers : qsTr("None"))
             }
         }
 

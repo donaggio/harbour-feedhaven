@@ -31,7 +31,7 @@ Page {
         Column {
             id: aboutContainer
 
-            anchors { top: header.bottom; left: parent.left; leftMargin: Theme.paddingLarge; right: parent.right; rightMargin: Theme.paddingLarge }
+            anchors { top: header.bottom; left: parent.left; leftMargin: Theme.horizontalPageMargin; right: parent.right; rightMargin: Theme.horizontalPageMargin }
             spacing: Theme.paddingSmall
 
             Label {
@@ -41,7 +41,7 @@ Page {
                 color: Theme.secondaryHighlightColor
                 wrapMode: Text.WordWrap
                 textFormat: Text.RichText
-                text: qsTr("Version %1<br/>&copy; 2015 by Luca Donaggio").arg(Qt.application.version)
+                text: qsTr("Version %1<br/>&copy; 2016 by Luca Donaggio").arg(Qt.application.version)
             }
 
             Label {
@@ -90,6 +90,13 @@ Page {
                 wrapMode: Text.WordWrap
 
                 text: qsTr("Launcher icon artwork courtesy by Nikita Balobanov.")
+            }
+
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+
+                text: qsTr("Translations by %1.").arg("Carmen F. B.")
             }
         }
 

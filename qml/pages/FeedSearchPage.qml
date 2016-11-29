@@ -32,8 +32,8 @@ Page {
             id: searchContainer
 
             anchors.top: header.bottom
-            width: parent.width - (2 * Theme.paddingLarge)
-            x: Theme.paddingLarge
+            width: parent.width - (2 * Theme.horizontalPageMargin)
+            x: Theme.horizontalPageMargin
             spacing: Theme.paddingLarge
 
             SearchField {

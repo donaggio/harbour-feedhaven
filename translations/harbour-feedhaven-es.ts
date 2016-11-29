@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="es_ES">
+<TS version="2.1" language="es_ES">
 <context>
     <name>AboutPage</name>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="28"/>
         <source>About Feed Haven</source>
         <translation>Acerca de Feed Haven</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/AboutPage.qml" line="44"/>
-        <source>Version %1&lt;br/&gt;&amp;copy; 2015 by Luca Donaggio</source>
-        <translation>Versión %1&lt;br/&gt;&amp;copy; 2015 por Luca Donaggio</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="51"/>
@@ -42,9 +37,19 @@ Puedes encontrar su código fuente, así como informar de cualquier error o soli
         <translation>El icono es obra de Nikita Balobanov.</translation>
     </message>
     <message>
+        <location filename="../qml/pages/AboutPage.qml" line="99"/>
+        <source>Translations by %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/AboutPage.qml" line="73"/>
         <source>Source code</source>
         <translation>Código fuente</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="44"/>
+        <source>Version %1&lt;br/&gt;&amp;copy; 2016 by Luca Donaggio</source>
+        <translation>Versión %1&lt;br/&gt;&amp;copy; 2016 por Luca Donaggio</translation>
     </message>
     <message>
         <location filename="../qml/pages/AboutPage.qml" line="58"/>
@@ -60,22 +65,22 @@ Puedes encontrar su código fuente, así como informar de cualquier error o soli
 <context>
     <name>ArticleInfoPage</name>
     <message>
-        <location filename="../qml/pages/ArticleInfoPage.qml" line="33"/>
+        <location filename="../qml/pages/ArticleInfoPage.qml" line="32"/>
         <source>Article Info</source>
         <translation>Información de artículo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticleInfoPage.qml" line="55"/>
+        <location filename="../qml/pages/ArticleInfoPage.qml" line="58"/>
         <source>Via</source>
         <translation>Canal</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticleInfoPage.qml" line="61"/>
+        <location filename="../qml/pages/ArticleInfoPage.qml" line="64"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticleInfoPage.qml" line="67"/>
+        <location filename="../qml/pages/ArticleInfoPage.qml" line="70"/>
         <source>Published on</source>
         <translation>Publicado el</translation>
     </message>
@@ -199,39 +204,39 @@ Puedes encontrar su código fuente, así como informar de cualquier error o soli
 <context>
     <name>DefaultCover</name>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="65"/>
-        <location filename="../qml/cover/DefaultCover.qml" line="146"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="66"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="147"/>
         <source>Unread
 articles</source>
         <translation>Artículos
 sin leer</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="99"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="100"/>
         <source>Subscribed
 feeds</source>
         <translation>Canales
 suscritos</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="146"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="147"/>
         <source>Saved
 articles</source>
         <translation>Artículos
 guardados</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="165"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="166"/>
         <source>No article selected</source>
         <translation>Ningún artículo seleccionado</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="188"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="189"/>
         <source>Updating ...</source>
         <translation>Actualizando ...</translation>
     </message>
     <message>
-        <location filename="../qml/cover/DefaultCover.qml" line="210"/>
+        <location filename="../qml/cover/DefaultCover.qml" line="211"/>
         <source>Not signed in</source>
         <translation>No ha iniciado sesión</translation>
     </message>
@@ -239,7 +244,7 @@ guardados</translation>
 <context>
     <name>ErrorIndicator</name>
     <message>
-        <location filename="../qml/components/ErrorIndicator.qml" line="15"/>
+        <location filename="../qml/components/ErrorIndicator.qml" line="14"/>
         <source>Feedly connection error</source>
         <translation>Error de conexión con Feedly</translation>
     </message>
@@ -478,68 +483,68 @@ guardados</translation>
 <context>
     <name>UpdateFeedDialog</name>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="44"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="43"/>
         <source>Add Feed</source>
         <translation>Añadir canal</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="44"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="43"/>
         <source>Manage Feed</source>
         <translation>Editar canal</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="45"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="44"/>
         <source>Subscribe</source>
         <translation>Suscribirse</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="45"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="44"/>
         <source>Update</source>
         <translation>Actualizar</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="61"/>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="62"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="59"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="60"/>
         <source>Title</source>
         <translation>Título</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="70"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="68"/>
         <source>Categories</source>
         <translation>Categorías</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="81"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="79"/>
         <source>Additional Info</source>
         <translation>Información adicional</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="87"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="85"/>
         <source>Description</source>
         <translation>Descripción</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="88"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="86"/>
         <source>No description</source>
         <translation>No hay descripción</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="94"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="92"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="95"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="93"/>
         <source>Unknown</source>
         <translation>Desconocido</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="101"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="99"/>
         <source>Subscribers</source>
         <translation>Suscriptores</translation>
     </message>
     <message>
-        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="102"/>
+        <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="100"/>
         <source>None</source>
         <translation>Ninguno</translation>
     </message>

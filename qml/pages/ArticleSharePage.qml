@@ -49,9 +49,9 @@ Page {
                     anchors {
                         verticalCenter: parent.verticalCenter
                         left: parent.left
-                        leftMargin: Theme.paddingLarge
+                        leftMargin: Theme.horizontalPageMargin
                         right: parent.right
-                        rightMargin: Theme.paddingLarge
+                        rightMargin: Theme.horizontalPageMargin
                     }
                     text: qsTr("Email")
                     color: parent.highlighted ? Theme.highlightColor : Theme.primaryColor

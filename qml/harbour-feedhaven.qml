@@ -23,7 +23,6 @@ ApplicationWindow {
     Connections {
         target: pageStack
         onCurrentPageChanged: {
-            feedly.acquireErrorIndicator(pageStack.currentPage);
             feedly.acquireStatusIndicator(pageStack.currentPage);
         }
     }

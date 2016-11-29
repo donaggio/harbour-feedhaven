@@ -93,7 +93,7 @@ Page {
             SlideshowView {
                 id: articleGalleryView
 
-                width: parent.width - (2 * Theme.paddingLarge)
+                width: parent.width - (2 * Theme.horizontalPageMargin)
                 height: (Theme.itemSizeExtraLarge * 2)
                 anchors.horizontalCenter: parent.horizontalCenter
                 itemWidth: width
@@ -190,7 +190,7 @@ Page {
 
                 readonly property string _linkStyle: "<style>a:link { color: " + Theme.highlightColor + "; }</style>"
 
-                width: parent.width - (2 * Theme.paddingLarge)
+                width: parent.width - (2 * Theme.horizontalPageMargin)
                 anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment: Text.AlignJustify
                 font.pixelSize: Theme.fontSizeSmall

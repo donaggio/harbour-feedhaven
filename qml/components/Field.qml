@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2014 Luca Donaggio
+  Copyright (C) 2016 Luca Donaggio
   Contact: Luca Donaggio <donaggio@gmail.com>
   All rights reserved.
 
@@ -20,6 +20,8 @@ Item {
         id: labelFieldName
 
         anchors { top: parent.top; left: parent.left; right: parent.right }
+        font.pixelSize: Theme.fontSizeSmall
+        color: Theme.secondaryHighlightColor
         truncationMode: TruncationMode.Fade
     }
 
@@ -28,6 +30,7 @@ Item {
 
         anchors { top: labelFieldName.bottom; left: parent.left; right: parent.right }
         font.pixelSize: Theme.fontSizeSmall
+        color: Theme.highlightColor
         wrapMode: Text.WordWrap
     }
 }

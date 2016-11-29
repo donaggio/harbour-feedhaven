@@ -27,8 +27,8 @@ QtObject {
     property int uniqueFeeds: 0
     property QtObject feedsListModel: null
     property QtObject articlesListModel: null
+    property QtObject _errorIndicator: null
     property Item _statusIndicator: null
-    property Item _errorIndicator: null
 
     signal error(string message)
     signal searchFeedCompleted(var results)
@@ -353,7 +353,7 @@ QtObject {
                     if (tmpSummary) {
                         tmpSummary = tmpSummary.replace(stripHtmlTags, " ")
                         for (var j = 0; j < htmlEntitiesMap.length; j++) tmpSummary = tmpSummary.replace(new RegExp(htmlEntitiesMap[j][0], "g"), htmlEntitiesMap[j][1]);
-                        tmpSummary = tmpSummary.replace(normalizeSpaces, " ").trim().substr(0, 320);
+                        tmpSummary = tmpSummary.replace(normalizeSpaces, " ").trim().substr(0, ((Screen.sizeCategory < Screen.Large) ? 320 : 640));
                     }
                     // Remove line breaks from article's title
                     var tmpTitle = ((typeof tmpObj.title !== "undefined") ? tmpObj.title : "");
@@ -690,13 +690,6 @@ QtObject {
      */
     function acquireStatusIndicator(container) {
         if (_createStatusIndicator()) _statusIndicator.parent = container;
-    }
-
-    /*
-     *
-     */
-    function acquireErrorIndicator(container) {
-        if (_createErrorIndicator()) _errorIndicator.parent = container;
     }
 
     onBusyChanged: {
