@@ -2,9 +2,13 @@ Name: harbour-feedhaven
 Summary: Feedly unofficial client
 Version: 1.0.15
 Release: 1
+# The contents of the Group field should be one of the groups listed here:
+# http://gitorious.org/meego-developer-tools/spectacle/blobs/master/data/GROUPS
 Group: Qt/Qt
 URL: https://github.com/donaggio/harbour-feedhaven
 License: MIT
+# This must be generated before uploading a package to a remote build service.
+# Usually this line does not need to be modified.
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |-
@@ -13,21 +17,33 @@ Description: |-
 Configure: none
 QMakeOptions:
 - VERSION=%{version}
+# The qtc5 builder inserts macros to allow QtCreator to have fine
+# control over qmake/make execution
 Builder: qtc5
+
+# This section specifies build dependencies that are resolved using pkgconfig.
+# This is the preferred way of specifying build dependencies for your package.
 PkgConfigBR:
 - sailfishapp >= 0.0.10
 - Qt5Core
 - Qt5Qml
 - Qt5Quick
+
+# Build dependencies without a pkgconfig setup can be listed here
+# PkgBR:
+#   - package-needed-to-build
+
+# Runtime dependencies which are not automatically detected
 Requires:
 - sailfishsilica-qt5 >= 0.10.9
 - qt5-plugin-imageformat-gif
 - qt5-plugin-imageformat-ico
 - qt5-plugin-imageformat-jpeg
 - qt5-qtsvg-plugin-imageformat-svg
+
+# All installed files
 Files:
-- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
+- '%{_datadir}/icons/hicolor/*/apps/%{name}.png'
 - '%{_datadir}/applications/%{name}.desktop'
 - '%{_datadir}/%{name}'
 - '%{_bindir}'
-PkgBR: []

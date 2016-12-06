@@ -23,35 +23,42 @@ HEADERS += \
 OTHER_FILES += qml/harbour-feedhaven.qml \
     rpm/harbour-feedhaven.spec \
     rpm/harbour-feedhaven.yaml \
+    rpm/harbour-feedhaven.changes \
     translations/*.ts \
     harbour-feedhaven.desktop \
+    feedly-api-config.pri \
     qml/lib/feedly.js \
+    qml/lib/dbmanager.js \
+    qml/components/Feedly.qml \
+    qml/components/StatusIndicator.qml \
+    qml/components/Field.qml \
+    qml/components/ErrorIndicator.qml \
+    qml/cover/DefaultCover.qml \
     qml/pages/SignInPage.qml \
     qml/pages/FeedsListPage.qml \
     qml/pages/ArticlesListPage.qml \
     qml/pages/ArticlePage.qml \
-    qml/lib/dbmanager.js \
-    qml/components/Feedly.qml \
-    qml/components/StatusIndicator.qml \
     qml/pages/AboutPage.qml \
-    feedly-api-config.pri \
     qml/pages/ArticleInfoPage.qml \
-    qml/cover/DefaultCover.qml \
     qml/pages/FeedSearchPage.qml \
-    qml/components/Field.qml \
+    qml/pages/ArticleSharePage.qml \
     qml/dialogs/SelectCategoriesDialog.qml \
-    qml/components/ErrorIndicator.qml \
-    qml/dialogs/UpdateFeedDialog.qml \
-    qml/pages/ArticleSharePage.qml
+    qml/dialogs/UpdateFeedDialog.qml
+
+SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
 # to disable building translations every time, comment out the
 # following CONFIG line
 CONFIG += sailfishapp_i18n
+
+# If you aren't planning to localize your app, remember to
+# comment out the following TRANSLATIONS line. And also do
+# not forget to modify the localized app name in the .desktop file.
 TRANSLATIONS += translations/harbour-feedhaven-it.ts \
     translations/harbour-feedhaven-es.ts
 
 # Custom icons and images
-images.files = icons
+images.files = assets/icons
 images.path = /usr/share/$${TARGET}
 INSTALLS += images
 
@@ -61,3 +68,4 @@ DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
 # Feedly API keys
 FEEDLY_API_CONFIG = feedly-api-config.pri
 exists($${FEEDLY_API_CONFIG}) include($${FEEDLY_API_CONFIG})
+
