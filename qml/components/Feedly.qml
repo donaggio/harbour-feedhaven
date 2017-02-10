@@ -319,10 +319,10 @@ QtObject {
     /*
      * Get stream content (subscribed feeds)
      */
-    function getStreamContent(subscriptionId, more) {
+    function getStreamContent(subscriptionId, order, more) {
         if (subscriptionId) {
             busy = true;
-            var param = { "streamId": subscriptionId, "count": 40, "ranked": "newest", "unreadOnly": "true", "continuation": (more ? continuation : "") };
+            var param = { "streamId": subscriptionId, "count": 40, "ranked": ((order === 1) ? "oldest" : "newest"), "unreadOnly": "true", "continuation": (more ? continuation : "") };
             FeedlyAPI.call("streamContent", param, streamContentDoneCB, accessToken);
         } else error(qsTr("No subscriptionId found."));
     }
@@ -346,8 +346,9 @@ QtObject {
                     var tmpObj = retObj.response.items[i];
                     // Create updated date object
                     var tmpUpd = new Date(((typeof tmpObj.updated !== "undefined") ? tmpObj.updated : tmpObj.published));
-                    // Extract date part
-                    var tmpUpdDate = new Date(tmpUpd.getFullYear(), tmpUpd.getMonth(), tmpUpd.getDate());
+                    // Create section label from article's updated date
+                    var tmpSection = Format.formatDate(new Date(tmpUpd.getFullYear(), tmpUpd.getMonth(), tmpUpd.getDate()), Formatter.TimepointSectionRelative);
+                    if (!tmpSection) tmpSection = qsTr("Today");
                     // Create article's summary
                     var tmpSummary = ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ""));
                     if (tmpSummary) {
@@ -362,7 +363,7 @@ QtObject {
                                                "title": (tmpTitle ? tmpTitle : qsTr("No title")),
                                                "author": ((typeof tmpObj.author !== "undefined") ? tmpObj.author : qsTr("Unknown")),
                                                "updated": tmpUpd,
-                                               "sectionLabel": Format.formatDate(tmpUpd, Formatter.TimepointSectionRelative),
+                                               "sectionLabel": tmpSection,
                                                "imgUrl": (((typeof tmpObj.visual !== "undefined") && tmpObj.visual.url && tmpObj.visual.url !== "none") ? tmpObj.visual.url : ""),
                                                "unread": tmpObj.unread,
                                                "summary": (tmpSummary ? tmpSummary : qsTr("No preview")),

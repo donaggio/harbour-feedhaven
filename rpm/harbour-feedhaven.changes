@@ -5,7 +5,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* Feb 9 2017 Luca Donaggio <donaggio@gmail.com> 1.0.15-1
+* Fri Feb 10 2017 Luca Donaggio <donaggio@gmail.com> 1.0.16-1
+- Added settings page with options to choose articles order in articles list and loading of article's images
+
+* Thu Feb 09 2017 Luca Donaggio <donaggio@gmail.com> 1.0.15-1
 - Fixed small appearance bug in cover background image
 - Added larger version of cover background image for tablet devices
 - Various tweakings to support a tablet release

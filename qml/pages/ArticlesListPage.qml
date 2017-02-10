@@ -142,7 +142,7 @@ Page {
                 fillMode: Image.PreserveAspectCrop
                 smooth: true
                 clip: true
-                source: imgUrl
+                source: (settings.loadImages ? imgUrl : "")
                 visible: false
                 opacity: 0
             }
@@ -257,7 +257,7 @@ Page {
 
             MenuItem {
                 text: qsTr("Refresh feed")
-                onClicked: feedly.getStreamContent(streamId)
+                onClicked: feedly.getStreamContent(streamId, settings.articlesOrder)
             }
         }
 
@@ -267,7 +267,7 @@ Page {
             MenuItem {
                 visible: (feedly.continuation !== "")
                 text: qsTr("More articles")
-                onClicked: feedly.getStreamContent(streamId, true)
+                onClicked: feedly.getStreamContent(streamId, settings.articlesOrder, true)
             }
 
             MenuItem {
@@ -313,7 +313,7 @@ Page {
     }
 
     Component.onCompleted: {
-        feedly.getStreamContent(streamId)
+        feedly.getStreamContent(streamId, settings.articlesOrder)
     }
 
     Component.onDestruction: {

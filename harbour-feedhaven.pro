@@ -20,16 +20,18 @@ SOURCES += src/harbour-feedhaven.cpp \
 HEADERS += \
     src/sharing.h
 
-OTHER_FILES += qml/harbour-feedhaven.qml \
+OTHER_FILES += \
     rpm/harbour-feedhaven.spec \
     rpm/harbour-feedhaven.yaml \
     rpm/harbour-feedhaven.changes \
     translations/*.ts \
     harbour-feedhaven.desktop \
     feedly-api-config.pri \
+    qml/harbour-feedhaven.qml \
     qml/lib/feedly.js \
     qml/lib/dbmanager.js \
     qml/components/Feedly.qml \
+    qml/components/Settings.qml \
     qml/components/StatusIndicator.qml \
     qml/components/Field.qml \
     qml/components/ErrorIndicator.qml \
@@ -42,6 +44,7 @@ OTHER_FILES += qml/harbour-feedhaven.qml \
     qml/pages/ArticleInfoPage.qml \
     qml/pages/FeedSearchPage.qml \
     qml/pages/ArticleSharePage.qml \
+    qml/pages/SettingsPage.qml \
     qml/dialogs/SelectCategoriesDialog.qml \
     qml/dialogs/UpdateFeedDialog.qml
 
@@ -54,7 +57,8 @@ CONFIG += sailfishapp_i18n
 # If you aren't planning to localize your app, remember to
 # comment out the following TRANSLATIONS line. And also do
 # not forget to modify the localized app name in the .desktop file.
-TRANSLATIONS += translations/harbour-feedhaven-it.ts \
+TRANSLATIONS += \
+    translations/harbour-feedhaven-it.ts \
     translations/harbour-feedhaven-es.ts
 
 # Custom icons and images

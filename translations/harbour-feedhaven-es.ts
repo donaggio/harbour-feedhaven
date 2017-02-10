@@ -316,48 +316,53 @@ guardados</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="327"/>
-        <location filename="../qml/components/Feedly.qml" line="572"/>
-        <location filename="../qml/components/Feedly.qml" line="594"/>
+        <location filename="../qml/components/Feedly.qml" line="573"/>
+        <location filename="../qml/components/Feedly.qml" line="595"/>
         <source>No subscriptionId found.</source>
         <translation>No se ha encontrado subscriptionId.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="362"/>
+        <location filename="../qml/components/Feedly.qml" line="351"/>
+        <source>Today</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/Feedly.qml" line="363"/>
         <source>No title</source>
         <translation>Sin título</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="363"/>
+        <location filename="../qml/components/Feedly.qml" line="364"/>
         <source>Unknown</source>
         <translation>Desconocido</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="368"/>
+        <location filename="../qml/components/Feedly.qml" line="369"/>
         <source>No preview</source>
         <translation>Sin vista previa</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="448"/>
+        <location filename="../qml/components/Feedly.qml" line="449"/>
         <source>No entryId found.</source>
         <translation>No se ha encontrado entryId.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="650"/>
+        <location filename="../qml/components/Feedly.qml" line="651"/>
         <source>No categoryId found.</source>
         <translation>No se ha encontrado categoryId.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="402"/>
+        <location filename="../qml/components/Feedly.qml" line="403"/>
         <source>No feedId found.</source>
         <translation>No se ha encontrado feedId.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="449"/>
+        <location filename="../qml/components/Feedly.qml" line="450"/>
         <source>Unknown marker action.</source>
         <translation>Acción desconocida.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="539"/>
+        <location filename="../qml/components/Feedly.qml" line="540"/>
         <source>No search string or URL given.</source>
         <translation>No se ha encontrado la cadena de búsqueda o la URL.</translation>
     </message>
@@ -401,31 +406,36 @@ guardados</translation>
     </message>
     <message>
         <location filename="../qml/pages/FeedsListPage.qml" line="224"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/FeedsListPage.qml" line="229"/>
         <source>Sign in</source>
         <translation>Iniciar sesión</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="224"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="229"/>
         <source>Sign out</source>
         <translation>Cerrar sesión</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="232"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="237"/>
         <source>Add feed</source>
         <translation>Añadir canal</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="238"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="243"/>
         <source>Refresh feeds</source>
         <translation>Actualizar canales</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="246"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="251"/>
         <source>Feeds list not available</source>
         <translation>La lista de canales no está disponible</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="246"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="251"/>
         <source>Please sign in</source>
         <translation>Por favor, inicia sesión</translation>
     </message>
@@ -457,6 +467,49 @@ guardados</translation>
         <source>Min. 3 plain chars or digits</source>
         <translatorcomment>Mínimo 3 letras o números</translatorcomment>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsPage</name>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="28"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="38"/>
+        <source>Articles list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="44"/>
+        <source>Order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="45"/>
+        <source>Choose articles ordering in articles list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="48"/>
+        <source>Newest first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="49"/>
+        <source>Oldest first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="62"/>
+        <source>Don&apos;t show images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="63"/>
+        <source>Help reduce bandwith usage by not loading any article&apos;s images</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
