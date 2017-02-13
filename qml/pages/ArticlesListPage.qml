@@ -230,8 +230,8 @@ Page {
                 }
 
                 MenuItem {
-                    visible: (!feedly.streamIsTag(page.streamId) && articlesListView.count && page.unreadCount && (contextMenu.modelIndex < (articlesListView.count - 1)))
-                    text: qsTr("Mark this and below as read")
+                    visible: (!feedly.streamIsTag(page.streamId) && articlesListView.count && page.unreadCount && (((settings.articlesOrder === 0) && (contextMenu.modelIndex < (articlesListView.count - 1))) || (contextMenu.modelIndex > 0)))
+                    text: qsTr("Mark this and older as read")
                     onClicked: remorsePopup.execute(qsTr("Marking articles as read"), function() { feedly.markFeedAsRead(streamId, contextMenu.articleId); })
                 }
 
@@ -252,12 +252,12 @@ Page {
             MenuItem {
                 visible: (!feedly.streamIsTag(page.streamId) && (articlesListView.count > 0))
                 text: qsTr("Mark all as read")
-                onClicked: remorsePopup.execute(qsTr("Marking all articles as read"), function() { feedly.markFeedAsRead(streamId, articlesListView.model.get(0).id); })
+                onClicked: remorsePopup.execute(qsTr("Marking all articles as read"), function() { feedly.markFeedAsRead(streamId, ((settings.articlesOrder === 0) ? articlesListView.model.get(0).id : null)); })
             }
 
             MenuItem {
                 text: qsTr("Refresh feed")
-                onClicked: feedly.getStreamContent(streamId, settings.articlesOrder)
+                onClicked: feedly.getStreamContent(streamId)
             }
         }
 
@@ -267,13 +267,13 @@ Page {
             MenuItem {
                 visible: (feedly.continuation !== "")
                 text: qsTr("More articles")
-                onClicked: feedly.getStreamContent(streamId, settings.articlesOrder, true)
+                onClicked: feedly.getStreamContent(streamId, true)
             }
 
             MenuItem {
                 visible: !feedly.streamIsTag(page.streamId)
                 text: qsTr("Mark all as read")
-                onClicked: remorsePopup.execute(qsTr("Marking all articles as read"), function() { feedly.markFeedAsRead(streamId, articlesListView.model.get(0).id); })
+                onClicked: remorsePopup.execute(qsTr("Marking all articles as read"), function() { feedly.markFeedAsRead(streamId, ((settings.articlesOrder === 0) ? articlesListView.model.get(0).id : null)); })
             }
 
             MenuItem {
@@ -313,7 +313,7 @@ Page {
     }
 
     Component.onCompleted: {
-        feedly.getStreamContent(streamId, settings.articlesOrder)
+        feedly.getStreamContent(streamId)
     }
 
     Component.onDestruction: {

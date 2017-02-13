@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it" sourcelanguage="en">
+<TS version="2.1" language="it" sourcelanguage="en">
 <context>
     <name>AboutPage</name>
     <message>
@@ -145,8 +145,8 @@ You can find its source code, as well as report any issues and feature requests,
     </message>
     <message>
         <location filename="../qml/pages/ArticlesListPage.qml" line="234"/>
-        <source>Mark this and below as read</source>
-        <translation>Segna da qui in poi come già letti</translation>
+        <source>Mark this and older as read</source>
+        <translation>Segna i più vecchi come letti</translation>
     </message>
     <message>
         <location filename="../qml/pages/ArticlesListPage.qml" line="235"/>
@@ -275,7 +275,7 @@ articles</source>
     <message>
         <location filename="../qml/components/Feedly.qml" line="130"/>
         <source>Neither authCode nor refreshToken found.</source>
-        <translation>authCode o refreshToken non trovati.</translation>
+        <translation>authCode e refreshToken non trovati.</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="151"/>
@@ -290,22 +290,17 @@ articles</source>
     <message>
         <location filename="../qml/components/Feedly.qml" line="171"/>
         <source>Error revoking refreshToken</source>
-        <translation>Errore scollegandosi da Feedly</translation>
-    </message>
-    <message>
-        <location filename="../qml/components/Feedly.qml" line="287"/>
-        <source>No accessToken found.</source>
-        <translation>accessToken non trovato.</translation>
+        <translation>Errore durante l&apos;annullamente del refreshToken</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="208"/>
         <source>Uncategorized</source>
-        <translation></translation>
+        <translation>Nessuna categoria</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="232"/>
         <source>Saved for later</source>
-        <translation>Articoli salvati</translation>
+        <translation>Salvati</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="241"/>
@@ -313,11 +308,16 @@ articles</source>
         <translation>Tutti i feed</translation>
     </message>
     <message>
+        <location filename="../qml/components/Feedly.qml" line="287"/>
+        <source>No accessToken found.</source>
+        <translation>accessToken non trovato.</translation>
+    </message>
+    <message>
         <location filename="../qml/components/Feedly.qml" line="327"/>
-        <location filename="../qml/components/Feedly.qml" line="573"/>
-        <location filename="../qml/components/Feedly.qml" line="595"/>
+        <location filename="../qml/components/Feedly.qml" line="576"/>
+        <location filename="../qml/components/Feedly.qml" line="598"/>
         <source>No subscriptionId found.</source>
-        <translation>subscriptionId non trovato.</translation>
+        <translation>Nessun feed trovato.</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="351"/>
@@ -327,7 +327,7 @@ articles</source>
     <message>
         <location filename="../qml/components/Feedly.qml" line="363"/>
         <source>No title</source>
-        <translation>Senza titolo</translation>
+        <translation>Nessun titolo</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="364"/>
@@ -337,32 +337,32 @@ articles</source>
     <message>
         <location filename="../qml/components/Feedly.qml" line="369"/>
         <source>No preview</source>
-        <translation>Anteprima non disponibile</translation>
+        <translation>Nessun&apos;anteprima disponibile</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="449"/>
-        <source>No entryId found.</source>
-        <translation>entryId non trovato.</translation>
-    </message>
-    <message>
-        <location filename="../qml/components/Feedly.qml" line="651"/>
-        <source>No categoryId found.</source>
-        <translation>categoryId non trovato.</translation>
-    </message>
-    <message>
-        <location filename="../qml/components/Feedly.qml" line="403"/>
+        <location filename="../qml/components/Feedly.qml" line="402"/>
         <source>No feedId found.</source>
         <translation>feedId non trovato.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="450"/>
+        <location filename="../qml/components/Feedly.qml" line="452"/>
+        <source>No entryId found.</source>
+        <translation>entryId non trovato.</translation>
+    </message>
+    <message>
+        <location filename="../qml/components/Feedly.qml" line="453"/>
         <source>Unknown marker action.</source>
         <translation>Azione sconosciuta.</translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="540"/>
+        <location filename="../qml/components/Feedly.qml" line="543"/>
         <source>No search string or URL given.</source>
-        <translation>Stringa di ricerca non trovata.</translation>
+        <translation>Non è stato fornito nessun parametro di ricerca.</translation>
+    </message>
+    <message>
+        <location filename="../qml/components/Feedly.qml" line="654"/>
+        <source>No categoryId found.</source>
+        <translation>cotegoryId non trovato.</translation>
     </message>
 </context>
 <context>
@@ -480,13 +480,13 @@ articles</source>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="44"/>
-        <source>Order</source>
+        <source>Sorting</source>
         <translation>Ordinamento</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="45"/>
-        <source>Choose articles ordering in articles list</source>
-        <translation>Scegli il modo in cui ordinare gli articoli nell&apos;elenco</translation>
+        <source>Choose articles list sorting method</source>
+        <translation>Scegli come ordinare l&apos;elenco degli articoli</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="48"/>

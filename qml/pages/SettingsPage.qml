@@ -41,8 +41,8 @@ Page {
             ComboBox {
                 width: parent.width
 
-                label: qsTr("Order")
-                description: qsTr("Choose articles ordering in articles list")
+                label: qsTr("Sorting")
+                description: qsTr("Choose articles list sorting method")
                 currentIndex: settings.articlesOrder
                 menu: ContextMenu {
                     MenuItem { text: qsTr("Newest first") }

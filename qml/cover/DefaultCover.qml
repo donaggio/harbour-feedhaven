@@ -234,7 +234,7 @@ CoverBackground {
 
         CoverAction {
             iconSource: "image://theme/icon-cover-refresh"
-            onTriggered: feedly.getStreamContent(pageStack.currentPage.streamId, settings.articlesOrder)
+            onTriggered: feedly.getStreamContent(pageStack.currentPage.streamId)
         }
     }
 

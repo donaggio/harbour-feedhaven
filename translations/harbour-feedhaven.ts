@@ -141,7 +141,7 @@ You can find its source code, as well as report any issues and feature requests,
     </message>
     <message>
         <location filename="../qml/pages/ArticlesListPage.qml" line="234"/>
-        <source>Mark this and below as read</source>
+        <source>Mark this and older as read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -288,11 +288,6 @@ articles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="287"/>
-        <source>No accessToken found.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../qml/components/Feedly.qml" line="208"/>
         <source>Uncategorized</source>
         <translation type="unfinished"></translation>
@@ -308,9 +303,14 @@ articles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/components/Feedly.qml" line="287"/>
+        <source>No accessToken found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/components/Feedly.qml" line="327"/>
-        <location filename="../qml/components/Feedly.qml" line="573"/>
-        <location filename="../qml/components/Feedly.qml" line="595"/>
+        <location filename="../qml/components/Feedly.qml" line="576"/>
+        <location filename="../qml/components/Feedly.qml" line="598"/>
         <source>No subscriptionId found.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -335,28 +335,28 @@ articles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="449"/>
-        <source>No entryId found.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/Feedly.qml" line="651"/>
-        <source>No categoryId found.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/components/Feedly.qml" line="403"/>
+        <location filename="../qml/components/Feedly.qml" line="402"/>
         <source>No feedId found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="450"/>
+        <location filename="../qml/components/Feedly.qml" line="452"/>
+        <source>No entryId found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/Feedly.qml" line="453"/>
         <source>Unknown marker action.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/Feedly.qml" line="540"/>
+        <location filename="../qml/components/Feedly.qml" line="543"/>
         <source>No search string or URL given.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/Feedly.qml" line="654"/>
+        <source>No categoryId found.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -475,12 +475,12 @@ articles</source>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="44"/>
-        <source>Order</source>
+        <source>Sorting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="45"/>
-        <source>Choose articles ordering in articles list</source>
+        <source>Choose articles list sorting method</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
