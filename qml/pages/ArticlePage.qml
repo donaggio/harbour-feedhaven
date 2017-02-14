@@ -63,8 +63,6 @@ Page {
         }
     }
 
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-
     SilicaFlickable {
         id: articleView
 

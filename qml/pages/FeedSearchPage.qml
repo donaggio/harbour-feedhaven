@@ -14,8 +14,6 @@ Page {
 
     readonly property string pageType: "feedSearch"
 
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-
     SilicaFlickable {
         id: searchFeedFlicakble
 

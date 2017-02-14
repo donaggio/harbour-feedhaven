@@ -14,8 +14,6 @@ Page {
 
     readonly property string pageType: "settings"
 
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-
     SilicaFlickable {
         id: settingsFlickable
 

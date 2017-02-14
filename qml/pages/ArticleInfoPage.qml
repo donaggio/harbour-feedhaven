@@ -18,8 +18,6 @@ Page {
     property string streamTitle: ""
     readonly property string pageType: "articleInfo"
 
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-
     SilicaFlickable {
         id: articleView
 

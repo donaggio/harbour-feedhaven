@@ -13,6 +13,7 @@ import "components"
 ApplicationWindow {
     id: main
 
+    allowedOrientations: defaultAllowedOrientations
     initialPage: Qt.resolvedUrl("pages/FeedsListPage.qml")
     cover: Qt.resolvedUrl("cover/DefaultCover.qml")
 
