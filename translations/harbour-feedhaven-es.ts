@@ -14,7 +14,7 @@
     &lt;p&gt;You can search for and subscribe to new feeds, manage your feeds and access their content, save articles for later reference, add or remove custom categories and read articles by category.&lt;br /&gt;
     As soon as you&apos;ll read an article, it will be marked as read on Feedly.com as well.&lt;/p&gt;
     &lt;p&gt;Image thumbnails in article list are displayed in landscape mode only.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; es un cliente nativo para el servicio online del lector de noticias Feedly.com.&lt;/p&gt;
+        <translation>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; es un cliente nativo para el servicio en línea del lector de noticias Feedly.com.&lt;/p&gt;
     &lt;p&gt;Puedes buscar y suscribirte a nuevos canales, gestionar tus canales y acceder a su contenido, guardar artículos para su posterior lectura, añadir o eliminar categorías personalizadas y leer artículos por categoría.&lt;br /&gt;
     Al leer un artículo, inmediatamente éste también se marca como leído en Feedly.com.&lt;/p&gt;
     &lt;p&gt;La imagen en miniatura en el listado de artículos sólo se muestra en el modo apaisado.&lt;/p&gt;</translation>
@@ -67,7 +67,7 @@ Puedes encontrar su código fuente, así como informar de cualquier error o soli
     <message>
         <location filename="../qml/pages/ArticleInfoPage.qml" line="32"/>
         <source>Article Info</source>
-        <translation>Información de artículo</translation>
+        <translation>Información del artículo</translation>
     </message>
     <message>
         <location filename="../qml/pages/ArticleInfoPage.qml" line="58"/>
@@ -118,7 +118,7 @@ Puedes encontrar su código fuente, así como informar de cualquier error o soli
     <message>
         <location filename="../qml/pages/ArticleSharePage.qml" line="17"/>
         <source>Shared via Feed Haven for SailfishOS</source>
-        <translation>Compartido por Feed Haven para SailfishOS</translation>
+        <translation>Compartido por SailfishOS mediante Feed Haven</translation>
     </message>
     <message>
         <location filename="../qml/pages/ArticleSharePage.qml" line="31"/>
@@ -141,12 +141,12 @@ Puedes encontrar su código fuente, así como informar de cualquier error o soli
     <message>
         <location filename="../qml/pages/ArticlesListPage.qml" line="224"/>
         <source>Keep unread</source>
-        <translation>Mantener sin leer</translation>
+        <translation>Marcar como no leído</translation>
     </message>
     <message>
         <location filename="../qml/pages/ArticlesListPage.qml" line="234"/>
         <source>Mark this and older as read</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar éste y anteriores como leídos</translation>
     </message>
     <message>
         <location filename="../qml/pages/ArticlesListPage.qml" line="235"/>
@@ -259,7 +259,7 @@ guardados</translation>
     <message>
         <location filename="../qml/pages/FeedSearchPage.qml" line="47"/>
         <source>Search or enter feed URL</source>
-        <translation>Busca o introduce URL del canal</translation>
+        <translation>Buscar o introducir URL del canal</translation>
     </message>
     <message>
         <location filename="../qml/pages/FeedSearchPage.qml" line="153"/>
@@ -277,94 +277,94 @@ guardados</translation>
     <message>
         <location filename="../qml/components/Feedly.qml" line="130"/>
         <source>Neither authCode nor refreshToken found.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se encontró authCode ni refreshToken.</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="151"/>
         <source>Feedly authentication error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error de autenticación de Feedly</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="165"/>
         <source>No refreshToken found.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se encontró refreshToken.</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="171"/>
         <source>Error revoking refreshToken</source>
-        <translation type="unfinished"></translation>
+        <translation>Error al anular refreshToken</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="208"/>
         <source>Uncategorized</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin clasificar</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="232"/>
         <source>Saved for later</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardado para leer después</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="241"/>
         <source>All feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos los canales</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="287"/>
         <source>No accessToken found.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se encontró accessToken.</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="327"/>
         <location filename="../qml/components/Feedly.qml" line="576"/>
         <location filename="../qml/components/Feedly.qml" line="598"/>
         <source>No subscriptionId found.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se encontró suscriptionId.</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="351"/>
         <source>Today</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoy</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="363"/>
         <source>No title</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin título</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="364"/>
         <source>Unknown</source>
-        <translation type="unfinished">Desconocido</translation>
+        <translation>Desconocido</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="369"/>
         <source>No preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Sin vista previa</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="402"/>
         <source>No feedId found.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se encontró feedId.</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="452"/>
         <source>No entryId found.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se encontró entryId.</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="453"/>
         <source>Unknown marker action.</source>
-        <translation type="unfinished"></translation>
+        <translation>Acción desconocida.</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="543"/>
         <source>No search string or URL given.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se ha indicado cadena de búsqueda o URL.</translation>
     </message>
     <message>
         <location filename="../qml/components/Feedly.qml" line="654"/>
         <source>No categoryId found.</source>
-        <translation type="unfinished"></translation>
+        <translation>No se encontró categoryId.</translation>
     </message>
 </context>
 <context>
@@ -407,7 +407,7 @@ guardados</translation>
     <message>
         <location filename="../qml/pages/FeedsListPage.qml" line="224"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes</translation>
     </message>
     <message>
         <location filename="../qml/pages/FeedsListPage.qml" line="229"/>
@@ -474,42 +474,42 @@ guardados</translation>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="28"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="38"/>
         <source>Articles list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de artículos</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="44"/>
         <source>Sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Orden</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="45"/>
         <source>Choose articles list sorting method</source>
-        <translation type="unfinished"></translation>
+        <translation>Elige cómo ordenar la lista de artículos</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="48"/>
         <source>Newest first</source>
-        <translation type="unfinished"></translation>
+        <translation>Los más nuevos primero</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="49"/>
         <source>Oldest first</source>
-        <translation type="unfinished"></translation>
+        <translation>Los más antiguos primero</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="62"/>
         <source>Don&apos;t show images</source>
-        <translation type="unfinished"></translation>
+        <translation>No mostrar imágenes</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="63"/>
         <source>Help reduce bandwith usage by not loading any article&apos;s images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ayuda a reducir el uso de ancho de banda al no cargar las imágenes de los artículos</translation>
     </message>
 </context>
 <context>
@@ -579,7 +579,7 @@ guardados</translation>
     <message>
         <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="86"/>
         <source>No description</source>
-        <translation>No hay descripción</translation>
+        <translation>Sin descripción</translation>
     </message>
     <message>
         <location filename="../qml/dialogs/UpdateFeedDialog.qml" line="92"/>
