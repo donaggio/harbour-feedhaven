@@ -14,8 +14,6 @@ Page {
 
     readonly property string pageType: "feedsList"
 
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-
     SilicaListView {
         id: feedsListView
 

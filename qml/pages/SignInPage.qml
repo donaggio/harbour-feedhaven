@@ -14,8 +14,6 @@ Page {
 
     readonly property string pageType: "signIn"
 
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-
     SilicaWebView {
         id: signInView
 

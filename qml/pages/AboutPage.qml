@@ -14,8 +14,6 @@ Page {
 
     readonly property string pageType: "about"
 
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-
     SilicaFlickable {
         id: aboutFlickable
 

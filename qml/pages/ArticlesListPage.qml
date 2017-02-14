@@ -17,8 +17,6 @@ Page {
     property int unreadCount
     readonly property string pageType: "articlesList"
 
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-
     SilicaListView {
         id: articlesListView
 
