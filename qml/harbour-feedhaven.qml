@@ -20,6 +20,10 @@ ApplicationWindow {
         id: feedly
     }
 
+    Settings {
+        id: settings
+    }
+
     Connections {
         target: pageStack
         onCurrentPageChanged: {

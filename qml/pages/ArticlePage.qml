@@ -99,7 +99,7 @@ Page {
                 itemWidth: width
                 itemHeight: height
                 clip: true
-                visible: (count > 0)
+                visible: (settings.loadImages && (count > 0))
 
                 model: page.galleryModel
                 delegate: Item {
@@ -180,7 +180,7 @@ Page {
 
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter
-                visible: (articleGalleryView.count > 1)
+                visible: (articleGalleryView.visible && (articleGalleryView.count > 1))
                 font.pixelSize: Theme.fontSizeTiny
                 text: (articleGalleryView.currentIndex + 1) + "/" + articleGalleryView.count
             }
@@ -344,6 +344,7 @@ Page {
 
                 MouseArea {
                     anchors.fill: parent
+                    enabled: ((content !== "") || (galleryModel.count > 1))
 
                     onClicked: { page.state = "" }
                 }
@@ -398,7 +399,7 @@ Page {
         },
         State {
             name: "zoomedImage"
-            when: ((content === "") && (galleryModel.count === 1))
+            when: (settings.loadImages && (content === "") && (galleryModel.count === 1))
 
             PropertyChanges {
                 target: articleView

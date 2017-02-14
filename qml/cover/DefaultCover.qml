@@ -18,7 +18,7 @@ CoverBackground {
     Image {
         x: -Theme.paddingLarge
         y: x
-        source: "../../icons/cover-background.png"
+        source: "../../icons/cover-background" + ((Screen.sizeCategory >= Screen.Large) ? "-large" : "") + ".png"
     }
 
     /*

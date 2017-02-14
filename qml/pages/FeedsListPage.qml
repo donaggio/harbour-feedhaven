@@ -221,6 +221,11 @@ Page {
             }
 
             MenuItem {
+                text: qsTr("Settings")
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+            }
+
+            MenuItem {
                 text: (feedly.signedIn ? qsTr("Sign out") : qsTr("Sign in"))
                 onClicked: {
                     if (feedly.signedIn) feedly.revokeRefreshToken();

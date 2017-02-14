@@ -322,7 +322,7 @@ QtObject {
     function getStreamContent(subscriptionId, more) {
         if (subscriptionId) {
             busy = true;
-            var param = { "streamId": subscriptionId, "count": 40, "ranked": "newest", "unreadOnly": "true", "continuation": (more ? continuation : "") };
+            var param = { "streamId": subscriptionId, "count": 40, "ranked": entriesSorting(), "unreadOnly": "true", "continuation": (more ? continuation : "") };
             FeedlyAPI.call("streamContent", param, streamContentDoneCB, accessToken);
         } else error(qsTr("No subscriptionId found."));
     }
@@ -346,8 +346,9 @@ QtObject {
                     var tmpObj = retObj.response.items[i];
                     // Create updated date object
                     var tmpUpd = new Date(((typeof tmpObj.updated !== "undefined") ? tmpObj.updated : tmpObj.published));
-                    // Extract date part
-                    var tmpUpdDate = new Date(tmpUpd.getFullYear(), tmpUpd.getMonth(), tmpUpd.getDate());
+                    // Create section label from article's updated date
+                    var tmpSection = Format.formatDate(new Date(tmpUpd.getFullYear(), tmpUpd.getMonth(), tmpUpd.getDate()), Formatter.TimepointSectionRelative);
+                    if (!tmpSection) tmpSection = qsTr("Today");
                     // Create article's summary
                     var tmpSummary = ((typeof tmpObj.summary !== "undefined") ? tmpObj.summary.content : ((typeof tmpObj.content !== "undefined") ? tmpObj.content.content : ""));
                     if (tmpSummary) {
@@ -362,7 +363,7 @@ QtObject {
                                                "title": (tmpTitle ? tmpTitle : qsTr("No title")),
                                                "author": ((typeof tmpObj.author !== "undefined") ? tmpObj.author : qsTr("Unknown")),
                                                "updated": tmpUpd,
-                                               "sectionLabel": Format.formatDate(tmpUpd, Formatter.TimepointSectionRelative),
+                                               "sectionLabel": tmpSection,
                                                "imgUrl": (((typeof tmpObj.visual !== "undefined") && tmpObj.visual.url && tmpObj.visual.url !== "none") ? tmpObj.visual.url : ""),
                                                "unread": tmpObj.unread,
                                                "summary": (tmpSummary ? tmpSummary : qsTr("No preview")),
@@ -388,8 +389,7 @@ QtObject {
     function markFeedAsRead(feedId, lastEntryId) {
         if (feedId) {
             var param = { "action": "markAsRead" };
-            if (feedId.indexOf("/category/") >= 0) {
-                // "All feeds" actually is a category
+            if (streamIsCategory(feedId)) {
                 param.type = "categories";
                 param.categoryIds = [feedId];
             } else {
@@ -405,10 +405,14 @@ QtObject {
     function markFeedAsReadDoneCB(retObj) {
         if (checkResponse(retObj, markFeedAsReadDoneCB)) {
             if (articlesListModel.count > 0) {
-                var lastModelIndex = ((typeof retObj.callParams.lastReadEntryId !== "undefined") ? -1 : 0);
+                var hasLastReadEntryId = (typeof retObj.callParams.lastReadEntryId !== "undefined");
+                var lastModelIndex = null;
                 for (var i = 0; i < articlesListModel.count; i++) {
-                    if ((lastModelIndex === -1) && (articlesListModel.get(i).id === retObj.callParams.lastReadEntryId)) lastModelIndex = i;
-                    if ((lastModelIndex >= 0) && (i >= lastModelIndex)) articlesListModel.setProperty(i, "unread", false);
+                    if (hasLastReadEntryId && (articlesListModel.get(i).id === retObj.callParams.lastReadEntryId)) lastModelIndex = i;
+                    if (!hasLastReadEntryId ||
+                        ((entriesSorting() === 'oldest') && ((lastModelIndex === null) || (i <= lastModelIndex))) ||
+                        ((entriesSorting() === 'newest') && (lastModelIndex !== null) && (i >= lastModelIndex))
+                       ) articlesListModel.setProperty(i, "unread", false);
                 }
             }
             busy = false;
@@ -672,7 +676,7 @@ QtObject {
     }
 
     /*
-     * Load status indicator item when needed
+     * Load error indicator item when needed
      */
     function _createErrorIndicator() {
         var retVal = true;
@@ -690,6 +694,16 @@ QtObject {
      */
     function acquireStatusIndicator(container) {
         if (_createStatusIndicator()) _statusIndicator.parent = container;
+    }
+
+    /*
+     * Get current entries sorting value
+     */
+    function entriesSorting() {
+        var sortOpt = 'newest';
+
+        if ((typeof settings !== 'undefined') && (settings.articlesOrder === 1)) sortOpt = 'oldest';
+        return sortOpt;
     }
 
     onBusyChanged: {
