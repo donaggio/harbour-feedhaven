@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="it" sourcelanguage="en">
+<TS version="2.0" language="it" sourcelanguage="en">
 <context>
     <name>AboutPage</name>
     <message>
@@ -491,12 +491,12 @@ articles</source>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="48"/>
         <source>Newest first</source>
-        <translation>Più recenti</translation>
+        <translation>Prima i più recenti</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="49"/>
         <source>Oldest first</source>
-        <translation>Più vecchi</translation>
+        <translation>Prima i più vecchi</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="62"/>
