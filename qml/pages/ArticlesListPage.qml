@@ -271,7 +271,15 @@ Page {
             MenuItem {
                 visible: !feedly.streamIsTag(page.streamId)
                 text: qsTr("Mark all as read")
-                onClicked: remorsePopup.execute(qsTr("Marking all articles as read"), function() { feedly.markFeedAsRead(streamId, ((settings.articlesOrder === 0) ? articlesListView.model.get(0).id : null)); })
+                onClicked: {
+                    var tmpArticleId;
+                    if (settings.articlesOrder === 0) tmpArticleId = articlesListView.model.get(0).id;
+                    else if ((settings.articlesOrder === 1) && !feedly.continuation) tmpArticleId = articlesListView.model.get(articlesListView.count - 1).id;
+                    else tmpArticleId = null;
+                    remorsePopup.execute(qsTr("Marking all articles as read"), function() {
+                        feedly.markFeedAsRead(streamId, tmpArticleId);
+                    })
+                }
             }
 
             MenuItem {

@@ -4,12 +4,12 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="28"/>
+        <location filename="../qml/pages/AboutPage.qml" line="26"/>
         <source>About Feed Haven</source>
         <translation>Acerca de Feed Haven</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="51"/>
+        <location filename="../qml/pages/AboutPage.qml" line="49"/>
         <source>&lt;p&gt;&lt;i&gt;Feed Haven&lt;/i&gt; is a native client for Feedly.com on-line news reader service.&lt;/p&gt;
     &lt;p&gt;You can search for and subscribe to new feeds, manage your feeds and access their content, save articles for later reference, add or remove custom categories and read articles by category.&lt;br /&gt;
     As soon as you&apos;ll read an article, it will be marked as read on Feedly.com as well.&lt;/p&gt;
@@ -20,44 +20,44 @@
     &lt;p&gt;La imagen en miniatura en el listado de artículos sólo se muestra en el modo apaisado.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="65"/>
+        <location filename="../qml/pages/AboutPage.qml" line="63"/>
         <source>This is an open source project released under the MIT license.
 You can find its source code, as well as report any issues and feature requests, on this project&apos;s page at GitHub.</source>
         <translation>Este es un proyecto de código abierto publicado bajo licencia MIT.
 Puedes encontrar su código fuente, así como informar de cualquier error o solicitar nuevas funcionalidades, en la página de este proyecto en GitHub.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="85"/>
+        <location filename="../qml/pages/AboutPage.qml" line="83"/>
         <source>Credits</source>
         <translation>Créditos</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="92"/>
+        <location filename="../qml/pages/AboutPage.qml" line="90"/>
         <source>Launcher icon artwork courtesy by Nikita Balobanov.</source>
         <translation>El icono es obra de Nikita Balobanov.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="99"/>
+        <location filename="../qml/pages/AboutPage.qml" line="97"/>
         <source>Translations by %1.</source>
         <translation>Traducciones realizadas por %1.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="73"/>
+        <location filename="../qml/pages/AboutPage.qml" line="71"/>
         <source>Source code</source>
         <translation>Código fuente</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="44"/>
+        <location filename="../qml/pages/AboutPage.qml" line="42"/>
         <source>Version %1&lt;br/&gt;&amp;copy; 2016 by Luca Donaggio</source>
         <translation>Versión %1&lt;br/&gt;&amp;copy; 2016 por Luca Donaggio</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="58"/>
+        <location filename="../qml/pages/AboutPage.qml" line="56"/>
         <source>Sources &amp; License</source>
         <translation>Fuentes y Licencia</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="78"/>
+        <location filename="../qml/pages/AboutPage.qml" line="76"/>
         <source>Report issues</source>
         <translation>Informar de un error</translation>
     </message>
@@ -65,22 +65,22 @@ Puedes encontrar su código fuente, así como informar de cualquier error o soli
 <context>
     <name>ArticleInfoPage</name>
     <message>
-        <location filename="../qml/pages/ArticleInfoPage.qml" line="32"/>
+        <location filename="../qml/pages/ArticleInfoPage.qml" line="30"/>
         <source>Article Info</source>
         <translation>Información del artículo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticleInfoPage.qml" line="58"/>
+        <location filename="../qml/pages/ArticleInfoPage.qml" line="56"/>
         <source>Via</source>
         <translation>Canal</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticleInfoPage.qml" line="64"/>
+        <location filename="../qml/pages/ArticleInfoPage.qml" line="62"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticleInfoPage.qml" line="70"/>
+        <location filename="../qml/pages/ArticleInfoPage.qml" line="68"/>
         <source>Published on</source>
         <translation>Publicado el</translation>
     </message>
@@ -88,27 +88,27 @@ Puedes encontrar su código fuente, así como informar de cualquier error o soli
 <context>
     <name>ArticlePage</name>
     <message>
-        <location filename="../qml/pages/ArticlePage.qml" line="221"/>
+        <location filename="../qml/pages/ArticlePage.qml" line="219"/>
         <source>Switch to original layout</source>
         <translation>Cambiar a la vista original</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlePage.qml" line="227"/>
+        <location filename="../qml/pages/ArticlePage.qml" line="225"/>
         <source>Open original link</source>
         <translation>Abrir enlace original</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlePage.qml" line="232"/>
+        <location filename="../qml/pages/ArticlePage.qml" line="230"/>
         <source>Share</source>
         <translation>Compartir</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlePage.qml" line="233"/>
+        <location filename="../qml/pages/ArticlePage.qml" line="231"/>
         <source>Untitled Article</source>
         <translation>Artículo sin título</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlePage.qml" line="251"/>
+        <location filename="../qml/pages/ArticlePage.qml" line="249"/>
         <source>Back to default layout</source>
         <translation>Volver a la vista por defecto</translation>
     </message>
@@ -121,12 +121,12 @@ Puedes encontrar su código fuente, así como informar de cualquier error o soli
         <translation>Compartido por SailfishOS mediante Feed Haven</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticleSharePage.qml" line="31"/>
+        <location filename="../qml/pages/ArticleSharePage.qml" line="29"/>
         <source>Share Article</source>
         <translation>Compartir artículo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticleSharePage.qml" line="56"/>
+        <location filename="../qml/pages/ArticleSharePage.qml" line="54"/>
         <source>Email</source>
         <translation>Correo electrónico</translation>
     </message>
@@ -134,69 +134,69 @@ Puedes encontrar su código fuente, así como informar de cualquier error o soli
 <context>
     <name>ArticlesListPage</name>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="224"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="222"/>
         <source>Mark as read</source>
         <translation>Marcar como leído</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="224"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="222"/>
         <source>Keep unread</source>
         <translation>Marcar como no leído</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="234"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="232"/>
         <source>Mark this and older as read</source>
         <translation>Marcar éste y anteriores como leídos</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="235"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="233"/>
         <source>Marking articles as read</source>
         <translation>Marcando artículos como leídos</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="239"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="237"/>
         <source>Save for later</source>
         <translation>Guardar para leer después</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="239"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="237"/>
         <source>Forget</source>
         <translation>Eliminar</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="245"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="243"/>
         <source>Open original link</source>
         <translation>Abrir enlace original</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="254"/>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="275"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="252"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="273"/>
         <source>Mark all as read</source>
         <translation>Marcar todo como leído</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="255"/>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="276"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="253"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="279"/>
         <source>Marking all articles as read</source>
         <translation>Marcando todos los artículos como leídos</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="259"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="257"/>
         <source>Refresh feed</source>
         <translation>Actualizar canal</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="269"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="267"/>
         <source>More articles</source>
         <translation>Más artículos</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="281"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="287"/>
         <source>Back to the top</source>
         <translation>Volver arriba</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ArticlesListPage.qml" line="288"/>
+        <location filename="../qml/pages/ArticlesListPage.qml" line="294"/>
         <source>No unread articles in this feed</source>
         <translation>No hay artículos sin leer en este canal</translation>
     </message>
@@ -252,22 +252,22 @@ guardados</translation>
 <context>
     <name>FeedSearchPage</name>
     <message>
-        <location filename="../qml/pages/FeedSearchPage.qml" line="28"/>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="26"/>
         <source>Search Feed</source>
         <translation>Buscar canal</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedSearchPage.qml" line="47"/>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="45"/>
         <source>Search or enter feed URL</source>
         <translation>Buscar o introducir URL del canal</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedSearchPage.qml" line="153"/>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="151"/>
         <source>Searching ...</source>
         <translation>Buscando ...</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedSearchPage.qml" line="165"/>
+        <location filename="../qml/pages/FeedSearchPage.qml" line="163"/>
         <source>No results</source>
         <translation>No hay resultados</translation>
     </message>
@@ -370,72 +370,72 @@ guardados</translation>
 <context>
     <name>FeedsListPage</name>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="28"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="26"/>
         <source>Your feeds</source>
         <translation>Tus canales</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="42"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="40"/>
         <source>Unsubscribing</source>
         <translation>Borrando suscripción</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="211"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="209"/>
         <source>Delete category</source>
         <translation>Borrar categoría</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="205"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="203"/>
         <source>Manage feed</source>
         <translation>Editar canal</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="42"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="40"/>
         <source>Deleting</source>
         <translation>Borrando</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="211"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="209"/>
         <source>Unsubscribe</source>
         <translation>Borrar suscripción</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="219"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="217"/>
         <source>About</source>
         <translation>Acerca de</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="224"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="222"/>
         <source>Settings</source>
         <translation>Ajustes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="229"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="227"/>
         <source>Sign in</source>
         <translation>Iniciar sesión</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="229"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="227"/>
         <source>Sign out</source>
         <translation>Cerrar sesión</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="237"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="235"/>
         <source>Add feed</source>
         <translation>Añadir canal</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="243"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="241"/>
         <source>Refresh feeds</source>
         <translation>Actualizar canales</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="251"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="249"/>
         <source>Feeds list not available</source>
         <translation>La lista de canales no está disponible</translation>
     </message>
     <message>
-        <location filename="../qml/pages/FeedsListPage.qml" line="251"/>
+        <location filename="../qml/pages/FeedsListPage.qml" line="249"/>
         <source>Please sign in</source>
         <translation>Por favor, inicia sesión</translation>
     </message>
@@ -472,42 +472,42 @@ guardados</translation>
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="28"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="26"/>
         <source>Settings</source>
         <translation>Ajustes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="38"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="36"/>
         <source>Articles list</source>
         <translation>Lista de artículos</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="44"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="42"/>
         <source>Sorting</source>
         <translation>Orden</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="45"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="43"/>
         <source>Choose articles list sorting method</source>
         <translation>Elige cómo ordenar la lista de artículos</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="48"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="46"/>
         <source>Newest first</source>
         <translation>Los más nuevos primero</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="49"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="47"/>
         <source>Oldest first</source>
         <translation>Los más antiguos primero</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="62"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="60"/>
         <source>Don&apos;t show images</source>
         <translation>No mostrar imágenes</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="63"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="61"/>
         <source>Help reduce bandwith usage by not loading any article&apos;s images</source>
         <translation>Ayuda a reducir el uso de ancho de banda al no cargar las imágenes de los artículos</translation>
     </message>
@@ -515,12 +515,12 @@ guardados</translation>
 <context>
     <name>SignInPage</name>
     <message>
-        <location filename="../qml/pages/SignInPage.qml" line="26"/>
+        <location filename="../qml/pages/SignInPage.qml" line="24"/>
         <source>Sign in</source>
         <translation>Iniciar sesión</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SignInPage.qml" line="34"/>
+        <location filename="../qml/pages/SignInPage.qml" line="32"/>
         <source>Authentication error</source>
         <translation>Error de autenticación</translation>
     </message>
