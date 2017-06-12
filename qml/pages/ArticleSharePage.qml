@@ -12,6 +12,8 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
+    allowedOrientations: Orientation.All
+
     property string title: ""
     property string contentUrl: ""
     readonly property string bodySig: qsTr("Shared via Feed Haven for SailfishOS")
