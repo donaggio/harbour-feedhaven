@@ -5,6 +5,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Wed Apr 04 2018 Luca Donaggio <donaggio@gmail.com> 1.0.17-1
+- Fixed a bug when adding feeds without subscribers
+- Let article images to be resized according to a device's pixel ratio
+
 * Fri Feb 10 2017 Luca Donaggio <donaggio@gmail.com> 1.0.16-1
 - Added settings page with options to choose sorting method in articles list and disable loading of article's images
 

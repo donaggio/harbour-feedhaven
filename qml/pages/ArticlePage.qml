@@ -276,6 +276,10 @@ Page {
         opacity: 0
         contentWidth: parent.width
         contentHeight: parent.height
+        topMargin: Math.max(Math.floor((height - contentHeight) / 2), 0)
+        bottomMargin: topMargin
+        leftMargin: Math.max(Math.floor((width - contentWidth) / 2), 0)
+        rightMargin: leftMargin
 
         PinchArea {
             id: articleImagePinchArea
@@ -295,15 +299,15 @@ Page {
                 var scale = (1.0 + pinch.scale - pinch.previousScale);
                 var updatedWidth = (articleImageContainer.contentWidth * scale);
                 var updatedHeight = (articleImageContainer.contentHeight * scale);
-                if (((articleImage.paintedWidth * scale) <= articleImage.sourceSize.width) || ((articleImage.paintedHeight * scale) <= articleImage.sourceSize.height))
+                if (((articleImage.paintedWidth * scale) <= articleImage.scaledSourceWidth) || ((articleImage.paintedHeight * scale) <= articleImage.scaledSourceHeight))
                     articleImageContainer.resizeContent(updatedWidth, updatedHeight, pinch.center);
             }
 
             onPinchFinished: {
                 // Check if lower image size boundary has been crossed
-                if ((articleImageContainer.contentWidth < articleImageContainer.width) || (articleImageContainer.contentHeight < articleImageContainer.height)) {
-                    articleImageContainer.contentWidth = articleImageContainer.width;
-                    articleImageContainer.contentHeight = articleImageContainer.height;
+                if ((articleImageContainer.contentWidth < Math.min(articleImage.scaledSourceWidth, articleImageContainer.width)) || (articleImageContainer.contentHeight < Math.min(articleImage.scaledSourceHeight, articleImageContainer.height))) {
+                    articleImageContainer.contentWidth = Math.min(articleImage.scaledSourceWidth, articleImageContainer.width);
+                    articleImageContainer.contentHeight = Math.min(articleImage.scaledSourceHeight, articleImageContainer.height);
                 }
                 // Move its content within bounds.
                 articleImageContainer.returnToBounds()
@@ -320,18 +324,18 @@ Page {
                 fillMode: Image.PreserveAspectFit
                 source: ((articleImageContainer.visible && galleryModel.count && (typeof galleryModel.get(articleGalleryView.currentIndex) !== "undefined")) ? galleryModel.get(articleGalleryView.currentIndex).imgUrl : "")
 
+                property real scaledSourceWidth: 0.0
+                property real scaledSourceHeight: 0.0
+
                 function _adjustImageAspect() {
+                    scaledSourceWidth = Math.floor(sourceSize.width * Theme.pixelRatio);
+                    scaledSourceHeight = Math.floor(sourceSize.height * Theme.pixelRatio);
                     // Reset image container size
-                    articleImageContainer.contentWidth = articleImageContainer.width;
-                    articleImageContainer.contentHeight = articleImageContainer.height;
+                    articleImageContainer.contentWidth = Math.min(scaledSourceWidth, articleImageContainer.width);
+                    articleImageContainer.contentHeight = Math.min(scaledSourceHeight, articleImageContainer.height);
                     // Eventually scale image to make it fully visible and enable zooming
-                    if ((sourceSize.width > width) || (sourceSize.height > height)) {
-                        fillMode = Image.PreserveAspectFit;
-                        articleImagePinchArea.enabled = true;
-                    } else {
-                        fillMode = Image.Pad;
-                        articleImagePinchArea.enabled = false;
-                    }
+                    if ((scaledSourceWidth > width) || (scaledSourceHeight > height)) articleImagePinchArea.enabled = true;
+                    else articleImagePinchArea.enabled = false;
                 }
 
                 BusyIndicator {

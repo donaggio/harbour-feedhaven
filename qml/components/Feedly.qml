@@ -554,7 +554,7 @@ QtObject {
                                    "description": ((typeof tmpObj.description !== "undefined") ? tmpObj.description : ""),
                                    "imgUrl": ((typeof tmpObj.visualUrl !== "undefined") ? tmpObj.visualUrl : ""),
                                    "lang": ((typeof tmpObj.language !== "undefined") ? tmpObj.language : ""),
-                                   "subscribers": tmpObj.subscribers });
+                                   "subscribers": ((typeof tmpObj.subscribers !== "undefined") ? tmpObj.subscribers : 0) });
                 }
             }
             searchFeedCompleted(results);

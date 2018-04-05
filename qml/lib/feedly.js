@@ -33,7 +33,7 @@ var _apiCalls = {
  */
 function init(useTest) {
     if (!_isInitialized) {
-        if (useTest) _apiCallBaseUrl = "sandbox.feedly.com/v3/";
+        if (useTest) _apiCallBaseUrl = "sandbox7.feedly.com/v3/";
         else _apiCallBaseUrl = "cloud.feedly.com/v3/";
         _isInitialized = true;
     }

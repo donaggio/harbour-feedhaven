@@ -18,7 +18,10 @@ CoverBackground {
     Image {
         x: -Theme.paddingLarge
         y: x
-        source: "../../icons/cover-background" + ((Screen.sizeCategory >= Screen.Large) ? "-large" : "") + ".png"
+        width: parent.width
+        height: sourceSize.height * (width / sourceSize.width)
+        source: "../../icons/cover-background.png"
+        opacity: 0.1
     }
 
     /*
